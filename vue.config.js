@@ -1,9 +1,7 @@
 module.exports = {
-    publicPath: process.env.NODE_ENV === 'production' ?
-        '/vuefirebase/' :
-        '/',
+    publicPath: process.env.NODE_ENV === 'production' ? '/vueinstagram/' : '/'
 
-    "transpileDependencies": [
-        "vuetify"
-    ]
+    // "transpileDependencies": [
+    //     "vuetify"
+    // ]
 }
