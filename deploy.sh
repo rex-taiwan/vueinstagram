@@ -1,6 +1,6 @@
 rm -rf ./dist
 
-npm build
+npm run build
 
 git add .
 git commit -m "Commit build folder"
