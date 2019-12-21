@@ -5,6 +5,8 @@ import store from './store'
 import vuetify from './plugins/vuetify';
 import * as VueFire from 'vuefire';
 Vue.use(VueFire)
+import ReadMore from 'vue-read-more';
+Vue.use(ReadMore);
 
 
 Vue.config.productionTip = false

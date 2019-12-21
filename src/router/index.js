@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 // import Home from '../views/Home.vue';
-import Dashboard from '../views/Dashboard.vue';
-import Project from '../views/Project.vue';
+import Dashboard from '../components/Dashboard.vue';
+import Project from '../components/Project.vue';
 import Team from '../views/Team.vue';
+import Like from '../views/Like.vue';
 
 Vue.use(VueRouter)
 
@@ -25,6 +26,12 @@ const routes = [{
         path: '/team',
         name: 'team',
         component: Team
+
+    },
+    {
+        path: '/like',
+        name: 'like',
+        component: Like
 
     }
 ]
