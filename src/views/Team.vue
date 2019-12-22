@@ -161,16 +161,18 @@ li {
 
 
 .drageffect {
-  margin-top:-50px;
+  margin-top:-30px;
   animation: drageffect 0.3s;
 }
 
 @keyframes drageffect {
   0%{
-margin-top:10px;
+      opacity: 0;
+margin-top:5px;
   }
   100%{
-margin-top:-50px;
+      opacity: 1;
+margin-top:-30px;
   }
 
 }

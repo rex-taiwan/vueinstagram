@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 // import Home from '../views/Home.vue';
 import Dashboard from '../components/Dashboard.vue';
 import Project from '../components/Project.vue';
+import Profile from '../components/Profile.vue';
 import Team from '../views/Team.vue';
 import Like from '../views/Like.vue';
 
@@ -26,6 +27,12 @@ const routes = [{
         path: '/team',
         name: 'team',
         component: Team
+
+    },
+    {
+        path: '/profile',
+        name: 'profile',
+        component: Profile
 
     },
     {

@@ -2,13 +2,15 @@
    
    <nav>
     
-    <!-- <v-snackbar v-model="snackbar" :timeout="6000" top color="success">
-    <span>Awesome! You just added a new post.</span>
+   <v-snackbar  v-model="snackbar" :timeout="2000" top color="success">
+    <img width="120"  :src="modalUrl" alt="">
+    <p class="subtitle-2 mt-4">Awesome! You just added a new post.</p>
+    
     <v-btn text color="white" @click="snackbar=false">Close</v-btn>
-    </v-snackbar> -->
+    </v-snackbar>
 
     <v-snackbar  color="black"
-      v-model="cookiesnackbar" timeout="1000"
+      v-model="cookiesnackbar" timeout="3000"
     >
       We use cookies to personalise content and ads,
       
@@ -25,14 +27,17 @@
     
 <v-app-bar style="position:fixed;bottom:0;z-index:5;"
       color="grey lighten-5" class="d-sm-none d-block"
-      bottom height="84"
+      bottom height="82"
     >
       <v-row>
       <v-col cols="2" class="mb-4">
         <li><a>
            <router-link to="/" >
            <v-btn text>
-            <v-icon color="black">mdi-home</v-icon>
+            <v-icon size=30 color="black">mdi-home</v-icon>
+             <v-avatar size="5" class="mt-6 red" style="bottom:-5px;left:-18px;">
+      
+    </v-avatar>
             </v-btn> 
          
           </router-link></a></li>
@@ -45,7 +50,7 @@
        <a>
           <router-link to="/" >
            <v-btn text>
-            <v-icon color="black">mdi-magnify</v-icon>
+            <v-icon size=30 color="black">mdi-magnify</v-icon>
             </v-btn> 
          
           </router-link>
@@ -73,8 +78,12 @@
           <li><a>
             <router-link to="/Like">
            <v-btn text>
-            <v-icon color="black">mdi-heart-outline</v-icon>
-
+           
+        <v-icon size=30 color="black">mdi-heart-outline</v-icon>
+        <v-avatar size="5" class="mt-6 red" style="bottom:-5px;left:-18px;">
+    </v-avatar>
+    
+  
             </v-btn> 
          
           </router-link></a></li>
@@ -86,10 +95,18 @@
             <li>
               <a>
                   <router-link to="/Project" >
-           <v-btn text>
-            <v-avatar size="25">
+           <v-btn text >
+            
+     <v-avatar size="30" class="mr-4">
               <img src="https://images.unsplash.com/photo-1485921040253-3601b55d50aa?ixlib=rb-1.2.1&auto=format&fit=crop&w=882&q=80" alt="">
-            </v-avatar>
+      <v-avatar size="5" class="mt-6 red" style="bottom:-8px;left:-17px;">
+      
+    </v-avatar>
+    </v-avatar>
+
+   
+   
+            
             </v-btn> 
          
           </router-link>
@@ -105,7 +122,7 @@
     </v-app-bar>
 
 
-<v-app-bar flat app color="white">
+<v-app-bar flat app color="grey lighten-5">
         <!-- <v-app-bar-nav-icon class="black--text" @click="drawer = !drawer"></v-app-bar-nav-icon> -->
         <li>
           <a>
@@ -169,10 +186,31 @@
     </v-list>
 
 </v-menu> -->
+ <v-icon
+        size=29 class="d-sm-none d-block mb-1"
+        color="black darken-1"
+      >
+        mdi-television-classic
+      </v-icon>
+
+
         <li><a>
          <router-link to="/team">
            <v-btn text class="d-sm-none d-block">
-            <v-icon color="black" class="ml-2">mdi-telegram</v-icon>
+           <v-badge
+      overlap
+      color="red"
+    >
+      <template v-slot:badge>
+        9
+      </template>
+      <v-icon
+         size=32
+        color="black"
+      >
+        mdi-telegram
+      </v-icon>
+    </v-badge>
             </v-btn> 
          
           </router-link></a></li>
@@ -180,7 +218,7 @@
           <li><a>
          <router-link to="/team">
            <v-btn text class="d-none d-sm-block">
-            <v-icon color="black" class="ml-2">mdi-compass</v-icon>
+            <v-icon color="black" class="ml-2">mdi-compass-outline</v-icon>
             </v-btn> 
          
           </router-link></a></li>
@@ -200,7 +238,8 @@
           text
           v-on="on" class="d-none d-sm-block"
         >
-          <v-icon>mdi-heart</v-icon>
+          <v-icon>mdi-heart-outline</v-icon>
+            <v-avatar size="5" class="mt-6 red" style="bottom:-5px;left:-15px;"></v-avatar>
         </v-btn>
       </template>
 
@@ -293,7 +332,7 @@
   <a>
 <router-link to="/project">
            <v-btn text class="d-none d-sm-block" >
-            <v-icon color="black" class="ml-2">mdi-account</v-icon>
+            <v-icon color="black" class="ml-1">mdi-account-outline</v-icon>
             </v-btn> 
          
           </router-link></a></li>
@@ -375,9 +414,10 @@ export default {
                   { icon: 'mdi-heart-outline', text: 'Team', route: '/team' },
                   { icon: 'mdi-account-outline', text: 'My activity', route: '/project' },
             ],
-            snackbar:true,
+            snackbar:false,
             cookiesnackbar:true,
             fav: true,
+              modalUrl:'./successpost.svg',
       menu: false,
       message: false,
       hints: true,

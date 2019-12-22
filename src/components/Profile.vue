@@ -149,7 +149,7 @@
             >
 
             <v-dialog fullscreen
-      v-model="dialog2323"  persistent
+      v-model="dialog2323"  
     
     >
     <v-app-bar 
@@ -159,7 +159,7 @@
 
     <li>
       <a>
-         <router-link  to="/profile">
+         <router-link  to="/project">
 
                 <v-icon color="black">mdi-chevron-left</v-icon>
             
@@ -178,7 +178,7 @@
 <v-spacer></v-spacer>
       
 
-     
+      
 
       
 

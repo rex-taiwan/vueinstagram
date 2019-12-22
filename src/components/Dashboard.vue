@@ -1,6 +1,8 @@
 <template>
 
     <div>
+
+     
       
      <v-snackbar  v-model="snackbar" :timeout="2000" top color="success">
     <img width="120"  :src="modalUrl" alt="">
@@ -25,7 +27,7 @@
      <div class="d-flex justify-center loadingeffect" v-if="loading">
       <v-progress-circular
       indeterminate 
-      color="primary"
+      color="grey lighten-1"
     ></v-progress-circular>
     
       </div>
@@ -310,16 +312,28 @@
 
     <v-card-actions class="my-4">
       
-       <v-icon class="grey--text mx-2">mdi-heart-outline</v-icon>
+       <!-- <v-icon class="grey--text mx-2">mdi-heart-outline</v-icon> -->
         
+      <v-rating
+      v-model="rating"
+      length="1"
       
+      :empty-icon="emptyIcon"
+      :full-icon="fullIcon"
+      :hover="hover"
+      size="24"
+      dense
+      color="red"
+      background-color="primary"
+      
+    ></v-rating>
       
     
-        <v-icon class="grey--text mx-3">mdi-message-outline</v-icon>
+        <v-icon class="primary--text mx-2">mdi-message-outline</v-icon>
      
 
       
-        <v-icon class="grey--text mx-4">mdi-send</v-icon>
+        <v-icon class="primary--text ml-2">mdi-send</v-icon>
        
       
 
@@ -404,6 +418,18 @@ export default {
         modalUrl:'./successpost.svg',
         deleteUrl:'./delete.svg',
         vertical: true,
+        emptyIcon: 'mdi-heart-outline',
+      fullIcon: 'mdi-heart',
+      halfIcon: 'mdi-heart-half-full',
+      halfIncrements: false,
+      hover: true,
+      length: 5,
+      rating: 0,
+      readonly: false,
+      size: 64,
+      dense: false,
+      bgColor: 'grey lighten-1',
+      
         }
         
     },
@@ -459,7 +485,7 @@ export default {
 <style>
 
 .loadingeffect {
-  margin-top:60px;
+  margin-top:40px;
   
 }
 
@@ -472,9 +498,11 @@ export default {
 
 @keyframes drageffect2 {
   0%{
-margin-top:90px;
+    opacity: 0;
+margin-top:50px;
   }
   100%{
+     opacity: 1;
 margin-top:-20px;
   }
 
