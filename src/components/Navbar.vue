@@ -1,171 +1,127 @@
 <template>
-   
-   <nav>
-    
-   <v-snackbar  v-model="snackbar" :timeout="2000" top color="success">
-    <img width="120"  :src="modalUrl" alt="">
-    <p class="subtitle-2 mt-4">Awesome! You just added a new post.</p>
-    
-    <v-btn text color="white" @click="snackbar=false">Close</v-btn>
+  <nav>
+    <v-snackbar v-model="snackbar" :timeout="2000" top color="success">
+      <img width="120" :src="modalUrl" alt />
+      <p class="subtitle-2 mt-4">Awesome! You just added a new post.</p>
+
+      <v-btn text color="white" @click="snackbar=false">Close</v-btn>
     </v-snackbar>
 
-    <v-snackbar  color="black"
-      v-model="cookiesnackbar" timeout="3000"
-    >
+    <v-snackbar color="black" v-model="cookiesnackbar" :timeout="1000">
       We use cookies to personalise content and ads,
-      
-      
-      <v-btn
-        color="white"
-        text
-        @click="cookiesnackbar = false"
-      >
-        Close
-      </v-btn>
+      <v-btn color="white" text @click="cookiesnackbar = false">Close</v-btn>
     </v-snackbar>
 
-    
-<v-app-bar style="position:fixed;bottom:0;z-index:5;"
-      color="grey lighten-5" class="d-sm-none d-block"
-      bottom height="82"
+    <v-app-bar
+      style="position:fixed;bottom:0;z-index:5;"
+      color="grey lighten-5"
+      class="d-block d-sm-none"
+      bottom
+      height="82"
     >
       <v-row>
-      <v-col cols="2" class="mb-4">
-        <li><a>
-           <router-link to="/" >
-           <v-btn text>
-            <v-icon size=30 color="black">mdi-home</v-icon>
-             <v-avatar size="5" class="mt-6 red" style="bottom:-5px;left:-18px;">
-      
-    </v-avatar>
-            </v-btn> 
-         
-          </router-link></a></li>
-       
-          
+        <v-col cols="2" class="mb-4">
+          <li>
+            <a>
+              <router-link to="/">
+                <v-btn text>
+                  <v-icon size="30" color="black">mdi-home</v-icon>
+                  <v-avatar size="5" class="mt-6 red" style="bottom:-5px;left:-18px;"></v-avatar>
+                </v-btn>
+              </router-link>
+            </a>
+          </li>
         </v-col>
-
-         <v-col cols="2" class="mb-4">
-     <li>
-       <a>
-          <router-link to="/" >
-           <v-btn text>
-            <v-icon size=30 color="black">mdi-magnify</v-icon>
-            </v-btn> 
-         
-          </router-link>
-       </a>
-     </li>
-         
-          
-      
-        </v-col>
-       
-     
-
-        
-
-         <v-col cols="4" class="mb-4">
-      <v-btn text class="ml-1" color="white">
-         
-    
-     <popup @projectAdded="snackbar=true"/>
-    
-      </v-btn> 
-         </v-col>
 
         <v-col cols="2" class="mb-4">
-          <li><a>
-            <router-link to="/Like">
-           <v-btn text>
-           
-        <v-icon size=30 color="black">mdi-heart-outline</v-icon>
-        <v-avatar size="5" class="mt-6 red" style="bottom:-5px;left:-18px;">
-    </v-avatar>
-    
-  
-            </v-btn> 
-         
-          </router-link></a></li>
-                
-          
+          <li>
+            <a>
+              <router-link to="/">
+                <v-btn text>
+                  <v-icon size="30" color="black">mdi-magnify</v-icon>
+                </v-btn>
+              </router-link>
+            </a>
+          </li>
         </v-col>
 
-          <v-col cols="2" class="mb-4">
-            <li>
-              <a>
-                  <router-link to="/Project" >
-           <v-btn text >
-            
-     <v-avatar size="30" class="mr-4">
-              <img src="https://images.unsplash.com/photo-1485921040253-3601b55d50aa?ixlib=rb-1.2.1&auto=format&fit=crop&w=882&q=80" alt="">
-      <v-avatar size="5" class="mt-6 red" style="bottom:-8px;left:-17px;">
-      
-    </v-avatar>
-    </v-avatar>
-
-   
-   
-            
-            </v-btn> 
-         
-          </router-link>
-              </a>
-            </li>
-             
-          
+        <v-col cols="4" class="mb-4">
+          <v-btn text class="ml-1" color="white">
+            <popup @projectAdded="snackbar=true" />
+          </v-btn>
         </v-col>
 
-        
-     </v-row>
-      
+        <v-col cols="2" class="mb-4">
+          <li>
+            <a>
+              <router-link to="/Like">
+                <v-btn text>
+                  <v-icon size="30" color="black">mdi-heart-outline</v-icon>
+                  <v-avatar size="5" class="mt-6 red" style="bottom:-5px;left:-18px;"></v-avatar>
+                </v-btn>
+              </router-link>
+            </a>
+          </li>
+        </v-col>
+
+        <v-col cols="2" class="mb-4">
+          <li>
+            <a>
+              <router-link to="/Project">
+                <v-btn text>
+                  <v-avatar size="30" class="mr-4">
+                    <img
+                      src="https://images.unsplash.com/photo-1485921040253-3601b55d50aa?ixlib=rb-1.2.1&auto=format&fit=crop&w=882&q=80"
+                      alt
+                    />
+                    <v-avatar size="5" class="mt-6 red" style="bottom:-8px;left:-17px;"></v-avatar>
+                  </v-avatar>
+                </v-btn>
+              </router-link>
+            </a>
+          </li>
+        </v-col>
+      </v-row>
     </v-app-bar>
 
+    <v-app-bar flat app color="grey lighten-5">
+      <!-- <v-app-bar-nav-icon class="black--text" @click="drawer = !drawer"></v-app-bar-nav-icon> -->
+      <li>
+        <a>
+          <router-link to="/">
+            <v-toolbar-title class="text-uppercase black--text d-sm-block d-none subtitle-2">
+              <v-icon color="black" class="mx-2">mdi-gesture</v-icon>Exclusive
+            </v-toolbar-title>
+          </router-link>
+        </a>
+      </li>
 
-<v-app-bar flat app color="grey lighten-5">
-        <!-- <v-app-bar-nav-icon class="black--text" @click="drawer = !drawer"></v-app-bar-nav-icon> -->
-        <li>
-          <a>
-           <router-link to="/">
-        <v-toolbar-title class="text-uppercase black--text d-sm-block d-none subtitle-2">
-           <v-icon color=black class="mx-2">mdi-gesture</v-icon>Inclusive
-        </v-toolbar-title>
-         </router-link>
-         </a></li> 
-
-
-
-        <v-icon class="black--text d-sm-none d-block">mdi-camera-outline</v-icon>
-        <v-spacer></v-spacer>
-          <v-text-field
-        append-icon="mdi-microphone" 
-        class="d-sm-block d-none my-10 grey" style="max-width:250px;border-radius:2px;"
-        flat solo
+      <v-icon class="black--text d-sm-none d-block">mdi-camera-outline</v-icon>
+      <v-spacer></v-spacer>
+      <v-text-field
+        append-icon="mdi-microphone"
+        class="d-sm-block d-none my-10 grey"
+        style="max-width:250px;border-radius:2px;"
+        flat
+        solo
         hide-details
         placeholder="Search"
-      
         prepend-inner-icon="mdi-magnify"
-       
-       
       ></v-text-field>
       <li>
-          <a>
-      <router-link to="/">
-  <v-toolbar-title class="text-uppercase black--text d-sm-none d-block subtitle-1 ml-7" >
-        
-           <v-icon color=black class="mx-1">mdi-gesture</v-icon>Inclusive
-       
-        
-        <!-- <span class="white--text"></span> -->
-
-        </v-toolbar-title>
-         </router-link>
-        
-          </a>
-           </li>
-     <!-- <img src="https://images.unsplash.com/photo-1489512827632-6e52aecf88bf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80" align-center justify-center height="35px"> -->
+        <a>
+          <router-link to="/">
+            <v-toolbar-title class="text-uppercase black--text d-sm-none d-block subtitle-1 ml-7">
+              <v-icon color="black" class="mx-1">mdi-gesture</v-icon>
+Exclusive
+              <!-- <span class="white--text"></span> -->
+            </v-toolbar-title>
+          </router-link>
+        </a>
+      </li>
+      <!-- <img src="https://images.unsplash.com/photo-1489512827632-6e52aecf88bf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80" align-center justify-center height="35px"> -->
       <v-spacer></v-spacer>
-<!-- 
+      <!-- 
  <v-menu offset-y>
 
     <template v-slot:activator="{ on }">
@@ -185,166 +141,137 @@
         </v-list-item>
     </v-list>
 
-</v-menu> -->
- <v-icon
-        size=29 class="d-sm-none d-block mb-1"
-        color="black darken-1"
-      >
-        mdi-television-classic
-      </v-icon>
+      </v-menu>-->
+      <v-icon size="29" class="d-sm-none d-block mb-1" color="black darken-1">mdi-television-classic</v-icon>
 
+      <li>
+        <a>
+          <router-link to="/team">
+            <v-btn text class="d-sm-none d-block">
+              <v-badge overlap color="red">
+                <template v-slot:badge>9</template>
+                <v-icon size="32" color="black">mdi-telegram</v-icon>
+              </v-badge>
+            </v-btn>
+          </router-link>
+        </a>
+      </li>
 
-        <li><a>
-         <router-link to="/team">
-           <v-btn text class="d-sm-none d-block">
-           <v-badge
-      overlap
-      color="red"
-    >
-      <template v-slot:badge>
-        9
-      </template>
-      <v-icon
-         size=32
-        color="black"
-      >
-        mdi-telegram
-      </v-icon>
-    </v-badge>
-            </v-btn> 
-         
-          </router-link></a></li>
-         
-          <li><a>
-         <router-link to="/team">
-           <v-btn text class="d-none d-sm-block">
-            <v-icon color="black" class="ml-2">mdi-compass-outline</v-icon>
-            </v-btn> 
-         
-          </router-link></a></li>
+      <li>
+        <a>
+          <router-link to="/team">
+            <v-btn text class="d-none d-sm-block">
+              <v-icon color="black" class="ml-2">mdi-compass-outline</v-icon>
+            </v-btn>
+          </router-link>
+        </a>
+      </li>
 
-           <li><a>
-         
-         
-<v-menu
-      v-model="menu"
-      :close-on-content-click="false"
-      :nudge-width="200"
-      offset-y
-    >
-      <template v-slot:activator="{ on }">
-        <v-btn
-          color="black"
-          text
-          v-on="on" class="d-none d-sm-block"
-        >
-          <v-icon>mdi-heart-outline</v-icon>
-            <v-avatar size="5" class="mt-6 red" style="bottom:-5px;left:-15px;"></v-avatar>
-        </v-btn>
-      </template>
+      <li>
+        <a>
+          <v-menu v-model="menu" :close-on-content-click="false" :nudge-width="200" offset-y>
+            <template v-slot:activator="{ on }">
+              <v-btn color="black" text v-on="on" class="d-none d-sm-block">
+                <v-icon>mdi-heart-outline</v-icon>
+                <v-avatar size="5" class="mt-6 red" style="bottom:-5px;left:-15px;"></v-avatar>
+              </v-btn>
+            </template>
 
-      <v-card>
-        <v-list>
-          <v-list-item>
-            <v-list-item-avatar>
-              <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John">
-            </v-list-item-avatar>
+            <v-card>
+              <v-list>
+                <v-list-item>
+                  <v-list-item-avatar>
+                    <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John" />
+                  </v-list-item-avatar>
 
-            <v-list-item-content>
-              <v-list-item-title class="caption font-weight-bold">Luia</v-list-item-title>
-              <v-list-item-subtitle>Start to follow you <span class="caption grey--text">1 days ago</span>
-             
-              </v-list-item-subtitle>
-          
-            </v-list-item-content>
+                  <v-list-item-content>
+                    <v-list-item-title class="caption font-weight-bold">Luia</v-list-item-title>
+                    <v-list-item-subtitle>
+                      Start to follow you
+                      <span class="caption grey--text">1 days ago</span>
+                    </v-list-item-subtitle>
+                  </v-list-item-content>
+                </v-list-item>
+              </v-list>
 
-            
-          </v-list-item>
-        </v-list>
+              <v-divider></v-divider>
 
-        <v-divider></v-divider>
+              <v-list>
+                <v-list-item>
+                  <v-list-item-avatar>
+                    <img
+                      src="https://images.unsplash.com/photo-1489980721706-f487dab89c24?ixlib=rb-1.2.1&auto=format&fit=crop&w=2102&q=80"
+                      alt="John"
+                    />
+                  </v-list-item-avatar>
 
-        <v-list>
-          <v-list-item>
-            <v-list-item-avatar>
-              <img src="https://images.unsplash.com/photo-1489980721706-f487dab89c24?ixlib=rb-1.2.1&auto=format&fit=crop&w=2102&q=80" alt="John">
-            </v-list-item-avatar>
+                  <v-list-item-content>
+                    <v-list-item-title class="caption font-weight-bold">John Leider</v-list-item-title>
+                    <v-list-item-subtitle>
+                      Start to follow you
+                      <span class="caption grey--text">1 days ago</span>
+                    </v-list-item-subtitle>
+                  </v-list-item-content>
+                </v-list-item>
+              </v-list>
 
-            <v-list-item-content>
-              <v-list-item-title class="caption font-weight-bold">John Leider</v-list-item-title>
-                    <v-list-item-subtitle>Start to follow you <span class="caption grey--text">1 days ago</span></v-list-item-subtitle>
-            </v-list-item-content>
+              <v-divider></v-divider>
 
-         
-          </v-list-item>
+              <v-list>
+                <v-list-item>
+                  <v-list-item-avatar>
+                    <img
+                      src="https://images.unsplash.com/photo-1576280314550-773c50583407?ixlib=rb-1.2.1&auto=format&fit=crop&w=2792&q=80"
+                      alt="John"
+                    />
+                  </v-list-item-avatar>
 
-          
-        </v-list>
- 
+                  <v-list-item-content>
+                    <v-list-item-title class="caption font-weight-bold">KAl Viusal</v-list-item-title>
+                    <v-list-item-subtitle>
+                      Start to follow you
+                      <span class="caption grey--text">1 days ago</span>
+                    </v-list-item-subtitle>
+                  </v-list-item-content>
+                </v-list-item>
+              </v-list>
 
-          <v-divider></v-divider>
+              <v-divider></v-divider>
 
-        <v-list>
-          <v-list-item>
-            <v-list-item-avatar>
-              <img src="https://images.unsplash.com/photo-1576280314550-773c50583407?ixlib=rb-1.2.1&auto=format&fit=crop&w=2792&q=80" alt="John">
-            </v-list-item-avatar>
+              <v-list>
+                <v-list-item>
+                  <v-list-item-avatar>
+                    <img
+                      src="https://images.unsplash.com/photo-1489913590284-9269438bb411?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjExNjMwfQ&auto=format&fit=crop&w=934&q=80"
+                      alt="John"
+                    />
+                  </v-list-item-avatar>
 
-            <v-list-item-content>
-              <v-list-item-title class="caption font-weight-bold">KAl Viusal</v-list-item-title>
-                    <v-list-item-subtitle>Start to follow you <span class="caption grey--text">1 days ago</span></v-list-item-subtitle>
-            </v-list-item-content>
+                  <v-list-item-content>
+                    <v-list-item-title class="caption font-weight-bold">Jakob Owens</v-list-item-title>
+                    <v-list-item-subtitle>
+                      Start to follow you
+                      <span class="caption grey--text">1 days ago</span>
+                    </v-list-item-subtitle>
+                  </v-list-item-content>
+                </v-list-item>
+              </v-list>
+            </v-card>
+          </v-menu>
+        </a>
+      </li>
+      <li>
+        <a>
+          <router-link to="/project">
+            <v-btn text class="d-none d-sm-block">
+              <v-icon color="black" class="ml-1">mdi-account-outline</v-icon>
+            </v-btn>
+          </router-link>
+        </a>
+      </li>
+    </v-app-bar>
 
-         
-          </v-list-item>
-
-          
-        </v-list>
-
-       
-
-
-        <v-divider></v-divider>
-
-        <v-list>
-          <v-list-item>
-            <v-list-item-avatar>
-              <img src="https://images.unsplash.com/photo-1489913590284-9269438bb411?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjExNjMwfQ&auto=format&fit=crop&w=934&q=80" alt="John">
-            </v-list-item-avatar>
-
-            <v-list-item-content>
-              <v-list-item-title class="caption font-weight-bold">Jakob Owens</v-list-item-title>
-                    <v-list-item-subtitle>Start to follow you <span class="caption grey--text">1 days ago</span></v-list-item-subtitle>
-            </v-list-item-content>
-
-         
-          </v-list-item>
-
-          
-        </v-list>
-
-       
-       
-      </v-card>
-</v-menu>
-</a></li>
-<li>
-  <a>
-<router-link to="/project">
-           <v-btn text class="d-none d-sm-block" >
-            <v-icon color="black" class="ml-1">mdi-account-outline</v-icon>
-            </v-btn> 
-         
-          </router-link></a></li>
-        
-
-   
-</v-app-bar>
-
-
-
-
-<!-- <v-navigation-drawer v-model="drawer" app color="#212121">
+    <!-- <v-navigation-drawer v-model="drawer" app color="#212121">
     
     <v-row class="d-flex justify-center">
    
@@ -386,44 +313,37 @@
 
    
    
-</v-navigation-drawer> -->
-<!-- app就是讓他fixtop不會掉下 -->
-     
-   </nav>
+    </v-navigation-drawer>-->
+    <!-- app就是讓他fixtop不會掉下 -->
+  </nav>
 </template>
 
 <script>
-import Popup from './Popup'
-
-
-
+import Popup from "./Popup";
 
 export default {
-    components:{
-    Popup,
-   
-    
-   
-    },
-    data() {
-        return {
-            drawer:false,
-            links:[
-                  // { icon: 'mdi-home', text: 'Posts', route: '/' },
-                  { icon: 'mdi-compass-outline', text: 'Sign Out', route: '/' },
-                  { icon: 'mdi-heart-outline', text: 'Team', route: '/team' },
-                  { icon: 'mdi-account-outline', text: 'My activity', route: '/project' },
-            ],
-            snackbar:false,
-            cookiesnackbar:true,
-            fav: true,
-              modalUrl:'./successpost.svg',
+  components: {
+    Popup
+  },
+  data() {
+    return {
+      drawer: false,
+      links: [
+        // { icon: 'mdi-home', text: 'Posts', route: '/' },
+        { icon: "mdi-compass-outline", text: "Sign Out", route: "/" },
+        { icon: "mdi-heart-outline", text: "Team", route: "/team" },
+        { icon: "mdi-account-outline", text: "My activity", route: "/project" }
+      ],
+      snackbar: false,
+      cookiesnackbar: true,
+      fav: true,
+      modalUrl: "./successpost.svg",
       menu: false,
       message: false,
-      hints: true,
-        }
-    },
-}
+      hints: true
+    };
+  }
+};
 
 //advanced navbar setting
 //   <!-- <v-card class="overflow-hidden">
@@ -465,15 +385,12 @@ export default {
 
 <style>
 li a {
-    text-decoration: none!important;
+  text-decoration: none !important;
 }
 
 li {
-  list-style:none;
+  list-style: none;
 }
-
-
-
 </style>
 
 

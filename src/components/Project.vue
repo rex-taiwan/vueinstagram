@@ -109,7 +109,7 @@
           </v-col>
           <v-col cols=12 md=9>
             
-             <p class="font-weight-bold subtitle-1" >{{project.person}} <v-btn small text class="ml-2 success"> <v-icon size="18" class="mx-1">mdi-account-plus</v-icon> Follow</v-btn></p>
+             <p class="font-weight-bold title" >{{project.person}} <v-btn small text class="ml-2 success"> <v-icon size="18" class="mx-1">mdi-account-plus</v-icon> Follow</v-btn></p>
               <p><v-icon small class="mx-1 black--text">mdi-map-marker</v-icon>Taiwan
               <v-icon small class="mx-1 black--text">mdi-earth</v-icon>https://rex-taiwan.github.io/vueinstagram/project</p>
               <p class=" subtitle-2" >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur hic nulla harum mollitia voluptate aut aliquam. Et officiis, saepe dicta dolore esse suscipit laborum? Maxime saepe dolore laboriosam quam ipsa!</p>
@@ -150,7 +150,7 @@
 
             <v-dialog fullscreen
       v-model="dialog2323"  persistent
-    
+   transition="slide-x-transition" 
     >
     <v-app-bar 
       color="grey lighten-4 black--text"
@@ -186,7 +186,7 @@
     </v-app-bar>
       <template v-slot:activator="{ on }">
         <v-img v-on="on" style="border:0.8px solid white;"
-                  :src="project.postUrl"
+                  :src="project.p"
                   aspect-ratio="1"
                 >
                 </v-img>
@@ -223,9 +223,34 @@
       </v-list>
 </v-menu>
     </v-list-item>
-
+    <!-- avatar with dots menu -->
+    <v-list-item>
+      <v-list-item-avatar color="grey">
+        <img :src="project.imgUrl">
+      </v-list-item-avatar>
+      <v-list-item-content>
+        <v-list-item-title class="subtitle-2 text-lowercase"> {{project.person}}</v-list-item-title>
+        <!-- <v-list-item-subtitle> by {{project.person}} <span class="mx-2 caption grey--text">{{project.due}}</span></v-list-item-subtitle> -->
+      </v-list-item-content>
+            <v-spacer></v-spacer>
+<v-menu offset-y>
+      <template v-slot:activator="{ on }">
+          <v-icon v-on="on">mdi-dots-horizontal</v-icon>
+      </template>
+      <v-list>
+        <v-list-item @click.prevent="deleteProjects(project.id)">
+          <v-list-item-title> <v-icon>mdi-delete</v-icon> Delete</v-list-item-title>
+         
+        </v-list-item>
+        <v-list-item>
+        <v-list-item-title> <v-icon>mdi-share</v-icon> Report</v-list-item-title>
+        </v-list-item>
+        
+      </v-list>
+</v-menu>
+    </v-list-item>
     <v-img height="450"
-     :src="project.postUrl"
+     :src="project.p"
      
     ></v-img>
     <v-card-actions class="my-4">
@@ -278,7 +303,7 @@
       <div class="white d-none d-sm-block">
            <v-row no-gutters>
              <v-col cols=12 md=6>
-                 <v-img style="height:800px;" :src="project.postUrl">
+                 <v-img  :src="project.p">
                  </v-img>
              </v-col>
              <v-col cols=12 md=6>
