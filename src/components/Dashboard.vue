@@ -25,10 +25,11 @@
       <p class="subtitle-2 mt-4">You Just delete a new project!</p>
       <v-btn text color="white" @click="delsnackbar=false">Close</v-btn>
     </v-snackbar>
-    <v-progress-linear :active="loading" :indeterminate="loading" height="1" color="black accent-4"></v-progress-linear>
+    <v-progress-linear :active="loading" :indeterminate="loading" height="0" color="grey"></v-progress-linear>
 
     <div class="d-flex justify-center loadingeffect" v-if="loading">
-      <v-progress-circular indeterminate color="grey lighten-2"></v-progress-circular>
+      <img :src="insloadicon" class="insloadicon" style="width:30px;height:30px; color:white;" alt="">
+      
     </div>
 
     <div style="max-width:550px;" class="drageffect2 mx-auto">
@@ -54,10 +55,10 @@
         <v-card></v-card>
       </v-skeleton-loader>
 
-      <v-tabs height="76" v-if="!loading" background-color="grey lighten-5" show-arrows>
+      <v-tabs height="99" v-if="!loading" background-color="grey lighten-5" show-arrows>
         <v-tabs-slider style="display:none" color="white lighten-3"></v-tabs-slider>
 
-        <v-tab class="white--text mx-0" v-for="project in projects" :key="project.id">
+        <v-tab class="white--text mx-0"  style="height:70px;" v-for="project in projects" :key="project.id">
           <v-dialog
             v-model="cirlcedialog"
             overlay-color="#212121"
@@ -71,7 +72,9 @@
               ></v-img>-->
               <v-avatar size="70" color="white" v-on="on" style="cursor:pointer">
                 <img :src="project.imgUrl" class="avatarborder" alt="alt" />
+                
               </v-avatar>
+            
               <!-- <v-btn color="primary" dark v-on="on">Open Dialog</v-btn> -->
             </template>
 
@@ -100,15 +103,18 @@
                 timeout="1000"
                 class="white--text"
               ></v-progress-linear>
-              <v-img height="600" :src="project.p"></v-img>
+              <v-img height="600" lazy-src="https://agmbenefitsolutions.com/wp-content/uploads/2015/02/Grey-Gradient-Background.jpg" :src="project.p"></v-img>
             </v-card>
+            
           </v-dialog>
+           <span class="black--text  text-lowercase mx-auto" style="position:absolute;bottom:-26px;">{{project.person}}</span>
         </v-tab>
+        
       </v-tabs>
 
       <!-- <popup @projectAdded="snackbar=true"></popup> -->
-
-      <v-menu offset-y>
+    <v-divider class="mt-2 d-block d-sm-none"></v-divider>
+      <!-- <v-menu offset-y>
         <template v-slot:activator="{ on }">
           <v-btn text class="mt-5" v-on="on">
             Filters
@@ -125,16 +131,10 @@
             </v-list-item-title>
           </v-list-item>
           <v-list-item>
-            <!-- <v-list-item-title>
-              <v-btn small text color="gray" @click="sortBy('due')">
-              
-
-                <span class="caption text--lowercase">By Time</span>
-              </v-btn>
-            </v-list-item-title> -->
+            
           </v-list-item>
         </v-list>
-      </v-menu>
+      </v-menu> -->
 
       <!-- <v-btn small text color="gray" @click="sortBy('person')">
            
@@ -142,9 +142,12 @@
       </v-btn>-->
 
       <div class="d-flex justify-center" v-if="loading">
+      
         <v-progress-circular indeterminate color="primary"></v-progress-circular>
       </div>
-      <v-card  class="mt-5 grey lighten-5" v-for="project in projects" :key="project.title">
+      
+      <v-card flat class="mt-2 grey lighten-5" v-for="project in projects" :key="project.title">
+        
         <v-list-item>
           <v-list-item-avatar color="white" class="mr-2">
             <img :src="project.imgUrl" />
@@ -250,7 +253,7 @@
               </v-menu>
             </v-list-item>
 
-            <v-img height="450" :src="project.p"></v-img>
+            <v-img height="450" lazy-src="https://agmbenefitsolutions.com/wp-content/uploads/2015/02/Grey-Gradient-Background.jpg" :src="project.p"></v-img>
             <v-card-actions class="my-4">
               <v-icon class="grey--text mx-2">mdi-heart-outline</v-icon>
 
@@ -361,6 +364,7 @@ export default {
       commentvalue: "",
       insvalue: 0,
       interval: {},
+      insloadicon:"./loading-icon.svg",
       modalUrl: "./successpost.svg",
       deleteUrl: "./delete.svg",
       vertical: true,
@@ -427,11 +431,20 @@ export default {
 <style>
 .loadingeffect {
   margin-top: 40px;
+  margin-bottom:60px;
 }
 
 .drageffect2 {
   margin-top: -20px;
   animation: drageffect2 0.5s;
+}
+
+
+
+.insloadicon {
+  opacity:0.4;
+  transform: rotate(360deg);
+  animation: rotatelogo 2s infinite;
 }
 
 .openeffect {
@@ -463,18 +476,18 @@ export default {
 }
 
 .avatarborder {
-  border: 5px solid #d9d9d9;
+  border: 3px solid #444343 !important;
   transition: 0.4s;
   cursor: pointer;
 }
 
 .avatarborder:hover {
-  border: 4px solid #2f2f2e;
+  border: 4px solid #d8d8d8 !important;
   transform: scale(1.1);
 }
 
 .avatarborder:active {
-  border: 4px solid #d9d9d9;
+  border: 4px solid #d8d8d8 !important;
   transform: scale(0.9);
 }
 .complete {

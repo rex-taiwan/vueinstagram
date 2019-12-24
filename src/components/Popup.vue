@@ -26,7 +26,8 @@
 
         <v-stepper-items>
           <v-form ref="form">
-            <v-stepper-content step="1" style="height:100%;">
+              <!-- step1 -->
+            <v-stepper-content class="ma-0 pa-0" step="1" style="height:100%;">
               <!-- <v-text-field
             class="mt-5" id="postUrl"
               v-model="postUrl"></v-text-field>-->
@@ -37,13 +38,14 @@
 
     
 
-        <v-icon color="black" @click="dialog=false">mdi-chevron-left</v-icon>
+        <span class="font-weight-bold black--text" @click="dialog=false">Cancel</span>
             
       <v-spacer></v-spacer>
-      <span class="font-weight-bold">New Post</span> <v-icon color="black">mdi-chevron-down</v-icon>
+      <span class="font-weight-bold">Recent</span> 
 <v-spacer></v-spacer>
-       <span class="success--text" style="cursor:pointer" @click="e1 = 2">Next</span>
+       <span class="font-weight-bold success--text" style="cursor:pointer" @click="e1 = 2">Next</span>
     </v-app-bar>
+     <v-divider></v-divider>
              
               <input
                 type="file"
@@ -65,14 +67,7 @@
       <p>Progress: {{uploadValue.toFixed()+"%"}}
       <progress id="progress" :value="uploadValue" max="100" ></progress>  </p>
       </div> -->
-       <v-progress-linear 
-                        :size="200"
-                        height="3"
-                        color="black"
-                        :indeterminate="indeterminate"
-                       :value="uploadValue"
-                        class="white--text"
-                      ></v-progress-linear>
+       
 
 
 
@@ -99,7 +94,8 @@
               <v-hover>
                 <template v-slot:default="{ hover }">
                   <!-- for postURl image ---- >>> @click="PostFile"  -->
-                  <v-img @click="pictureClick"  height="550" :src="picture" alt>
+                 
+                  <v-img  @click="pictureClick"  height="550" :src="picture" alt>
                     <div  style="height:550px;">
                       <!-- <v-progress-linear
                         :size="200"
@@ -112,7 +108,7 @@
                     </div>
 
                     <v-fade-transition>
-                      <v-overlay hover="true" absolute color="black">
+                      <v-overlay hover="true" absolute color="grey">
                         <v-btn>
                           Upload Image
                           <v-icon>mdi-camera</v-icon>
@@ -120,8 +116,18 @@
                       </v-overlay>
                     </v-fade-transition>
                   </v-img>
+                  
                 </template>
               </v-hover>
+
+<filter-type v-for="filter in filters"
+          :filter="filter"
+          :image="image"
+          :key="filters.indexOf(filter)">
+        </filter-type>
+
+
+
 
               <div
                 class="green--text subtitle-1 mt-10"
@@ -167,10 +173,10 @@
 
             <!-- step2 -->
 
-            <v-stepper-content step="2" style="height:550px;">
+            <v-stepper-content step="2" class="ma-0 pa-0" style="height:100%;">
               <v-app-bar 
       color="white black--text"
-   flat  dark class="d-sm-none d-block"
+   flat  dark class="ma-0 px-0 d-sm-none d-block"
     >
 
     
@@ -178,11 +184,12 @@
     <v-icon color="black" @click="e1 = 1">mdi-chevron-left</v-icon>
             
       <v-spacer></v-spacer>
-     <span class="font-weight-bold">Profile Setting</span> <v-icon color="black">mdi-chevron-down</v-icon>
+     <span class="font-weight-bold">Profile Setting</span>
 <v-spacer></v-spacer>
         <span class="success--text" style="cursor:pointer" @click="e1 = 3">Next</span>
     </v-app-bar>
               
+     <v-divider></v-divider>
 
               <div class="d-flex justify-center my-10">
                
@@ -248,7 +255,7 @@
 
             <!--  step 3 -->
 
-            <v-stepper-content step="3">
+            <v-stepper-content  class="ma-0 pa-0" step="3">
               <v-app-bar 
       color="white black--text"
    flat   dark class="d-sm-none d-block"
@@ -258,8 +265,9 @@
       <v-spacer></v-spacer>
        <span class="font-weight-bold">New post</span>
 <v-spacer></v-spacer>
-      <v-btn text color="success" @click="submit()" :loading="loading">Share</v-btn>
+      <span  class="font-weight-bold success--text"  @click="submit()" :loading="loading">Share</span>
     </v-app-bar>
+    <v-divider></v-divider>
               <!-- preivew postUrl image -->
               <v-row class="mt-6">
                 <!-- v-show="validVisible" -->
@@ -391,11 +399,15 @@ import format from "date-fns/format";
 import parseISO from "date-fns/parseISO";
 import { db } from "../db";
 import firebase from "firebase";
+// import FilterType from "./FilterType";
+
 // import firebase from "firebase";
 
 export default {
+  
   data() {
     return {
+     
       e1: 0,
       person: "",
       title: "",
