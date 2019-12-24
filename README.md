@@ -1,4 +1,4 @@
-# shoppingproject
+# Vueinstagram
 
 ## Project setup
 ```
