@@ -1,8 +1,10 @@
 # Vueinstagram Beta 1.0 (Vuejs,Vuetify,VueFire,Firebase)
 
-<a><img src="https://miro.medium.com/max/3840/1*nfvapd86apvGH-hNBYkYuw.png"   alt="Vueinstagram"></a>
+a><img src="https://i.morioh.com/cda6bed034.png"   alt="Vueinstagram"></a>
+<a><img src="https://stmedia.stimg.co/1573268068_10069381+1ig110919.JPG?fit=crop&crop=faces"   alt="Vueinstagram"></a>
 
-**App Content **
+
+## App contain
 
 - Vuesjs code
 - Vuetify
@@ -10,12 +12,11 @@
 - Firebase
 - devDependencies
 - npm package
-- gitter chat
 - license
 - etc.
 
 
-## Project setup
+## Project setup 
 ```
 npm install
 ```
