@@ -246,7 +246,7 @@
              
             </v-stepper-content>
 
-            <!--  steps 3 -->
+            <!--  step 3 -->
 
             <v-stepper-content step="3">
               <v-app-bar 
@@ -262,14 +262,20 @@
     </v-app-bar>
               <!-- preivew postUrl image -->
               <v-row class="mt-6">
-                <v-col v-show="validVisible" cols="4" md="2">
+                <!-- v-show="validVisible" -->
+                 <!-- v-if="validVisible" -->
+                <v-col  cols="4" md="1">
                   <v-img
                     width="150"
                     @click="PostFile"
-                    v-if="validVisible"
+                   
                     height="140"
-                    :src="postUrl"
+                    :src="picture"
                     alt
+
+                    
+
+                     
                   >
                     <div v-if="postVisible" style="width:100%; height:350px;">
                       <v-progress-linear
