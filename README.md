@@ -1,7 +1,8 @@
 # Vueinstagram Beta 1.0 (Vuejs,Vuetify,VueFire,Firebase)
+[![license](https://img.shields.io/npm/l/vue-ins-progress-bar?color=%2351bff4)](https://revolunet.mit-license.org/)
 
-<a><img src="https://i.morioh.com/cda6bed034.png"   alt="Vueinstagram"></a>
-<a><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLk6TtoFJc59exCjPrqZ2EjvOTBzS5lXl7pmAcC2DXW6AcW_9x&s"   alt="Vueinstagram"></a>
+<a><img src="https://miro.medium.com/max/308/1*lNX4JPcG9ZBzWcG9qLVPBQ.png"   alt="Vueinstagram"></a>
+<a><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzmZWTP0VAqfYlGx_u3HZv8jUm7IbpVD34_kxal0_aBe1AcC24&s"   alt="Vueinstagram"></a>
 
 
 ## App contain
@@ -14,9 +15,6 @@
 - npm package
 - license
 - etc.
-
-
-
 
 
 
