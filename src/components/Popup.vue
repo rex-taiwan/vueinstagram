@@ -265,7 +265,7 @@
       <v-spacer></v-spacer>
        <span class="font-weight-bold">New post</span>
 <v-spacer></v-spacer>
-      <span  class="font-weight-bold success--text"  @click="submit()" :loading="loading">Share</span>
+      <v-btn text class="white font-weight-bold success--text"  @click="submit()" :loading="loading">Share</v-btn>
     </v-app-bar>
     <v-divider></v-divider>
               <!-- preivew postUrl image -->
