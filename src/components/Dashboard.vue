@@ -55,7 +55,7 @@
         <v-card></v-card>
       </v-skeleton-loader>
 
-      <v-tabs height="99" v-if="!loading" background-color="grey lighten-5" show-arrows>
+      <v-tabs height="99" v-if="!loading" background-color="grey lighten-5">
         <v-tabs-slider style="display:none" color="white lighten-3"></v-tabs-slider>
 
         <v-tab class="white--text mx-0"  style="height:70px;" v-for="project in projects" :key="project.id">

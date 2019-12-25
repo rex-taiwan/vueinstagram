@@ -185,6 +185,7 @@
                 :rules="inputRules"
                 class="mx-auto"
               ></v-text-field>
+               <v-card height="500"></v-card>
             </v-stepper-content>
 
             <!--  step 3 -->
@@ -254,12 +255,13 @@
                 </v-avatar>
                 <span class="font-weight-bold subtitle-2">{{ person }}</span>
               </div>
-              <v-divider></v-divider>
+             
+               <v-card height="500"></v-card>
             </v-stepper-content>
 
             <v-stepper-content step="4"></v-stepper-content>
           </v-form>
-          <v-card height="400"></v-card>
+         
         </v-stepper-items>
       </v-stepper>
     </v-dialog>
