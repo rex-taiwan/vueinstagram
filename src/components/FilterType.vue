@@ -10,7 +10,7 @@
         <p class="font-weight-bold">{{ filter.filtername }}</p>
         <figure
           :class="filter.filtertype"
-          @click="selectFilter"
+          @click="selectFilter(filter.filtertype)"
           style="cursor:pointer"
         >
           <v-img :src="picture"></v-img>
@@ -21,12 +21,15 @@
 </template>
 
 <script>
-import EventBus from "../event-bus.js";
+// import EventBus from "../event-bus.js";
 export default {
   name: "FilterType",
   props: {
+    filterSelected:Function,
     previewImage: Function,
-    picture: Object
+    picture: Object,
+    
+
   },
   data() {
     return {
@@ -37,10 +40,17 @@ export default {
     };
   },
   methods: {
-    selectFilter() {
-      EventBus.$emit("filter-selected", {
-        filter: this.filterArray.filtertype
+    selectFilter(filtertype) {
+
+      this.$emit("filterSelected", {
+        filter: filtertype
       });
+
+      // EventBus.$emit("filter-selected", {
+      //   filter: filtertype
+        
+      // });
+      // console.log(filtertype);
     }
   }
 };

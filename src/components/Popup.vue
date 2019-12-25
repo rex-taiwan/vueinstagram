@@ -108,6 +108,7 @@
                   <!-- for postURl image ---- >>> @click="PostFile"  -->
 
                   <v-img
+                    v-if="!filter"
                     @click="pictureClick"
                     height="550"
                     :selectedFilter="selectedFilter"
@@ -137,7 +138,19 @@
                 </template>
               </v-hover>
 
-              <div
+
+              <v-hover>
+              <template v-if="filter" v-slot:default="{ hover }">
+              <figure :class="filter">
+              <v-img height="550" :src="picture" alt></v-img>
+              </figure>
+               </template>
+
+              </v-hover>
+
+
+
+              <!-- <div
                 class="green--text subtitle-1 mt-10"
                 v-show="validVisible"
                 v-if="picture.length < 5048487"
@@ -159,7 +172,7 @@
                     >mdi-close-circle</v-icon
                   >Image size should be less than 1 MB!
                 </p>
-              </div>
+              </div> -->
 
               <!-- <v-text-field v-show="false" show-size :rules="filerules"
             class="mt-5" id="postUrl"
@@ -184,7 +197,7 @@
                 class="white--text"
               ></v-progress-linear>
 
-              <filter-type :picture="picture"></filter-type>
+              <filter-type @filterSelected="filterSelected" :picture="picture"></filter-type>
             </v-stepper-content>
 
             <!-- step2 -->
@@ -461,13 +474,17 @@ export default {
       picture: "",
       uploadValue: 0,
       bigsizeUpload: false,
-      indeterminate: false
+      indeterminate: false,
+      filter:null,
     };
   },
   beforeDestroy() {
     clearInterval(this.interval);
   },
   methods: {
+    filterSelected(filtertype){
+    this.filter=filtertype.filter;
+    },
     moment: function(date) {
       return moment(date);
     },

@@ -255,6 +255,7 @@
 
             <v-img height="450" lazy-src="https://agmbenefitsolutions.com/wp-content/uploads/2015/02/Grey-Gradient-Background.jpg" :src="project.p"></v-img>
             <v-card-actions class="my-4">
+              
               <v-icon class="grey--text mx-2">mdi-heart-outline</v-icon>
 
               <v-icon class="grey--text mx-3">mdi-message-outline</v-icon>
@@ -295,11 +296,11 @@
         </v-card-text>-->
 
         <v-card-actions class="my-4">
-          <v-icon class="primary--text mx-2">mdi-heart-outline</v-icon>
+         
        
-
+         
+          <v-icon class="primary--text mx-2">mdi-heart-outline</v-icon>
           
-
           <v-icon class="primary--text mx-2">mdi-message-outline</v-icon>
 
           <v-icon class="primary--text ml-2">mdi-send</v-icon>
