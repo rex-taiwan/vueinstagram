@@ -1,12 +1,7 @@
 <template>
   <div class="filter-type">
     <v-row class="ma-3">
-      <v-col
-        cols="3"
-        class="text-center"
-        v-for="filter in filterArray"
-        :key="filter.filtername"
-      >
+      <v-col cols="3" class="text-center" v-for="filter in filterArray" :key="filter.filtername">
         <p class="font-weight-bold">{{ filter.filtername }}</p>
         <figure
           :class="filter.filtertype"
@@ -22,14 +17,13 @@
 
 <script>
 // import EventBus from "../event-bus.js";
+
 export default {
   name: "FilterType",
   props: {
     filterSelected:Function,
     previewImage: Function,
     picture: Object,
-    
-
   },
   data() {
     return {
@@ -41,16 +35,9 @@ export default {
   },
   methods: {
     selectFilter(filtertype) {
-
       this.$emit("filterSelected", {
         filter: filtertype
       });
-
-      // EventBus.$emit("filter-selected", {
-      //   filter: filtertype
-        
-      // });
-      // console.log(filtertype);
     }
   }
 };

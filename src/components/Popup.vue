@@ -3,46 +3,16 @@
     <v-dialog fullscreen transition="dialog-bottom-transition" v-model="dialog">
       <template v-slot:activator="{ on }">
         <v-btn text color="white" v-on="on">
-          <v-icon size="30" class="mx-1" color="black"
-            >mdi-plus-box-outline</v-icon
-          >
+          <v-icon size="30" class="mx-1" color="black">mdi-plus-box-outline</v-icon>
         </v-btn>
       </template>
-
       <v-stepper v-model="e1">
-        <!-- <v-stepper-header>
-      <v-stepper-step :complete="e1 > 1" step="1">Name of step 1</v-stepper-step>
-
-      <v-divider></v-divider>
-
-      <v-stepper-step :complete="e1 > 2" step="2">Name of step 2</v-stepper-step>
-
-      <v-divider></v-divider>
-
-      <v-stepper-step :complete="e1 > 3" step="3">Name of step 3</v-stepper-step>
-       <v-divider></v-divider>
-
-      <v-stepper-step :complete="e1 > 4" step="4">Name of step 4</v-stepper-step>
-        </v-stepper-header>-->
-
         <v-stepper-items>
           <v-form ref="form">
             <!-- step1 -->
             <v-stepper-content class="ma-0 pa-0" step="1" style="height:100%;">
-              <!-- <v-text-field
-            class="mt-5" id="postUrl"
-              v-model="postUrl"></v-text-field>-->
-              <v-app-bar
-                color="white black--text"
-                flat
-                dark
-                class="d-sm-none d-block"
-              >
-                <span
-                  class="font-weight-bold black--text"
-                  @click="dialog = false"
-                  >Cancel</span
-                >
+              <v-app-bar color="white black--text" flat dark class="d-sm-none d-block">
+                <span class="font-weight-bold black--text" @click="dialog = false">Cancel</span>
 
                 <v-spacer></v-spacer>
                 <span class="font-weight-bold">Recent</span>
@@ -51,8 +21,7 @@
                   class="font-weight-bold success--text"
                   style="cursor:pointer"
                   @click="e1 = 2"
-                  >Next</span
-                >
+                >Next</span>
               </v-app-bar>
               <v-divider></v-divider>
 
@@ -78,15 +47,6 @@
                 @change="previewImage"
                 accept="image/*"
               />
-              <!-- <div>
-      <p>Progress: {{uploadValue.toFixed()+"%"}}
-      <progress id="progress" :value="uploadValue" max="100" ></progress>  </p>
-      </div> -->
-
-              <!-- <img class="preview" :src="picture"> -->
-
-              <!-- <v-btn @click="onUpload">Upload</v-btn> -->
-              <!-- <v-btn @click="pictureClick">Click me </v-btn> -->
 
               <v-text-field
                 class="mt-5"
@@ -99,33 +59,15 @@
                 v-model="imgUrl"
               ></v-text-field>
 
-              <!-- <input type="file" @change="previewImage" accept="image/*" > -->
-
-              <!-- <img  class="img-fluid" alt=""> -->
-
               <v-hover>
-                <template v-slot:default="{ hover }">
-                  <!-- for postURl image ---- >>> @click="PostFile"  -->
-
+                <template v-if="!filter" v-slot:default="{ hover }">
                   <v-img
-                    v-if="!filter"
                     @click="pictureClick"
                     height="550"
                     :selectedFilter="selectedFilter"
                     :src="picture"
                     alt
                   >
-                    <div style="height:550px;">
-                      <!-- <v-progress-linear
-                        :size="200"
-                        height="550"
-                        color="#191414"
-                        :value="postvalue"
-                        class="white--text"
-                      >{{postvalue}} %</v-progress-linear> -->
-                      <!-- <span class="white--text"> {{uploadValue.toFixed()+"%"}}</span> -->
-                    </div>
-
                     <v-fade-transition>
                       <v-overlay hover="true" absolute color="none">
                         <v-btn>
@@ -138,56 +80,32 @@
                 </template>
               </v-hover>
 
-
               <v-hover>
-              <template v-if="filter" v-slot:default="{ hover }">
-              <figure :class="filter">
-              <v-img height="550" :src="picture" alt></v-img>
-              </figure>
-               </template>
-
+                <template v-if="filter" v-slot:default="{ hover }">
+                  <figure :class="filter">
+                    <v-img height="550" :src="picture" alt></v-img>
+                  </figure>
+                </template>
               </v-hover>
 
-
-
-              <!-- <div
+              <div
                 class="green--text subtitle-1 mt-10"
                 v-show="validVisible"
                 v-if="picture.length < 5048487"
               >
                 <p class="mt-3">
-                  <v-icon class="mx-2" small color="green"
-                    >mdi-check-circle</v-icon
-                  >Success!
+                  <v-icon class="mx-2" small color="green">mdi-check-circle</v-icon>Success!
                 </p>
               </div>
 
-              <div
-                class="error--text subtitle-1 mt-10"
-                v-show="validVisible"
-                v-else
-              >
+              <div class="error--text subtitle-1 mt-10" v-show="validVisible" v-else>
                 <p class="mt-3">
-                  <v-icon class="mx-2" small color="red"
-                    >mdi-close-circle</v-icon
-                  >Image size should be less than 1 MB!
+                  <v-icon class="mx-2" small color="red">mdi-close-circle</v-icon>Image size should be less than 1 MB!
                 </p>
-              </div> -->
-
-              <!-- <v-text-field v-show="false" show-size :rules="filerules"
-            class="mt-5" id="postUrl"
-             v-model="postUrl">
-                </v-text-field>-->
+              </div>
 
               <v-spacer></v-spacer>
 
-              <!-- post image -->
-
-              <!-- <v-btn text class="grey lighten-5" @click="PostFile">
-                <v-icon class="mx-1">mdi-image</v-icon>Upload Image
-              </v-btn>
-
-             -->
               <v-progress-linear
                 :size="200"
                 height="3"
@@ -197,29 +115,19 @@
                 class="white--text"
               ></v-progress-linear>
 
-              <filter-type @filterSelected="filterSelected" :picture="picture"></filter-type>
+              <filter-type :picture="picture" @filterSelected="filterSelected"></filter-type>
             </v-stepper-content>
 
             <!-- step2 -->
 
             <v-stepper-content step="2" class="ma-0 pa-0" style="height:100%;">
-              <v-app-bar
-                color="white black--text"
-                flat
-                dark
-                class="ma-0 px-0 d-sm-none d-block"
-              >
+              <v-app-bar color="white black--text" flat dark class="ma-0 px-0 d-sm-none d-block">
                 <v-icon color="black" @click="e1 = 1">mdi-chevron-left</v-icon>
 
                 <v-spacer></v-spacer>
                 <span class="font-weight-bold">Profile Setting</span>
                 <v-spacer></v-spacer>
-                <span
-                  class="success--text"
-                  style="cursor:pointer"
-                  @click="e1 = 3"
-                  >Next</span
-                >
+                <span class="success--text" style="cursor:pointer" @click="e1 = 3">Next</span>
               </v-app-bar>
 
               <v-divider></v-divider>
@@ -235,8 +143,7 @@
                         color="black accent-4"
                         :value="value"
                         class="white--text"
-                        >{{ value }} %</v-progress-linear
-                      >
+                      >{{ value }} %</v-progress-linear>
 
                       <img v-show="!elementVisible" :src="imgUrl" />
 
@@ -258,17 +165,13 @@
                   v-if="imgUrl.length < 1048487"
                 >
                   <p class="mt-12">
-                    <v-icon class="mx-2" small color="green"
-                      >mdi-check-circle</v-icon
-                    >Success!
+                    <v-icon class="mx-2" small color="green">mdi-check-circle</v-icon>Success!
                   </p>
                 </div>
 
                 <div class="error--text subtitle-1" v-show="avatarvalid" v-else>
                   <p class="mt-12">
-                    <v-icon class="mx-2" small color="red"
-                      >mdi-close-circle</v-icon
-                    >Image size should be less than 1 MB!
+                    <v-icon class="mx-2" small color="red">mdi-close-circle</v-icon>Image size should be less than 1 MB!
                   </p>
                 </div>
               </div>
@@ -287,12 +190,7 @@
             <!--  step 3 -->
 
             <v-stepper-content class="ma-0 pa-0" step="3">
-              <v-app-bar
-                color="white black--text"
-                flat
-                dark
-                class="d-sm-none d-block"
-              >
+              <v-app-bar color="white black--text" flat dark class="d-sm-none d-block">
                 <v-icon color="black" @click="e1 = 2">mdi-chevron-left</v-icon>
 
                 <v-spacer></v-spacer>
@@ -303,22 +201,12 @@
                   class="white font-weight-bold success--text"
                   @click="submit()"
                   :loading="loading"
-                  >Share</v-btn
-                >
+                >Share</v-btn>
               </v-app-bar>
               <v-divider></v-divider>
-              <!-- preivew postUrl image -->
               <v-row class="mt-6">
-                <!-- v-show="validVisible" -->
-                <!-- v-if="validVisible" -->
                 <v-col cols="4" md="1">
-                  <v-img
-                    width="150"
-                    @click="PostFile"
-                    height="140"
-                    :src="picture"
-                    alt
-                  >
+                  <v-img width="150" @click="PostFile" height="140" :src="picture" alt>
                     <div v-if="postVisible" style="width:100%; height:350px;">
                       <v-progress-linear
                         :size="200"
@@ -326,8 +214,7 @@
                         color="#191414"
                         :value="postvalue"
                         class="white--text"
-                        >{{ postvalue }} %</v-progress-linear
-                      >
+                      >{{ postvalue }} %</v-progress-linear>
                     </div>
 
                     <v-fade-transition>
@@ -367,54 +254,14 @@
                 </v-avatar>
                 <span class="font-weight-bold subtitle-2">{{ person }}</span>
               </div>
-              <!-- <v-text-field
-                solo
-                flat
-                style="height:50px;"
-                label="Username"
-                v-model="person"
-                prepend-icon="mdi-account"
-                :rules="inputRules"
-              ></v-text-field> -->
               <v-divider></v-divider>
             </v-stepper-content>
 
-            <v-stepper-content step="4">
-              <!-- <v-menu max-width="290">
-                <template v-slot:activator="{ on }">
-                  <v-text-field
-                    :rules="dateRules"
-                    :value="formattedDate"
-                    label="Publish Date"
-                    prepend-icon="mdi-calendar-range"
-                    v-on="on"
-                  ></v-text-field>
-                </template>
-                <v-date-picker v-model="due"></v-date-picker>
-              </v-menu> -->
-            </v-stepper-content>
+            <v-stepper-content step="4"></v-stepper-content>
           </v-form>
-          <v-card height="400"> </v-card>
+          <v-card height="400"></v-card>
         </v-stepper-items>
       </v-stepper>
-
-      <!-- <v-progress-linear
-        :active="loading"
-        :indeterminate="loading"
-        height="8"
-        color="black"
-        ></v-progress-linear>-->
-
-      <!-- <img  height="200" :src="modalUrl" alt="">    -->
-      <!-- <v-card-text>
-
-        </v-card-text>-->
-      <!-- <v-progress-linear
-        :active="loading"
-        :indeterminate="loading"
-        height="2"
-        color="black"
-        ></v-progress-linear>-->
     </v-dialog>
   </div>
 </template>
@@ -426,6 +273,7 @@ import parseISO from "date-fns/parseISO";
 import { db } from "../db";
 import firebase from "firebase";
 import FilterType from "./FilterType";
+import EventBus from "../event-bus";
 
 // import firebase from "firebase";
 
@@ -475,15 +323,15 @@ export default {
       uploadValue: 0,
       bigsizeUpload: false,
       indeterminate: false,
-      filter:null,
+      filter: null
     };
   },
   beforeDestroy() {
     clearInterval(this.interval);
   },
   methods: {
-    filterSelected(filtertype){
-    this.filter=filtertype.filter;
+    filterSelected(filtertype) {
+      this.filter = filtertype.filter;
     },
     moment: function(date) {
       return moment(date);
