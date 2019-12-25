@@ -10,14 +10,22 @@
 
 <script>
 import Navbar from '@/components/Navbar';
-
+import EventBus from "./event-bus.js";
 export default {
   name: 'App',
+  props:{
+    picture:Object,
+  },
   components:{
   Navbar
   },
   data: () => ({
     //
   }),
+  created() {
+    EventBus.$on("filter-selected", evt => {
+      this.selectedFilter = evt.filter;
+    });
+  },
 };
 </script>
