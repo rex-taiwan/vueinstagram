@@ -1,14 +1,20 @@
 <template>
   <div class="text-center">
     <v-dialog fullscreen transition="dialog-bottom-transition" v-model="dialog">
+
+      <!-- Trigger part -->
       <template v-slot:activator="{ on }">
         <v-btn text color="white" v-on="on">
-          <v-icon size="30" class="mx-1" color="black">mdi-plus-box-outline</v-icon>
+          <v-icon size="30"  class="mx-1" color="black">mdi-plus-box-outline</v-icon>
         </v-btn>
       </template>
+
+
+ <!-- Content part -->
       <v-stepper v-model="e1">
         <v-stepper-items>
           <v-form ref="form">
+
             <!-- step1 -->
             <v-stepper-content class="ma-0 pa-0" step="1" style="height:100%;">
               <v-app-bar color="white black--text" flat dark class="d-sm-none d-block">
@@ -59,17 +65,26 @@
                 v-model="imgUrl"
               ></v-text-field>
 
+              <v-progress-linear
+                :size="200"
+                height="1"
+                color="grey"
+                :indeterminate="indeterminate"
+                :value="uploadValue"
+                class="white--text"
+              ></v-progress-linear>
               <v-hover>
                 <template v-if="!filter" v-slot:default="{ hover }">
+                  
                   <v-img
                     @click="pictureClick"
-                    height="550"
+                    height="450"
                     :selectedFilter="selectedFilter"
                     :src="picture"
                     alt
                   >
                     <v-fade-transition>
-                      <v-overlay hover="true" absolute color="none">
+                      <v-overlay hover="true" absolute color="grey">
                         <v-btn>
                           Upload Image
                           <v-icon>mdi-camera</v-icon>
@@ -83,7 +98,7 @@
               <v-hover>
                 <template v-if="filter" v-slot:default="{ hover }">
                   <figure :class="filter">
-                    <v-img height="550" :src="picture" alt></v-img>
+                    <v-img height="450" :src="picture" alt></v-img>
                   </figure>
                 </template>
               </v-hover>
@@ -106,9 +121,9 @@
 
               <v-spacer></v-spacer>
 
-              <v-progress-linear
+               <v-progress-linear
                 :size="200"
-                height="3"
+                height="1"
                 color="black"
                 :indeterminate="indeterminate"
                 :value="uploadValue"
@@ -116,7 +131,13 @@
               ></v-progress-linear>
 
               <filter-type :picture="picture" @filterSelected="filterSelected"></filter-type>
+               <v-card height="200"></v-card>
             </v-stepper-content>
+
+
+
+
+
 
             <!-- step2 -->
 
@@ -188,6 +209,8 @@
                <v-card height="500"></v-card>
             </v-stepper-content>
 
+
+
             <!--  step 3 -->
 
             <v-stepper-content class="ma-0 pa-0" step="3">
@@ -205,9 +228,10 @@
                 >Share</v-btn>
               </v-app-bar>
               <v-divider></v-divider>
-              <v-row class="mt-6">
+
+              <v-row class="mt-4">
                 <v-col cols="4" md="1">
-                  <v-img width="150" @click="PostFile" height="140" :src="picture" alt>
+                  <v-img width="150" @click="PostFile" height="140" :class="filter" class="ml-3" :src="picture" alt>
                     <div v-if="postVisible" style="width:100%; height:350px;">
                       <v-progress-linear
                         :size="200"
@@ -240,6 +264,7 @@
               </v-row>
               <v-divider></v-divider>
               <v-text-field
+                class="ml-3"
                 solo
                 style="height:50px;"
                 flat
@@ -249,11 +274,11 @@
               ></v-text-field>
               <v-divider></v-divider>
               <div style="height:95px;">
-                <p class="ml-2 mt-7">Post to Other accounts</p>
-                <v-avatar size="30" class="my-2 mx-2">
+                <p class="ml-5 mt-7">Post to Other accounts</p>
+                <v-avatar size="30" class="my-2 ml-4">
                   <img :src="imgUrl" alt />
                 </v-avatar>
-                <span class="font-weight-bold subtitle-2">{{ person }}</span>
+                <span class="font-weight-bold subtitle-2 ml-3">{{ person }}</span>
               </div>
              
                <v-card height="500"></v-card>

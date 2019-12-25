@@ -4,6 +4,7 @@
       class="ma-0 pa-0"
       v-tabs
       height="229"
+      grow align-with-title
       background-color="grey lighten-5"
     >
       <v-tabs-slider
@@ -17,7 +18,7 @@
         :key="filter.filtername"
       >
         <div>
-          <p class="mt-8 grey--text text-lowercase">{{ filter.filtername }}</p>
+          <p class="mt-8 grey--text text-capitalize">{{ filter.filtername }}</p>
           <figure
             :class="filter.filtertype"
             @click="selectFilter(filter.filtertype)"
@@ -61,29 +62,29 @@ export default {
     return {
       filterArray: [
         { filtername: "Aden", filtertype: "aden" },
-        { filtername: "brannan", filtertype: "brannan" },
-        { filtername: "brooklyn", filtertype: "brooklyn" },
-        { filtername: "clarendon", filtertype: "clarendon" },
-        { filtername: "earlybird", filtertype: "earlybird" },
+        { filtername: "Brannan", filtertype: "brannan" },
+        { filtername: "Brooklyn", filtertype: "brooklyn" },
+        { filtername: "Clarendon", filtertype: "clarendon" },
+        { filtername: "Earlybird", filtertype: "earlybird" },
         { filtername: "1977", filtertype: "_1977" },
         { filtername: "Moon", filtertype: "moon" },
-        { filtername: "gingham", filtertype: "gingham" },
-        { filtername: "kelvin", filtertype: "kelvin" },
-        { filtername: "lofi", filtertype: "lofi" },
-        { filtername: "maven", filtertype: "maven" },
-        { filtername: "hudson", filtertype: "hudson" },
-        { filtername: "inkwell", filtertype: "inkwell" },
-        { filtername: "nashville", filtertype: "nashville" },
-        { filtername: "perpetua", filtertype: "perpetua" },
-        { filtername: "reyes", filtertype: "reyes" },
-        { filtername: "rise", filtertype: "rise" },
-        { filtername: "slumber", filtertype: "slumber" },
-        { filtername: "stinson", filtertype: "stinson" },
-        { filtername: "toaster", filtertype: "toaster" },
-        { filtername: "valencia", filtertype: "valencia" },
-        { filtername: "walden", filtertype: "walden" },
-        { filtername: "willow", filtertype: "willow" },
-        { filtername: "xpro2", filtertype: "xpro2" }
+        { filtername: "Gingham", filtertype: "gingham" },
+        { filtername: "Kelvin", filtertype: "kelvin" },
+        { filtername: "Lofi", filtertype: "lofi" },
+        { filtername: "Maven", filtertype: "maven" },
+        { filtername: "Hudson", filtertype: "hudson" },
+        { filtername: "Inkwell", filtertype: "inkwell" },
+        { filtername: "Nashville", filtertype: "nashville" },
+        { filtername: "Perpetua", filtertype: "perpetua" },
+        { filtername: "Reyes", filtertype: "reyes" },
+        { filtername: "Rise", filtertype: "rise" },
+        { filtername: "Slumber", filtertype: "slumber" },
+        { filtername: "Stinson", filtertype: "stinson" },
+        { filtername: "Toaster", filtertype: "toaster" },
+        { filtername: "Valencia", filtertype: "valencia" },
+        { filtername: "Walden", filtertype: "walden" },
+        { filtername: "Willow", filtertype: "willow" },
+        { filtername: "Xpro2", filtertype: "xpro2" }
       ]
     };
   },
