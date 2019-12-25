@@ -109,8 +109,8 @@
 
                   <v-img
                     @click="pictureClick"
-                    :class="selectedFilter"
                     height="550"
+                    :selectedFilter="selectedFilter"
                     :src="picture"
                     alt
                   >

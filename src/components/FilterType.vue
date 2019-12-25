@@ -21,7 +21,7 @@
 </template>
 
 <script>
-// import EventBus from "../event-bus.js";
+import EventBus from "../event-bus.js";
 export default {
   name: "FilterType",
   props: {
@@ -37,11 +37,11 @@ export default {
     };
   },
   methods: {
-    // selectFilter() {
-    //   EventBus.$emit(
-    //    "filter-selected", { filter: this.filterArray.filtertype }
-    //   );
-    // }
+    selectFilter() {
+      EventBus.$emit("filter-selected", {
+        filter: this.filterArray.filtertype
+      });
+    }
   }
 };
 </script>
