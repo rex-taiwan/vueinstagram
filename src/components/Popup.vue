@@ -582,6 +582,7 @@ export default {
           // due: format(parseISO(this.due), "MMM d yyyy"),
           person: this.person,
           p: this.picture,
+          filter:this.filter,
           status: "ongoing"
         };
         db.collection("projects")
