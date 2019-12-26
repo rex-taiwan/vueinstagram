@@ -71,7 +71,7 @@
      v-on="on" style="cursor:pointer"
               ></v-img>-->
               <v-avatar size="70" color="white" v-on="on" style="cursor:pointer">
-                <img :src="project.imgUrl" class="avatarborder" alt="alt" />
+                <img :src="project.imgUrl" class="avatarborder"  alt="alt" />
                 
               </v-avatar>
             
@@ -103,7 +103,7 @@
                 timeout="1000"
                 class="white--text"
               ></v-progress-linear>
-              <v-img height="600" lazy-src="https://agmbenefitsolutions.com/wp-content/uploads/2015/02/Grey-Gradient-Background.jpg" :src="project.p"></v-img>
+              <v-img height="600" :class="project.filter" lazy-src="https://agmbenefitsolutions.com/wp-content/uploads/2015/02/Grey-Gradient-Background.jpg" :src="project.p"></v-img>
             </v-card>
             
           </v-dialog>
@@ -180,6 +180,7 @@
         <v-dialog transition="slide-x-transition" v-model="insidesddialog" width="400px">
           <template v-slot:activator="{ on }">
             <v-img
+            :class="project.filter"
               height="600"
               lazy-src="https://agmbenefitsolutions.com/wp-content/uploads/2015/02/Grey-Gradient-Background.jpg"
               class="d-md-block d-none"
@@ -204,6 +205,7 @@
               class="d-md-none d-block"
               :src="project.p"
               v-on="on"
+              :class="project.filter"
               style="cursor:pointer;"
             >
               <template v-slot:placeholder>
@@ -265,7 +267,7 @@
               </v-menu>
             </v-list-item>
 
-            <v-img height="450" lazy-src="https://agmbenefitsolutions.com/wp-content/uploads/2015/02/Grey-Gradient-Background.jpg" :src="project.p"></v-img>
+            <v-img height="450" :class="project.filter" lazy-src="https://agmbenefitsolutions.com/wp-content/uploads/2015/02/Grey-Gradient-Background.jpg" :src="project.p"></v-img>
             <v-card-actions class="my-4">
               
               <v-icon class="grey--text mx-2">mdi-heart-outline</v-icon>
