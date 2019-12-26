@@ -29,7 +29,7 @@
             <v-img
               class="ma-0 pa-0"
               style="height:100px;width:100px;"
-              :src="picture"
+             :src="picture"
             ></v-img>
           </figure>
         </div>

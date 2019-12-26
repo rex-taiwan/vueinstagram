@@ -419,7 +419,9 @@ export default {
       indeterminate: false,
       filter: null,
       showprogress: false,
-      picturevalue: 0
+      picturevalue: 0,
+      replacepicture:"",
+      replacepictureimage:null,
     };
   },
   beforeDestroy() {
@@ -441,22 +443,25 @@ export default {
           this.showprogress = false;
         }
         this.picturevalue += 10;
-      }, 90);
+      }, 140);
       this.picturevalue = 0;
+      
 
+      this.imageData = event.target.files[0];
       // this.postVisible = true;
 
-      this.picture = null;
-      const imageData = event.target.files;
-      this.imageData = event.target.files[0];
+      // this.picture = null;
+      
+
       // const bgfiles = event.target.files;
-      let filename = imageData[0].name;
-      const picturefileReader = new FileReader();
-      picturefileReader.addEventListener("load", () => {
-        this.picture = picturefileReader.result;
-      });
-      picturefileReader.readAsDataURL(imageData[0]);
-      this.pictureimage = imageData[0];
+      // const replaceimageData = event.target.files;
+      // let filename = replaceimageData[0].name;
+      // const picturefileReader = new FileReader();
+      // picturefileReader.addEventListener("load", () => {
+      //   this.replacepicture = picturefileReader.result;
+      // });
+      // picturefileReader.readAsDataURL(replaceimageData[0]);
+      // this.replacepictureimage = replaceimageData[0];
 
       // bgfileReader.readAsDataURL(bgfiles[0]);
       // this.postimage = bgfiles[0];
@@ -477,11 +482,11 @@ export default {
         () => {
           this.uploadValue = 100;
 
-          this.bigsizeUpload = false;
+          // this.bigsizeUpload = false;
 
-          // storageRef.snapshot.ref.getDownloadURL().then(url => {
-          //   this.picture = url;
-          // });
+          storageRef.snapshot.ref.getDownloadURL().then(url => {
+            this.picture = url;
+          });
         }
       );
     },
