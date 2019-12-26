@@ -190,7 +190,7 @@
             <template v-slot:placeholder>
                 <v-row class="fill-height ma-0" align="center" justify="center">
                   <v-toolbar-title class="text-uppercase black--text subtitle-2">
-                    <v-icon color="black" class="mx-2">mdi-gesture</v-icon>Exclusive
+                    <v-icon color="black" class="mx-2">mdi-gesture</v-icon>Vueinstagram
                   </v-toolbar-title>
                   <v-progress-circular class="ml-5" indeterminate color="black lighten-2"></v-progress-circular>
                 </v-row>
@@ -209,7 +209,7 @@
               <template v-slot:placeholder>
                 <v-row class="fill-height ma-0" align="center" justify="center">
                   <v-toolbar-title class="text-uppercase black--text subtitle-2">
-                    <v-icon color="black" class="mx-2">mdi-gesture</v-icon>Exclusive
+                    <v-icon color="black" class="mx-2">mdi-gesture</v-icon>Vueinstagram
                   </v-toolbar-title>
                   <v-progress-circular class="ml-5" indeterminate color="black lighten-2"></v-progress-circular>
                 </v-row>

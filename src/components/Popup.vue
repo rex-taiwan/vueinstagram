@@ -127,7 +127,7 @@
                           >
                             <v-icon color="black" class="mx-2"
                               >mdi-gesture</v-icon
-                            >Exclusive
+                            >Vueinstagram
                           </v-toolbar-title>
                           <v-progress-circular
                             class="ml-5"
