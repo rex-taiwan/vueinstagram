@@ -10,8 +10,7 @@ import * as VueFire from 'vuefire';
 Vue.use(VueFire)
 import ReadMore from 'vue-read-more';
 Vue.use(ReadMore);
-import VueDragscroll from "vue-dragscroll";
-Vue.use(VueDragscroll);
+
 
 
 Vue.config.productionTip = false
