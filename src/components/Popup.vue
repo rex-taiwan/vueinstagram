@@ -141,7 +141,7 @@
                 </template>
               </v-hover>
 
-              <div
+              <!-- <div
                 class="green--text subtitle-1 mt-5"
                 v-show="validVisible"
                 v-if="picture.length < 5048487"
@@ -163,7 +163,7 @@
                     >mdi-close-circle</v-icon
                   >Image size should be less than 1 MB!
                 </p>
-              </div>
+              </div> -->
 
               <v-spacer></v-spacer>
 
