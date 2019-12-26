@@ -178,13 +178,24 @@
 
         <v-dialog transition="slide-x-transition" v-model="insidesddialog" width="400px">
           <template v-slot:activator="{ on }">
-            <v-parallax
+            <v-img
               height="600"
+              lazy-src="https://agmbenefitsolutions.com/wp-content/uploads/2015/02/Grey-Gradient-Background.jpg"
               class="d-md-block d-none"
               :src="project.p"
               v-on="on"
               style="cursor:pointer;"
-            ></v-parallax>
+            >
+            <template v-slot:placeholder>
+                <v-row class="fill-height ma-0" align="center" justify="center">
+                  <v-toolbar-title class="text-uppercase black--text subtitle-2">
+                    <v-icon color="black" class="mx-2">mdi-gesture</v-icon>Exclusive
+                  </v-toolbar-title>
+                  <v-progress-circular class="ml-5" indeterminate color="black lighten-2"></v-progress-circular>
+                </v-row>
+              </template>
+
+            </v-img>
 
             <v-img
               lazy-src="https://agmbenefitsolutions.com/wp-content/uploads/2015/02/Grey-Gradient-Background.jpg"
@@ -477,7 +488,7 @@ export default {
 }
 
 .avatarborder {
-  border: 3px solid #444343 !important;
+  border: 3px solid #bbbbbb !important;
   transition: 0.4s;
   cursor: pointer;
 }

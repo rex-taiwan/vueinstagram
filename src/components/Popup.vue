@@ -65,14 +65,19 @@
                 v-model="imgUrl"
               ></v-text-field>
 
-              <v-progress-linear
+               <v-progress-linear
                 :size="200"
-                height="1"
-                color="grey"
-                :indeterminate="indeterminate"
-                :value="uploadValue"
+                height="30"
+                color="black"
+                :value="picturevalue"
                 class="white--text"
-              ></v-progress-linear>
+                v-show="showprogress"
+              >
+              {{picturevalue}}%
+              </v-progress-linear>
+                
+
+
               <v-hover>
                 <template v-if="!filter" v-slot:default="{ hover }">
                   
@@ -80,9 +85,14 @@
                     @click="pictureClick"
                     height="450"
                     :selectedFilter="selectedFilter"
+                   
                     :src="picture"
                     alt
                   >
+                 
+                  
+
+
                     <v-fade-transition>
                       <v-overlay hover="true" absolute color="grey">
                         <v-btn>
@@ -91,6 +101,8 @@
                         </v-btn>
                       </v-overlay>
                     </v-fade-transition>
+
+                    
                   </v-img>
                 </template>
               </v-hover>
@@ -98,13 +110,24 @@
               <v-hover>
                 <template v-if="filter" v-slot:default="{ hover }">
                   <figure :class="filter">
-                    <v-img height="450" :src="picture" alt></v-img>
+                    <v-img height="450"  @click="pictureClick" lazy-src="https://agmbenefitsolutions.com/wp-content/uploads/2015/02/Grey-Gradient-Background.jpg" :src="picture" alt>
+                    
+                    <template v-slot:placeholder>
+                <v-row class="fill-height ma-0" align="center" justify="center">
+                  <v-toolbar-title class="text-uppercase black--text subtitle-2">
+                    <v-icon color="black" class="mx-2">mdi-gesture</v-icon>Exclusive
+                  </v-toolbar-title>
+                  <v-progress-circular class="ml-5" indeterminate color="black lighten-2"></v-progress-circular>
+                </v-row>
+              </template>
+                    </v-img>
                   </figure>
                 </template>
               </v-hover>
 
+
               <div
-                class="green--text subtitle-1 mt-10"
+                class="green--text subtitle-1 mt-5"
                 v-show="validVisible"
                 v-if="picture.length < 5048487"
               >
@@ -121,17 +144,10 @@
 
               <v-spacer></v-spacer>
 
-               <v-progress-linear
-                :size="200"
-                height="1"
-                color="black"
-                :indeterminate="indeterminate"
-                :value="uploadValue"
-                class="white--text"
-              ></v-progress-linear>
+              
 
               <filter-type :picture="picture" @filterSelected="filterSelected"></filter-type>
-               <v-card height="200"></v-card>
+               <!-- <v-card height="100"></v-card> -->
             </v-stepper-content>
 
 
@@ -350,7 +366,9 @@ export default {
       uploadValue: 0,
       bigsizeUpload: false,
       indeterminate: false,
-      filter: null
+      filter: null,
+      showprogress:false,
+      picturevalue:0,
     };
   },
   beforeDestroy() {
@@ -364,10 +382,37 @@ export default {
       return moment(date);
     },
     previewImage(event) {
-      this.indeterminate = true;
-      this.uploadValue = 0;
+      this.showprogress=true;
+      this.interval = setInterval(() => {
+        if (this.picturevalue === 100) {
+          // this.postVisible = false;
+          // this.validVisible=true;
+          this.showprogress=false;
+        }
+        this.picturevalue += 10;
+        
+      }, 90);
+      this.picturevalue = 0;
+      
+      // this.postVisible = true;
+
+
       this.picture = null;
+      const imageData = event.target.files;
       this.imageData = event.target.files[0];
+      // const bgfiles = event.target.files;
+      let filename = imageData[0].name;
+      const picturefileReader = new FileReader();
+      picturefileReader.addEventListener("load", () => {
+        this.picture = picturefileReader.result;
+      });
+      picturefileReader.readAsDataURL(imageData[0]);
+      this.pictureimage = imageData[0];
+
+      // bgfileReader.readAsDataURL(bgfiles[0]);
+      // this.postimage = bgfiles[0];
+
+
       const storageRef = firebase
         .storage()
         .ref(`${this.imageData.name}`)
@@ -377,19 +422,22 @@ export default {
         snapshot => {
           this.uploadValue =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          
         },
         error => {
           alert(error.message);
         },
         () => {
           this.uploadValue = 100;
+         
           this.bigsizeUpload = false;
-          this.indeterminate = false;
-          storageRef.snapshot.ref.getDownloadURL().then(url => {
-            this.picture = url;
-          });
+          
+          // storageRef.snapshot.ref.getDownloadURL().then(url => {
+          //   this.picture = url;
+          // });
         }
       );
+      
     },
     //backup file
     // onUpload() {
@@ -472,6 +520,7 @@ export default {
     },
     submit() {
       if (this.$refs.form.validate()) {
+        
         this.realtimeDate = moment().format("YYYY-MM-DD, h:mm:ss a");
         this.loading = true;
         const project = {
@@ -492,6 +541,8 @@ export default {
             this.dialog = false;
             this.$emit("projectAdded");
           });
+        
+
       }
     }
   },
