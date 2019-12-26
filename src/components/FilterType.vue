@@ -1,6 +1,7 @@
 <template>
   <div class="filter-type">
     <v-tabs
+    
       class="ma-0 pa-0"
       v-tabs
       height="229"
@@ -16,6 +17,7 @@
         style="height:150px;"
         v-for="filter in filterArray"
         :key="filter.filtername"
+       
       >
         <div>
           <p class="mt-8 grey--text text-capitalize">{{ filter.filtername }}</p>

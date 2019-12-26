@@ -89,33 +89,27 @@
       <li>
         <a>
           <router-link to="/">
-            <v-toolbar-title class="text-uppercase black--text d-sm-block d-none subtitle-2">
+            <!-- <v-toolbar-title class="text-uppercase black--text d-sm-block d-none subtitle-2">
               <v-icon color="black" class="mx-2">mdi-gesture</v-icon>Exclusive
-            </v-toolbar-title>
+            </v-toolbar-title> -->
           </router-link>
         </a>
       </li>
 
       <v-icon class="black--text d-sm-none d-block">mdi-camera-outline</v-icon>
       <v-spacer></v-spacer>
-      <v-text-field
-        append-icon="mdi-microphone"
-        class="d-sm-block d-none my-10 grey"
-        style="max-width:250px;border-radius:2px;"
-        flat
-        solo
-        hide-details
-        placeholder="Search"
-        prepend-inner-icon="mdi-magnify"
-      ></v-text-field>
+       <li>
+        <a>
+          <router-link to="/">
+      <img :src="toplogo" class="mb-2 mx-auto ml-12 d-sm-block d-none" style="width:150px;height:50px;">
+       </router-link>
+        </a>
+      </li>
+
       <li>
         <a>
           <router-link to="/">
-            <v-toolbar-title class="text-uppercase black--text d-sm-none d-block subtitle-1 ml-7">
-              <v-icon color="black" class="mx-1">mdi-gesture</v-icon>
-Exclusive
-              <!-- <span class="white--text"></span> -->
-            </v-toolbar-title>
+           <img :src="toplogo" class="mb-2 mx-auto ml-6 d-sm-none d-block" style="width:120px;height:45px;">
           </router-link>
         </a>
       </li>
@@ -338,6 +332,7 @@ export default {
       cookiesnackbar: true,
       fav: true,
       modalUrl: "./successpost.svg",
+      toplogo:"./toplogo.png",
       menu: false,
       message: false,
       hints: true

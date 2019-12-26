@@ -1,24 +1,32 @@
 <template>
   <div class="text-center">
     <v-dialog fullscreen transition="dialog-bottom-transition" v-model="dialog">
-
       <!-- Trigger part -->
       <template v-slot:activator="{ on }">
         <v-btn text color="white" v-on="on">
-          <v-icon size="30"  class="mx-1" color="black">mdi-plus-box-outline</v-icon>
+          <v-icon size="30" class="mx-1" color="black"
+            >mdi-plus-box-outline</v-icon
+          >
         </v-btn>
       </template>
 
-
- <!-- Content part -->
+      <!-- Content part -->
       <v-stepper v-model="e1">
         <v-stepper-items>
           <v-form ref="form">
-
             <!-- step1 -->
             <v-stepper-content class="ma-0 pa-0" step="1" style="height:100%;">
-              <v-app-bar color="white black--text" flat dark class="d-sm-none d-block">
-                <span class="font-weight-bold black--text" @click="dialog = false">Cancel</span>
+              <v-app-bar
+                color="white black--text"
+                flat
+                dark
+                class="d-sm-none d-block"
+              >
+                <span
+                  class="font-weight-bold black--text"
+                  @click="dialog = false"
+                  >Cancel</span
+                >
 
                 <v-spacer></v-spacer>
                 <span class="font-weight-bold">Recent</span>
@@ -27,7 +35,8 @@
                   class="font-weight-bold success--text"
                   style="cursor:pointer"
                   @click="e1 = 2"
-                >Next</span>
+                  >Next</span
+                >
               </v-app-bar>
               <v-divider></v-divider>
 
@@ -65,7 +74,7 @@
                 v-model="imgUrl"
               ></v-text-field>
 
-               <v-progress-linear
+              <v-progress-linear
                 :size="200"
                 height="30"
                 color="black"
@@ -73,26 +82,18 @@
                 class="white--text"
                 v-show="showprogress"
               >
-              {{picturevalue}}%
+                {{ picturevalue }}%
               </v-progress-linear>
-                
-
 
               <v-hover>
                 <template v-if="!filter" v-slot:default="{ hover }">
-                  
                   <v-img
                     @click="pictureClick"
                     height="450"
                     :selectedFilter="selectedFilter"
-                   
                     :src="picture"
                     alt
                   >
-                 
-                  
-
-
                     <v-fade-transition>
                       <v-overlay hover="true" absolute color="grey">
                         <v-btn>
@@ -101,8 +102,6 @@
                         </v-btn>
                       </v-overlay>
                     </v-fade-transition>
-
-                    
                   </v-img>
                 </template>
               </v-hover>
@@ -110,21 +109,37 @@
               <v-hover>
                 <template v-if="filter" v-slot:default="{ hover }">
                   <figure :class="filter">
-                    <v-img height="450"  @click="pictureClick" lazy-src="https://agmbenefitsolutions.com/wp-content/uploads/2015/02/Grey-Gradient-Background.jpg" :src="picture" alt>
-                    
-                    <template v-slot:placeholder>
-                <v-row class="fill-height ma-0" align="center" justify="center">
-                  <v-toolbar-title class="text-uppercase black--text subtitle-2">
-                    <v-icon color="black" class="mx-2">mdi-gesture</v-icon>Exclusive
-                  </v-toolbar-title>
-                  <v-progress-circular class="ml-5" indeterminate color="black lighten-2"></v-progress-circular>
-                </v-row>
-              </template>
+                    <v-img
+                      height="450"
+                      @click="pictureClick"
+                      lazy-src="https://agmbenefitsolutions.com/wp-content/uploads/2015/02/Grey-Gradient-Background.jpg"
+                      :src="picture"
+                      alt
+                    >
+                      <template v-slot:placeholder>
+                        <v-row
+                          class="fill-height ma-0"
+                          align="center"
+                          justify="center"
+                        >
+                          <v-toolbar-title
+                            class="text-uppercase black--text subtitle-2"
+                          >
+                            <v-icon color="black" class="mx-2"
+                              >mdi-gesture</v-icon
+                            >Exclusive
+                          </v-toolbar-title>
+                          <v-progress-circular
+                            class="ml-5"
+                            indeterminate
+                            color="black lighten-2"
+                          ></v-progress-circular>
+                        </v-row>
+                      </template>
                     </v-img>
                   </figure>
                 </template>
               </v-hover>
-
 
               <div
                 class="green--text subtitle-1 mt-5"
@@ -132,39 +147,56 @@
                 v-if="picture.length < 5048487"
               >
                 <p class="mt-3">
-                  <v-icon class="mx-2" small color="green">mdi-check-circle</v-icon>Success!
+                  <v-icon class="mx-2" small color="green"
+                    >mdi-check-circle</v-icon
+                  >Success!
                 </p>
               </div>
 
-              <div class="error--text subtitle-1 mt-10" v-show="validVisible" v-else>
+              <div
+                class="error--text subtitle-1 mt-10"
+                v-show="validVisible"
+                v-else
+              >
                 <p class="mt-3">
-                  <v-icon class="mx-2" small color="red">mdi-close-circle</v-icon>Image size should be less than 1 MB!
+                  <v-icon class="mx-2" small color="red"
+                    >mdi-close-circle</v-icon
+                  >Image size should be less than 1 MB!
                 </p>
               </div>
 
               <v-spacer></v-spacer>
 
-              
 
-              <filter-type :picture="picture" @filterSelected="filterSelected"></filter-type>
-               <!-- <v-card height="100"></v-card> -->
+              <filter-type
+                :picture="picture"
+                @filterSelected="filterSelected"
+              ></filter-type>
+
+
+              <!-- <v-card height="100"></v-card> -->
             </v-stepper-content>
-
-
-
-
-
 
             <!-- step2 -->
 
             <v-stepper-content step="2" class="ma-0 pa-0" style="height:100%;">
-              <v-app-bar color="white black--text" flat dark class="ma-0 px-0 d-sm-none d-block">
+              <v-app-bar
+                color="white black--text"
+                flat
+                dark
+                class="ma-0 px-0 d-sm-none d-block"
+              >
                 <v-icon color="black" @click="e1 = 1">mdi-chevron-left</v-icon>
 
                 <v-spacer></v-spacer>
                 <span class="font-weight-bold">Profile Setting</span>
                 <v-spacer></v-spacer>
-                <span class="success--text" style="cursor:pointer" @click="e1 = 3">Next</span>
+                <span
+                  class="success--text"
+                  style="cursor:pointer"
+                  @click="e1 = 3"
+                  >Next</span
+                >
               </v-app-bar>
 
               <v-divider></v-divider>
@@ -180,7 +212,8 @@
                         color="black accent-4"
                         :value="value"
                         class="white--text"
-                      >{{ value }} %</v-progress-linear>
+                        >{{ value }} %</v-progress-linear
+                      >
 
                       <img v-show="!elementVisible" :src="imgUrl" />
 
@@ -202,13 +235,17 @@
                   v-if="imgUrl.length < 1048487"
                 >
                   <p class="mt-12">
-                    <v-icon class="mx-2" small color="green">mdi-check-circle</v-icon>Success!
+                    <v-icon class="mx-2" small color="green"
+                      >mdi-check-circle</v-icon
+                    >Success!
                   </p>
                 </div>
 
                 <div class="error--text subtitle-1" v-show="avatarvalid" v-else>
                   <p class="mt-12">
-                    <v-icon class="mx-2" small color="red">mdi-close-circle</v-icon>Image size should be less than 1 MB!
+                    <v-icon class="mx-2" small color="red"
+                      >mdi-close-circle</v-icon
+                    >Image size should be less than 1 MB!
                   </p>
                 </div>
               </div>
@@ -222,15 +259,18 @@
                 :rules="inputRules"
                 class="mx-auto"
               ></v-text-field>
-               <v-card height="500"></v-card>
+              <v-card height="500"></v-card>
             </v-stepper-content>
-
-
 
             <!--  step 3 -->
 
             <v-stepper-content class="ma-0 pa-0" step="3">
-              <v-app-bar color="white black--text" flat dark class="d-sm-none d-block">
+              <v-app-bar
+                color="white black--text"
+                flat
+                dark
+                class="d-sm-none d-block"
+              >
                 <v-icon color="black" @click="e1 = 2">mdi-chevron-left</v-icon>
 
                 <v-spacer></v-spacer>
@@ -241,13 +281,22 @@
                   class="white font-weight-bold success--text"
                   @click="submit()"
                   :loading="loading"
-                >Share</v-btn>
+                  >Share</v-btn
+                >
               </v-app-bar>
               <v-divider></v-divider>
 
               <v-row class="mt-4">
                 <v-col cols="4" md="1">
-                  <v-img width="150" @click="PostFile" height="140" :class="filter" class="ml-3" :src="picture" alt>
+                  <v-img
+                    width="150"
+                    @click="PostFile"
+                    height="140"
+                    :class="filter"
+                    class="ml-3"
+                    :src="picture"
+                    alt
+                  >
                     <div v-if="postVisible" style="width:100%; height:350px;">
                       <v-progress-linear
                         :size="200"
@@ -255,7 +304,8 @@
                         color="#191414"
                         :value="postvalue"
                         class="white--text"
-                      >{{ postvalue }} %</v-progress-linear>
+                        >{{ postvalue }} %</v-progress-linear
+                      >
                     </div>
 
                     <v-fade-transition>
@@ -294,15 +344,16 @@
                 <v-avatar size="30" class="my-2 ml-4">
                   <img :src="imgUrl" alt />
                 </v-avatar>
-                <span class="font-weight-bold subtitle-2 ml-3">{{ person }}</span>
+                <span class="font-weight-bold subtitle-2 ml-3">{{
+                  person
+                }}</span>
               </div>
-             
-               <v-card height="500"></v-card>
+
+              <v-card height="500"></v-card>
             </v-stepper-content>
 
             <v-stepper-content step="4"></v-stepper-content>
           </v-form>
-         
         </v-stepper-items>
       </v-stepper>
     </v-dialog>
@@ -367,8 +418,8 @@ export default {
       bigsizeUpload: false,
       indeterminate: false,
       filter: null,
-      showprogress:false,
-      picturevalue:0,
+      showprogress: false,
+      picturevalue: 0
     };
   },
   beforeDestroy() {
@@ -382,20 +433,18 @@ export default {
       return moment(date);
     },
     previewImage(event) {
-      this.showprogress=true;
+      this.showprogress = true;
       this.interval = setInterval(() => {
         if (this.picturevalue === 100) {
           // this.postVisible = false;
           // this.validVisible=true;
-          this.showprogress=false;
+          this.showprogress = false;
         }
         this.picturevalue += 10;
-        
       }, 90);
       this.picturevalue = 0;
-      
-      // this.postVisible = true;
 
+      // this.postVisible = true;
 
       this.picture = null;
       const imageData = event.target.files;
@@ -412,7 +461,6 @@ export default {
       // bgfileReader.readAsDataURL(bgfiles[0]);
       // this.postimage = bgfiles[0];
 
-
       const storageRef = firebase
         .storage()
         .ref(`${this.imageData.name}`)
@@ -422,22 +470,20 @@ export default {
         snapshot => {
           this.uploadValue =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          
         },
         error => {
           alert(error.message);
         },
         () => {
           this.uploadValue = 100;
-         
+
           this.bigsizeUpload = false;
-          
+
           // storageRef.snapshot.ref.getDownloadURL().then(url => {
           //   this.picture = url;
           // });
         }
       );
-      
     },
     //backup file
     // onUpload() {
@@ -520,7 +566,6 @@ export default {
     },
     submit() {
       if (this.$refs.form.validate()) {
-        
         this.realtimeDate = moment().format("YYYY-MM-DD, h:mm:ss a");
         this.loading = true;
         const project = {
@@ -541,8 +586,6 @@ export default {
             this.dialog = false;
             this.$emit("projectAdded");
           });
-        
-
       }
     }
   },

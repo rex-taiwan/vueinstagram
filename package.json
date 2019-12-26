@@ -13,6 +13,7 @@
     "firebase": "^7.6.0",
     "moment": "^2.24.0",
     "vue": "^2.6.10",
+    "vue-dragscroll": "^1.10.2",
     "vue-pull-refresh": "^0.2.7",
     "vue-pull-to": "^0.1.8",
     "vue-read-more": "^1.1.1",

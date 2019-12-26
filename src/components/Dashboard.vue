@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="white">
    
     <!-- <v-row justify="center">
     <v-dialog v-model="dialog" fullscreen  transition="slide-y-transition">
@@ -55,10 +55,10 @@
         <v-card></v-card>
       </v-skeleton-loader>
 
-      <v-tabs height="99" v-if="!loading" background-color="grey lighten-5" show-arrows>
+      <v-tabs height="99" v-if="!loading" background-color="white lighten-5" show-arrows>
         <v-tabs-slider style="display:none" color="white lighten-3"></v-tabs-slider>
 
-        <v-tab class="white--text mx-0"  style="height:70px;" v-for="project in projects" :key="project.id">
+        <v-tab v-dragscroll.x="true" class="white--text mx-0"  style="height:70px;" v-for="project in projects" :key="project.id">
           <v-dialog
             v-model="cirlcedialog"
             overlay-color="#212121"
@@ -146,7 +146,8 @@
         <v-progress-circular indeterminate color="primary"></v-progress-circular>
       </div>
       
-      <v-card flat class="mt-2 grey lighten-5" v-for="project in projects" :key="project.title">
+      <v-card flat class="mt-2 white lighten-5" v-for="project in projects" :key="project.title"
+    >
         
         <v-list-item>
           <v-list-item-avatar color="white" class="mr-2">
