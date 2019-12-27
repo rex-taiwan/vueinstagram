@@ -92,6 +92,7 @@
             overlay-color="#212121"
             overlay-opacity="1"
             width="400px"
+          style="height:900px;"
           >
             <template v-slot:activator="{ on }">
               <v-avatar
@@ -102,8 +103,8 @@
               >
                 <img :src="project.imgUrl" class="avatarborder" alt="alt" />
                 <span
-                  class="black--text text-lowercase mx-auto"
-                  style="position:absolute;bottom:-26px;"
+                  class="black--text text-capitalize mx-auto"
+                  style="position:absolute;bottom:-22px;font-size:10px;"
                   >{{ project.person }}</span
                 >
               </v-avatar>
@@ -115,8 +116,9 @@
               show-arrows-on-hover
               touch
               :value="index"
+               height="600"
             >
-              <v-carousel-item v-for="proj in projects" :key="proj.id">
+              <v-carousel-item v-for="proj in projects" :key="proj.id"  height="900">
                 <v-list-item style="background:#212121">
                   <v-list-item-avatar color="grey">
                     <img :src="proj.imgUrl" />
@@ -133,7 +135,7 @@
                   <v-icon color="white">mdi-dots-horizontal</v-icon>
                 </v-list-item>
                 <v-img
-                  height="600"
+                 height="600"
                   :class="proj.filter"
                   :src="proj.p"
                   lazy-src="https://agmbenefitsolutions.com/wp-content/uploads/2015/02/Grey-Gradient-Background.jpg"
@@ -141,7 +143,7 @@
               </v-carousel-item>
             </v-carousel>
 
-            <!-- <v-card> -->
+  <!-- <v-card> -->
             <!--   <v-list-item style="background:#212121"> -->
             <!--     <v-list-item-avatar color="grey"> -->
             <!--       <img :src="project.imgUrl" /> -->
@@ -167,14 +169,14 @@
             <!--     lazy-src="https://agmbenefitsolutions.com/wp-content/uploads/2015/02/Grey-Gradient-Background.jpg" -->
             <!--     :src="project.p" -->
             <!--   ></v-img> -->
-            <!-- </v-card> -->
+<!-- </v-card> -->
           </v-dialog>
         </v-tab>
       </v-tabs>
 
       <!-- <popup @projectAdded="snackbar=true"></popup> -->
       <v-divider class="mt-2 d-block d-sm-none"></v-divider>
-      <!-- <v-menu offset-y> -->
+<!-- <v-menu offset-y> -->
       <!--   <template v-slot:activator="{ on }"> -->
       <!--     <v-btn text class="mt-5" v-on="on"> -->
       <!--       Filters -->
@@ -192,7 +194,7 @@
       <!--     </v-list-item> -->
       <!--     <v-list-item></v-list-item> -->
       <!--   </v-list> -->
-      <!-- </v-menu> -->
+<!-- </v-menu> -->
 
       <!-- <v-btn small text color="gray" @click="sortBy('person')"> -->
       <!--   <span class="caption text--lowercase">By person</span> -->
