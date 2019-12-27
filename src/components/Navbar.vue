@@ -9,6 +9,7 @@
 
     <v-snackbar color="black" v-model="cookiesnackbar" :timeout="1000">
       We use cookies to personalise content and ads,
+      <!-- <img src="https://i2.wp.com/www.cssscript.com/wp-content/uploads/2017/11/instagram.css.png?fit=527%2C379&ssl=1" alt=""> -->
       <v-btn color="white" text @click="cookiesnackbar = false">Close</v-btn>
     </v-snackbar>
 

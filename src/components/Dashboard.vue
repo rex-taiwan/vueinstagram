@@ -1,6 +1,8 @@
 <template>
   <div class="white">
    
+   
+    
     <!-- <v-row justify="center">
     <v-dialog v-model="dialog" fullscreen  transition="slide-y-transition">
       
@@ -12,6 +14,13 @@
      
     </v-dialog>
     </v-row>-->
+    
+   
+    <!-- <h2>animating:{{btnOps.animating}}</h2>
+    <h2>visible:{{btnOps.visible}}</h2> -->
+   
+  
+
     <vue-ins-progress-bar></vue-ins-progress-bar>
     <v-snackbar v-model="snackbar" :timeout="2000" top color="success">
       <img width="120" :src="modalUrl" alt />
@@ -58,7 +67,7 @@
       <v-tabs height="99" v-if="!loading" background-color="white lighten-5" show-arrows>
         <v-tabs-slider style="display:none" color="white lighten-3"></v-tabs-slider>
 
-        <v-tab  class="white--text mx-0 "  style="height:70px;" v-for="project in projects" :key="project.id">
+        <v-tab  class="white--text mx-0 "  style="height:70px;" v-for="project in projects" :key="project.person">
           <v-dialog
             v-model="cirlcedialog"
             overlay-color="#212121"
@@ -78,17 +87,41 @@
               <!-- <v-btn color="primary" dark v-on="on">Open Dialog</v-btn> -->
             </template>
 
-            <v-card>
+            <v-carousel hide-delimiters progress show-arrows-on-hover touch>
+              <v-list-item style="background:#212121" 
+             >
+                <v-list-item-avatar color="grey">
+                  <img :src="project.imgUrl" />
+                </v-list-item-avatar>
+                <v-list-item-content>
+                
+                  <v-list-item-subtitle class="white--text text-lowercase">
+                    by {{project.person}}
+                
+                  </v-list-item-subtitle>
+                   <span class="caption grey--text">{{moment(project.realtimeDate).fromNow()}}</span>
+                </v-list-item-content>
+                <v-spacer></v-spacer>
+                <v-icon color="white">mdi-dots-horizontal</v-icon>
+              </v-list-item>
+             <v-carousel-item
+              
+              :src="project.p" :class="project.filter"
+              ></v-carousel-item>
+             </v-carousel>
+ 
+            <!-- <v-card>
+             
               <v-list-item style="background:#212121">
                 <v-list-item-avatar color="grey">
                   <img :src="project.imgUrl" />
                 </v-list-item-avatar>
                 <v-list-item-content>
-                  <!-- <v-list-item-title class="headline"> {{project.title}}</v-list-item-title> -->
+                
                   <v-list-item-subtitle class="white--text text-lowercase">
                     by {{project.person}}
                     
-                    <!-- <span class="mx-2 caption grey--text">{{project.due}}</span> -->
+                
                   </v-list-item-subtitle>
                    <span class="caption grey--text">{{moment(project.realtimeDate).fromNow()}}</span>
                 </v-list-item-content>
@@ -104,7 +137,8 @@
                 class="white--text"
               ></v-progress-linear>
               <v-img height="600" :class="project.filter" lazy-src="https://agmbenefitsolutions.com/wp-content/uploads/2015/02/Grey-Gradient-Background.jpg" :src="project.p"></v-img>
-            </v-card>
+            </v-card> -->
+           
             
           </v-dialog>
            <span class="black--text  text-lowercase mx-auto" style="position:absolute;bottom:-26px;">{{project.person}}</span>
@@ -352,13 +386,14 @@
 
 <script>
 import { db } from "../db";
-
+// import ParticleEffectButton from "vue-particle-effect-buttons"
 // import Popup from './Popup'
 // import ReadMore from 'vue-read-more';
 
 // Vue.use(ReadMore);
 
 export default {
+  
   //   components:{
   // Popup,
 
@@ -366,6 +401,7 @@ export default {
 
   data() {
     return {
+      
       e1: 0,
       projects: [],
       loading: true,
@@ -399,6 +435,12 @@ export default {
   },
 
   methods: {
+
+    particlesEffect(){
+        // this.animating=true;
+        this.dialog=true;
+    },
+
     sortBy(prop) {
       const vm = this;
       vm.projects.sort((a, b) => (a[prop] < b[prop] ? -1 : 1));
@@ -545,6 +587,7 @@ export default {
   font-size: 15px;
   color: #1c1c1d;
 }
+
 </style>
 
 
