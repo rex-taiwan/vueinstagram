@@ -11,6 +11,16 @@ Vue.use(VueFire)
 import ReadMore from 'vue-read-more';
 Vue.use(ReadMore);
 
+import VueInsProgressBar from 'vue-ins-progress-bar'
+
+const options = {
+    position: 'fixed',
+    show: true,
+    height: '6px'
+}
+
+Vue.use(VueInsProgressBar, options)
+
 
 
 Vue.config.productionTip = false

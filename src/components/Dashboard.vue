@@ -12,7 +12,7 @@
      
     </v-dialog>
     </v-row>-->
-
+    <vue-ins-progress-bar></vue-ins-progress-bar>
     <v-snackbar v-model="snackbar" :timeout="2000" top color="success">
       <img width="120" :src="modalUrl" alt />
       <p class="subtitle-2 mt-4">Awesome! You just added a new post.</p>
@@ -146,7 +146,7 @@
         <v-progress-circular indeterminate color="primary"></v-progress-circular>
       </div>
       
-      <v-card flat class="mt-2 white lighten-5" :class="project.filter" v-for="project in projects" :key="project.title"
+      <v-card flat class="mt-2 white lighten-5"  v-for="project in projects" :key="project.title"
     >
         
         <v-list-item>
@@ -422,6 +422,7 @@ export default {
     }
   },
   created() {
+     this.$insProgress.start()
     db.collection("projects").onSnapshot(res => {
       this.loading = true;
       this.dialog = true;
@@ -435,6 +436,7 @@ export default {
           });
         }
         this.loading = false;
+        this.$insProgress.finish()
         this.power = 100;
         this.dialog = false;
       });

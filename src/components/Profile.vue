@@ -1,6 +1,6 @@
 <template>
     <div class="home">
-
+<vue-ins-progress-bar></vue-ins-progress-bar>
    <v-app-bar  class="d-sm-none d-block"
       color="grey lighten-4 black--text"
    flat app  dark 
@@ -443,6 +443,7 @@ export default {
     },
     created() {
       this.loading=true
+      this.$insProgress.start()
         db.collection('projects').onSnapshot(res=>{
             const changes=res.docChanges();
             
@@ -453,6 +454,7 @@ export default {
                         id:change.doc.id
                     })
                       this.loading=false
+                      this.$insProgress.finish()
                 }
             })
         })

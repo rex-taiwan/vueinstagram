@@ -3,7 +3,7 @@
     <v-dialog fullscreen transition="dialog-bottom-transition" v-model="dialog">
       <!-- Trigger part -->
       <template v-slot:activator="{ on }">
-        <v-btn text color="white" v-on="on">
+        <v-btn text color="white" @click="openreset">
           <v-icon size="30" class="mx-1" color="black"
             >mdi-plus-box-outline</v-icon
           >
@@ -24,7 +24,7 @@
               >
                 <span
                   class="font-weight-bold black--text"
-                  @click="dialog = false"
+                  @click="reset"
                   >Cancel</span
                 >
 
@@ -74,7 +74,8 @@
                 v-model="imgUrl"
               ></v-text-field>
 
-              <v-progress-linear
+        <vue-ins-progress-bar></vue-ins-progress-bar>
+              <!-- <v-progress-linear
                 :size="200"
                 height="30"
                 color="black"
@@ -83,7 +84,7 @@
                 v-show="showprogress"
               >
                 {{ picturevalue }}%
-              </v-progress-linear>
+              </v-progress-linear> -->
 
               <v-hover>
                 <template v-if="!filter" v-slot:default="{ hover }">
@@ -259,12 +260,15 @@
                 :rules="inputRules"
                 class="mx-auto"
               ></v-text-field>
-              <v-card height="500"></v-card>
+              <v-card height="500">
+               
+              </v-card>
             </v-stepper-content>
 
             <!--  step 3 -->
 
             <v-stepper-content class="ma-0 pa-0" step="3">
+            <vue-ins-progress-bar></vue-ins-progress-bar>
               <v-app-bar
                 color="white black--text"
                 flat
@@ -428,6 +432,25 @@ export default {
     clearInterval(this.interval);
   },
   methods: {
+    reset () {
+          this.title='';
+          this.content='';
+          this.imgUrl='./avatar-6.png';
+          // due: format(parseISO(this.due), "MMM d yyyy"),
+          this.person='';
+          this.picture=null;
+          this.dialog=false;
+      },
+      openreset () {
+          this.title='';
+          this.content='';
+          this.imgUrl='./avatar-6.png';
+          // due: format(parseISO(this.due), "MMM d yyyy"),
+          this.person='';
+          this.picture="";
+          this.dialog=true;
+          this.e1 = 1;
+      },
     filterSelected(filtertype) {
       this.filter = filtertype.filter;
     },
@@ -435,15 +458,17 @@ export default {
       return moment(date);
     },
     previewImage(event) {
+      this.$insProgress.start()
       this.showprogress = true;
       this.interval = setInterval(() => {
         if (this.picturevalue === 100) {
           // this.postVisible = false;
           // this.validVisible=true;
           this.showprogress = false;
+          this.$insProgress.finish()
         }
         this.picturevalue += 10;
-      }, 140);
+      }, 190);
       this.picturevalue = 0;
       
 
@@ -572,6 +597,7 @@ export default {
     submit() {
       if (this.$refs.form.validate()) {
         this.realtimeDate = moment().format("YYYY-MM-DD, h:mm:ss a");
+        this.$insProgress.start()
         this.loading = true;
         const project = {
           title: this.title,
@@ -591,7 +617,15 @@ export default {
             this.loading = false;
             this.dialog = false;
             this.$emit("projectAdded");
+            this.$insProgress.start()
+            this.interval = setInterval(() => {
+            if (this.dialog == false) {
+              this.$insProgress.finish()
+            }
+            }, 190);
+            
           });
+        
       }
     }
   },
