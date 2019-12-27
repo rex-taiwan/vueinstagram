@@ -84,7 +84,7 @@
         <v-tab
           class="white--text mx-0"
           style="height:70px;"
-          v-for="project in projects"
+          v-for="(project, index) in projects"
           :key="project.person"
         >
           <v-dialog
@@ -101,29 +101,32 @@
                 style="cursor:pointer"
               >
                 <img :src="project.imgUrl" class="avatarborder" alt="alt" />
+                <span
+                  class="black--text text-lowercase mx-auto"
+                  style="position:absolute;bottom:-26px;"
+                  >{{ project.person }}</span
+                >
               </v-avatar>
-              <span
-                class="black--text text-lowercase mx-auto"
-                style="position:absolute;bottom:-26px;"
-                >{{ project.person }}</span
-              >
             </template>
 
-            <v-carousel hide-delimiters progress show-arrows-on-hover touch>
-              <v-carousel-item
-                v-for="project in projects"
-                :key="project.person"
-              >
+            <v-carousel
+              hide-delimiters
+              progress
+              show-arrows-on-hover
+              touch
+              :value="index"
+            >
+              <v-carousel-item v-for="proj in projects" :key="proj.id">
                 <v-list-item style="background:#212121">
                   <v-list-item-avatar color="grey">
-                    <img :src="project.imgUrl" />
+                    <img :src="proj.imgUrl" />
                   </v-list-item-avatar>
                   <v-list-item-content>
                     <v-list-item-subtitle class="white--text text-lowercase"
-                      >by {{ project.person }}</v-list-item-subtitle
+                      >by {{ proj.person }}</v-list-item-subtitle
                     >
                     <span class="caption grey--text">{{
-                      moment(project.realtimeDate).fromNow()
+                      moment(proj.realtimeDate).fromNow()
                     }}</span>
                   </v-list-item-content>
                   <v-spacer></v-spacer>
@@ -131,8 +134,8 @@
                 </v-list-item>
                 <v-img
                   height="600"
-                  :class="project.filter"
-                  :src="project.p"
+                  :class="proj.filter"
+                  :src="proj.p"
                   lazy-src="https://agmbenefitsolutions.com/wp-content/uploads/2015/02/Grey-Gradient-Background.jpg"
                 ></v-img>
               </v-carousel-item>
@@ -323,9 +326,9 @@
                 <img :src="project.imgUrl" />
               </v-list-item-avatar>
               <v-list-item-content>
-                <v-list-item-title class="subtitle-2 text-lowercase">{{
-                  project.person
-                }}</v-list-item-title>
+                <v-list-item-title class="subtitle-2 text-lowercase">
+                  {{ project.person }}
+                </v-list-item-title>
                 <!-- <v-list-item-subtitle> by {{project.person}} <span class="mx-2 caption grey--text">{{project.due}}</span></v-list-item-subtitle> -->
               </v-list-item-content>
               <v-spacer></v-spacer>
@@ -366,9 +369,9 @@
               </v-btn>-->
             </v-card-actions>
             <p class="mx-3 mt-2">
-              <span class="font-weight-bold black--text text-lowercase">{{
-                project.person
-              }}</span>
+              <span class="font-weight-bold black--text text-lowercase">
+                {{ project.person }}
+              </span>
               and
               <span class="font-weight-bold black--text"
                 >millions of others</span
@@ -393,9 +396,9 @@
               >
 
               <!-- <span class="caption grey--text">{{project.due}}</span> -->
-              <span class="caption grey--text">{{
-                moment(project.realtimeDate).fromNow()
-              }}</span>
+              <span class="caption grey--text">
+                {{ moment(project.realtimeDate).fromNow() }}
+              </span>
             </p>
           </v-card>
         </v-dialog>
@@ -417,9 +420,9 @@
           </v-btn>-->
         </v-card-actions>
         <p class="mx-4 mt-2">
-          <span class="font-weight-bold black--text text-lowercase">{{
-            project.person
-          }}</span>
+          <span class="font-weight-bold black--text text-lowercase">
+            {{ project.person }}
+          </span>
           and
           <span class="font-weight-bold black--text">millions of others</span>
           like this post
@@ -444,9 +447,9 @@
           <br />
 
           <!-- <span class="caption grey--text">{{project.due}}</span> -->
-          <span class="caption grey--text">{{
-            moment(project.realtimeDate).fromNow()
-          }}</span>
+          <span class="caption grey--text">
+            {{ moment(project.realtimeDate).fromNow() }}
+          </span>
         </p>
       </v-card>
     </div>
@@ -543,6 +546,8 @@ export default {
             id: change.doc.id
           });
         }
+        console.log("this.projects: ", this.projects);
+
         this.loading = false;
         this.$insProgress.finish();
         this.power = 100;
