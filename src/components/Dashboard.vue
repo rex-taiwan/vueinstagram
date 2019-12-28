@@ -115,10 +115,13 @@
               progress
               show-arrows-on-hover
               touch
+              continuous  
+              interval="4000"
+             
               :value="index"
-               height="600"
+               height="800"
             >
-              <v-carousel-item v-for="proj in projects" :key="proj.id"  height="900">
+              <v-carousel-item v-for="proj in projects" :key="proj.id"  height="800">
                 <v-list-item style="background:#212121">
                   <v-list-item-avatar color="grey">
                     <img :src="proj.imgUrl" />
@@ -135,7 +138,7 @@
                   <v-icon color="white">mdi-dots-horizontal</v-icon>
                 </v-list-item>
                 <v-img
-                 height="600"
+                 height="800"
                   :class="proj.filter"
                   :src="proj.p"
                   lazy-src="https://agmbenefitsolutions.com/wp-content/uploads/2015/02/Grey-Gradient-Background.jpg"
@@ -517,6 +520,18 @@ export default {
       vm.projects.sort((a, b) => (a[prop] < b[prop] ? -1 : 1));
     },
 
+    // sortBy(prop){
+    //     const vm=this;
+    //     vm.projects.sort((a,b)=>{
+    //         if( a[prop]<b[prop]==true){
+    //          return -1
+    //         }
+    //         else {
+    //          return 1
+    //         }
+    //     })
+    // }
+ 
     //1 就是rearrange array
 
     //? true 的時候進去下個動作

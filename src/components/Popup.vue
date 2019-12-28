@@ -566,6 +566,9 @@ export default {
         return alert("Please add a vaild file!");
       }
       const bgfileReader = new FileReader();
+      // FileReader.onload
+      //  A handler for the load event. This event is triggered 
+      //  each time the reading operation is successfully completed.
       bgfileReader.addEventListener("load", () => {
         this.postUrl = bgfileReader.result;
       });
@@ -588,6 +591,9 @@ export default {
         return alert("Please add a vaild file!");
       }
       const fileReader = new FileReader();
+      // FileReader.onload
+      //  A handler for the load event. This event is triggered 
+      //  each time the reading operation is successfully completed.
       fileReader.addEventListener("load", () => {
         this.imgUrl = fileReader.result;
       });

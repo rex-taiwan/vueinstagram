@@ -304,7 +304,7 @@
       <div class="white d-none d-sm-block">
            <v-row no-gutters>
              <v-col cols=12 md=6>
-                 <v-img style="height:800px;" :src="project.p">
+                 <v-img style="height:800px;" :class="project.filter" :src="project.p">
                  </v-img>
              </v-col>
              <v-col cols=12 md=6>
