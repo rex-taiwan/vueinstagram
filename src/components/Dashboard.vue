@@ -1,17 +1,5 @@
 <template>
   <div class="white">
-    <!-- <v-row justify="center"> -->
-    <!--   <v-dialog v-model="dialog" fullscreen transition="slide-y-transition"> -->
-    <!--     <v-card class="d-flex align-center justify-center"> -->
-    <!--       <v-icon class="black--text">mdi-gesture</v-icon> -->
-    <!--       <span class="black--text title">Exclusive , Just for you</span> -->
-    <!--     </v-card> -->
-    <!--   </v-dialog> -->
-    <!-- </v-row> -->
-
-    <!-- <h2>animating:{{btnOps.animating}}</h2> -->
-    <!-- <h2>visible:{{btnOps.visible}}</h2> -->
-
     <!-- Instagram rainbow progress bar -->
     <vue-ins-progress-bar></vue-ins-progress-bar>
 
@@ -134,7 +122,7 @@
                       >by {{ proj.person }}</v-list-item-subtitle
                     >
                     <span class="caption grey--text">{{
-                      moment(new Date(proj.realtimeDate)).fromNow()
+                      getTimeAgo(proj.realtimeDate)
                     }}</span>
                   </v-list-item-content>
                   <v-spacer></v-spacer>
@@ -148,63 +136,11 @@
                 ></v-img>
               </v-carousel-item>
             </v-carousel>
-
-            <!-- <v-card> -->
-            <!--   <v-list-item style="background:#212121"> -->
-            <!--     <v-list-item-avatar color="grey"> -->
-            <!--       <img :src="project.imgUrl" /> -->
-            <!--     </v-list-item-avatar> -->
-            <!--     <v-list-item-content> -->
-            <!--       <v-list-item-subtitle class="white--text text-lowercase">by {{project.person}}</v-list-item-subtitle> -->
-            <!--       <span class="caption grey--text">{{moment(project.realtimeDate).fromNow()}}</span> -->
-            <!--     </v-list-item-content> -->
-            <!--     <v-spacer></v-spacer> -->
-            <!--     <v-icon color="white">mdi-dots-horizontal</v-icon> -->
-            <!--   </v-list-item> -->
-            <!--   <v-progress-linear -->
-            <!--     height="2" -->
-            <!--     rounded -->
-            <!--     color="grey darken-2" -->
-            <!--     :indeterminate="true" -->
-            <!--     timeout="1000" -->
-            <!--     class="white--text" -->
-            <!--   ></v-progress-linear> -->
-            <!--   <v-img -->
-            <!--     height="600" -->
-            <!--     :class="project.filter" -->
-            <!--     lazy-src="https://agmbenefitsolutions.com/wp-content/uploads/2015/02/Grey-Gradient-Background.jpg" -->
-            <!--     :src="project.p" -->
-            <!--   ></v-img> -->
-            <!-- </v-card> -->
           </v-dialog>
         </v-tab>
       </v-tabs>
 
-      <!-- <popup @projectAdded="snackbar=true"></popup> -->
       <v-divider class="mt-2 d-block d-sm-none"></v-divider>
-      <!-- <v-menu offset-y>
-     <template v-slot:activator="{ on }"> 
-       <v-btn text class="mt-5" v-on="on"> 
-         Filters 
-         <v-icon small class="mx-2">mdi-sort</v-icon> 
-       </v-btn> 
-     </template> 
-     <v-list> 
-       <v-list-item @click.prevent="deleteProjects(project.id)"> 
-         <v-list-item-title> 
-           <v-btn small text color="gray" @click="sortBy('person')" v-on="on"> 
-             <v-icon left small>mdi-filter-variant</v-icon> 
-             <span class="caption text--lowercase">Project name</span> 
-           </v-btn> 
-         </v-list-item-title> 
-       </v-list-item> 
-       <v-list-item></v-list-item> 
-     </v-list> 
-      </v-menu>-->
-
-      <!-- <v-btn small text color="gray" @click="sortBy('person')"> -->
-      <!--   <span class="caption text--lowercase">By person</span> -->
-      <!-- </v-btn> -->
 
       <div class="d-flex justify-center" v-if="loading">
         <v-progress-circular
@@ -228,7 +164,6 @@
               class="subtitle-1 font-weight-bold text-lowercase"
               >{{ project.person }}</v-list-item-title
             >
-            <!-- <v-list-item-subtitle><span class="mx-2 caption grey--text">{{moment(project.realtimeDate).fromNow()}}</span></v-list-item-subtitle> -->
           </v-list-item-content>
           <v-spacer></v-spacer>
           <v-menu offset-y>
@@ -314,9 +249,9 @@
                 <img :src="project.imgUrl" />
               </v-list-item-avatar>
               <v-list-item-content>
-                <v-list-item-title class="subtitle-2 text-lowercase">
-                  {{ project.person }}
-                </v-list-item-title>
+                <v-list-item-title class="subtitle-2 text-lowercase">{{
+                  project.person
+                }}</v-list-item-title>
               </v-list-item-content>
               <v-spacer></v-spacer>
               <v-menu offset-y>
@@ -350,9 +285,9 @@
               <v-icon class="grey--text mx-4">mdi-send</v-icon>
             </v-card-actions>
             <p class="mx-3 mt-2">
-              <span class="font-weight-bold black--text text-lowercase">
-                {{ project.person }}
-              </span>
+              <span class="font-weight-bold black--text text-lowercase">{{
+                project.person
+              }}</span>
               and
               <span class="font-weight-bold black--text"
                 >millions of others</span
@@ -375,9 +310,9 @@
               <strong class="d-block font-weight-regular" style="color:#003569"
                 >#{{ project.title }}</strong
               >
-              <span class="caption grey--text">
-                {{ moment(new Date(project.realtimeDate)).fromNow() }}
-              </span>
+              <span class="caption grey--text">{{
+                getTimeAgo(project.realtimeDate)
+              }}</span>
             </p>
           </v-card>
         </v-dialog>
@@ -388,9 +323,9 @@
           <v-icon class="primary--text ml-2">mdi-send</v-icon>
         </v-card-actions>
         <p class="mx-4 mt-2">
-          <span class="font-weight-bold black--text text-lowercase">
-            {{ project.person }}
-          </span>
+          <span class="font-weight-bold black--text text-lowercase">{{
+            project.person
+          }}</span>
           and
           <span class="font-weight-bold black--text">millions of others</span>
           like this post
@@ -406,15 +341,13 @@
             style="line-height:1mm;important!"
             >{{ project.content }}</span
           >
-
           <strong class="d-block font-weight-regular mt-4" style="color:#003569"
             >#{{ project.title }}</strong
           >
           <br />
-
-          <span class="caption grey--text">
-            {{ moment(new Date(project.realtimeDate)).fromNow() }}
-          </span>
+          <span class="caption grey--text">{{
+            getTimeAgo(project.realtimeDate)
+          }}</span>
         </p>
       </v-card>
     </div>
@@ -423,6 +356,7 @@
 
 <script>
 import { db } from '../db';
+import moment from 'moment';
 
 export default {
   data() {
@@ -458,34 +392,28 @@ export default {
       bgColor: 'grey lighten-1',
     };
   },
-
   methods: {
+    getTimeAgo(time) {
+      if (!time) return '';
+      return moment(time, 'YYYY-MM-DD').fromNow();
+    },
     particlesEffect() {
-      // this.animating=true;
       this.dialog = true;
     },
-
     sortBy(prop) {
-      const vm = this;
-      vm.projects.sort((a, b) => (a[prop] < b[prop] ? -1 : 1));
+      this.projects.sort((a, b) => (a[prop] < b[prop] ? -1 : 1));
+      //     this.projects.sort((a,b)=>{
+      //         if( a[prop]<b[prop]==true){
+      //          return -1
+      //         }
+      //         else {
+      //          return 1
+      //         }
+      //     })
+      //1 就是rearrange array
+      //? true 的時候進去下個動作
+      //: false 的時候進去下個動作 也等於else
     },
-
-    // sortBy(prop){
-    //     const vm=this;
-    //     vm.projects.sort((a,b)=>{
-    //         if( a[prop]<b[prop]==true){
-    //          return -1
-    //         }
-    //         else {
-    //          return 1
-    //         }
-    //     })
-    // }
-
-    //1 就是rearrange array
-
-    //? true 的時候進去下個動作
-    //: false 的時候進去下個動作 也等於else
     deleteProjects(id) {
       db.collection('projects')
         .doc(id)
@@ -503,27 +431,34 @@ export default {
     // req就是request(请求)
     // res就是response(响应)
     // 有请求就有响应，只是两个相对应的对象而已。
-
-    //  https://stackoverflow.com/questions/54773410/how-do-i-get-realtime-document-updates-from-firebase-firestore-with-change-type
+    // https://stackoverflow.com/questions/54773410/how-do-i-get-realtime-document-updates-from-firebase-firestore-with-change-type
     this.$insProgress.start();
     db.collection('projects').onSnapshot(res => {
       this.loading = true;
       this.dialog = true;
 
       const changes = res.docChanges();
-      changes.forEach(change => {
-        if (change.type == 'added') {
-          this.projects.unshift({
+      const projects = changes
+        .map(change => {
+          if (change.type !== 'added') return null;
+          return {
             ...change.doc.data(),
             id: change.doc.id,
-          });
-        }
+          };
+        })
+        .filter(x => x);
+
+      projects.sort((a, b) => {
+        const aDate = moment(a.realtimeDate, 'YYYY-MM-DD HH:mm');
+        const bDate = moment(b.realtimeDate, 'YYYY-MM-DD HH:mm');
+        return bDate.diff(aDate);
+
+        //return new Date(b.realtimeDate) - new Date(a.realtimeDate);
       });
 
-      this.projects.sort(function(a, b) {
-        return new Date(b.realtimeDate) - new Date(a.realtimeDate);
-      });
+      console.log('projects: ', projects);
 
+      this.projects = projects;
       this.loading = false;
       this.dialog = false;
       this.$insProgress.finish();
