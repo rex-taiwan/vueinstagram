@@ -426,6 +426,8 @@ export default {
       picturevalue: 0,
       replacepicture:"",
       replacepictureimage:null,
+     
+     
     };
   },
   beforeDestroy() {
@@ -602,6 +604,7 @@ export default {
     },
     submit() {
       if (this.$refs.form.validate()) {
+        
         this.realtimeDate = moment(new Date()).format("YYYY-MM-DD, h:mm:ss a");
         // this.realtimeDate= new Date();
         this.$insProgress.start()

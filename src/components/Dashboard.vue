@@ -131,7 +131,7 @@
                       >by {{ proj.person }}</v-list-item-subtitle
                     >
                     <span class="caption grey--text">{{
-                      moment(proj.realtimeDate).fromNow()
+                      moment(new Date(proj.realtimeDate)).fromNow()
                     }}</span>
                   </v-list-item-content>
                   <v-spacer></v-spacer>
@@ -403,7 +403,7 @@
 
               <!-- <span class="caption grey--text">{{project.due}}</span> -->
               <span class="caption grey--text">
-                {{ moment(project.realtimeDate).fromNow() }}
+                {{ moment(new Date(project.realtimeDate)).fromNow() }}
               </span>
             </p>
           </v-card>
@@ -454,7 +454,7 @@
 
           <!-- <span class="caption grey--text">{{project.due}}</span> -->
           <span class="caption grey--text">
-            {{ moment(project.realtimeDate).fromNow() }}
+            {{ moment(new Date(project.realtimeDate)).fromNow() }}
           </span>
         </p>
       </v-card>
@@ -481,7 +481,7 @@ export default {
       e1: 0,
       projects: [],
       loading: true,
-      numbers: [4, 5, 6, 7, 8],
+      numbers: [5, 6, 7, 8, 9],
       delsnackbar: false,
       snackbar: false,
       overlay: false,
