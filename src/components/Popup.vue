@@ -468,7 +468,7 @@ export default {
           this.$insProgress.finish()
         }
         this.picturevalue += 10;
-      }, 190);
+      }, 230);
       this.picturevalue = 0;
       
 
@@ -602,7 +602,8 @@ export default {
     },
     submit() {
       if (this.$refs.form.validate()) {
-        this.realtimeDate = moment().format("YYYY-MM-DD, h:mm:ss a");
+        this.realtimeDate = moment(new Date()).format("YYYY-MM-DD, h:mm:ss a");
+        // this.realtimeDate= new Date();
         this.$insProgress.start()
         this.loading = true;
         const project = {

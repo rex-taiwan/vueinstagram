@@ -179,25 +179,25 @@
 
       <!-- <popup @projectAdded="snackbar=true"></popup> -->
       <v-divider class="mt-2 d-block d-sm-none"></v-divider>
-<!-- <v-menu offset-y> -->
-      <!--   <template v-slot:activator="{ on }"> -->
-      <!--     <v-btn text class="mt-5" v-on="on"> -->
-      <!--       Filters -->
-      <!--       <v-icon small class="mx-2">mdi-sort</v-icon> -->
-      <!--     </v-btn> -->
-      <!--   </template> -->
-      <!--   <v-list> -->
-      <!--     <v-list-item @click.prevent="deleteProjects(project.id)"> -->
-      <!--       <v-list-item-title> -->
-      <!--         <v-btn small text color="gray" @click="sortBy('title')" v-on="on"> -->
-      <!--           <v-icon left small>mdi-filter-variant</v-icon> -->
-      <!--           <span class="caption text--lowercase">Project name</span> -->
-      <!--         </v-btn> -->
-      <!--       </v-list-item-title> -->
-      <!--     </v-list-item> -->
-      <!--     <v-list-item></v-list-item> -->
-      <!--   </v-list> -->
-<!-- </v-menu> -->
+<!-- <v-menu offset-y>
+     <template v-slot:activator="{ on }"> 
+       <v-btn text class="mt-5" v-on="on"> 
+         Filters 
+         <v-icon small class="mx-2">mdi-sort</v-icon> 
+       </v-btn> 
+     </template> 
+     <v-list> 
+       <v-list-item @click.prevent="deleteProjects(project.id)"> 
+         <v-list-item-title> 
+           <v-btn small text color="gray" @click="sortBy('person')" v-on="on"> 
+             <v-icon left small>mdi-filter-variant</v-icon> 
+             <span class="caption text--lowercase">Project name</span> 
+           </v-btn> 
+         </v-list-item-title> 
+       </v-list-item> 
+       <v-list-item></v-list-item> 
+     </v-list> 
+</v-menu> -->
 
       <!-- <v-btn small text color="gray" @click="sortBy('person')"> -->
       <!--   <span class="caption text--lowercase">By person</span> -->
@@ -213,8 +213,9 @@
       <v-card
         flat
         class="mt-2 white lighten-5"
-        v-for="project in projects"
+        v-for="(project, index) in projects"
         :key="project.title"
+        :value="index"
       >
         <v-list-item>
           <v-list-item-avatar color="white" class="mr-2">
@@ -550,11 +551,16 @@ export default {
     }
   },
   created() {
+       // req就是request(请求)
+       // res就是response(响应)
+       // 有请求就有响应，只是两个相对应的对象而已。
+
+      //  https://stackoverflow.com/questions/54773410/how-do-i-get-realtime-document-updates-from-firebase-firestore-with-change-type
     this.$insProgress.start();
     db.collection("projects").onSnapshot(res => {
       this.loading = true;
       this.dialog = true;
-      this.power = 1;
+    
       const changes = res.docChanges();
       changes.forEach(change => {
         if (change.type == "added") {
@@ -563,11 +569,16 @@ export default {
             id: change.doc.id
           });
         }
-        console.log("this.projects: ", this.projects);
 
+        this.projects.sort(function(a,b){
+        return new Date(b.realtimeDate) - new Date(a.realtimeDate);
+        });
+        
+        
+        console.log("this.projects: ", this.projects);
         this.loading = false;
         this.$insProgress.finish();
-        this.power = 100;
+       
         this.dialog = false;
       });
     });
