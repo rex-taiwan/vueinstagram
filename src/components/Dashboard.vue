@@ -395,7 +395,7 @@ export default {
   methods: {
     getTimeAgo(time) {
       if (!time) return '';
-      return moment(new Date(time), 'YYYY-MM-DD').fromNow();
+      return moment(time, 'YYYY-MM-DD').fromNow();
     },
     particlesEffect() {
       this.dialog = true;
@@ -449,7 +449,11 @@ export default {
         .filter(x => x);
 
       projects.sort((a, b) => {
-        return new Date(b.realtimeDate) - new Date(a.realtimeDate);
+        const aDate = moment(a.realtimeDate, 'YYYY-MM-DD HH:mm');
+        const bDate = moment(b.realtimeDate, 'YYYY-MM-DD HH:mm');
+        return bDate.diff(aDate);
+
+        //return new Date(b.realtimeDate) - new Date(a.realtimeDate);
       });
 
       console.log('projects: ', projects);
