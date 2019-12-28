@@ -85,7 +85,7 @@
           class="white--text mx-0"
           style="height:70px;"
           v-for="(project, index) in projects"
-          :key="project.person"
+          :key="project.id"
         >
           <v-dialog
             v-model="cirlcedialog"
@@ -133,9 +133,9 @@
                     <v-list-item-subtitle class="white--text text-lowercase"
                       >by {{ proj.person }}</v-list-item-subtitle
                     >
-                    <span class="caption grey--text">
-                      {{ moment(new Date(proj.realtimeDate)).fromNow() }}
-                    </span>
+                    <span class="caption grey--text">{{
+                      moment(new Date(proj.realtimeDate)).fromNow()
+                    }}</span>
                   </v-list-item-content>
                   <v-spacer></v-spacer>
                   <v-icon color="white">mdi-dots-horizontal</v-icon>
@@ -168,7 +168,6 @@
         v-for="project in projects"
         :key="project.id"
       >
-        <!-- Post Header -->
         <v-list-item>
           <v-list-item-avatar color="white" class="mr-2">
             <img :src="project.imgUrl" />
@@ -267,9 +266,9 @@
                 <img :src="project.imgUrl" />
               </v-list-item-avatar>
               <v-list-item-content>
-                <v-list-item-title class="subtitle-2 text-lowercase">{{
-                  project.person
-                }}</v-list-item-title>
+                <v-list-item-title class="subtitle-2 text-lowercase">
+                  {{ project.person }}
+                </v-list-item-title>
               </v-list-item-content>
               <v-spacer></v-spacer>
               <v-menu offset-y>
@@ -303,9 +302,9 @@
               <v-icon class="grey--text mx-4">mdi-send</v-icon>
             </v-card-actions>
             <p class="mx-3 mt-2">
-              <span class="font-weight-bold black--text text-lowercase">{{
-                project.person
-              }}</span>
+              <span class="font-weight-bold black--text text-lowercase">
+                {{ project.person }}
+              </span>
               and
               <span class="font-weight-bold black--text"
                 >millions of others</span
@@ -330,9 +329,9 @@
               >
 
               <!-- <span class="caption grey--text">{{project.due}}</span> -->
-              <span class="caption grey--text">{{
-                moment(new Date(project.realtimeDate)).fromNow()
-              }}</span>
+              <span class="caption grey--text">
+                {{ moment(new Date(project.realtimeDate)).fromNow() }}
+              </span>
             </p>
           </v-card>
         </v-dialog>
@@ -343,9 +342,9 @@
           <v-icon class="primary--text ml-2">mdi-send</v-icon>
         </v-card-actions>
         <p class="mx-4 mt-2">
-          <span class="font-weight-bold black--text text-lowercase">{{
-            project.person
-          }}</span>
+          <span class="font-weight-bold black--text text-lowercase">
+            {{ project.person }}
+          </span>
           and
           <span class="font-weight-bold black--text">millions of others</span>
           like this post
@@ -367,9 +366,9 @@
           >
           <br />
 
-          <span class="caption grey--text">{{
-            moment(new Date(project.realtimeDate)).fromNow()
-          }}</span>
+          <span class="caption grey--text">
+            {{ moment(new Date(project.realtimeDate)).fromNow() }}
+          </span>
         </p>
       </v-card>
     </div>
