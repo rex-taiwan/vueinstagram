@@ -148,39 +148,10 @@
                 ></v-img>
               </v-carousel-item>
             </v-carousel>
-
-            <!-- <v-card> -->
-            <!--   <v-list-item style="background:#212121"> -->
-            <!--     <v-list-item-avatar color="grey"> -->
-            <!--       <img :src="project.imgUrl" /> -->
-            <!--     </v-list-item-avatar> -->
-            <!--     <v-list-item-content> -->
-            <!--       <v-list-item-subtitle class="white--text text-lowercase">by {{project.person}}</v-list-item-subtitle> -->
-            <!--       <span class="caption grey--text">{{moment(project.realtimeDate).fromNow()}}</span> -->
-            <!--     </v-list-item-content> -->
-            <!--     <v-spacer></v-spacer> -->
-            <!--     <v-icon color="white">mdi-dots-horizontal</v-icon> -->
-            <!--   </v-list-item> -->
-            <!--   <v-progress-linear -->
-            <!--     height="2" -->
-            <!--     rounded -->
-            <!--     color="grey darken-2" -->
-            <!--     :indeterminate="true" -->
-            <!--     timeout="1000" -->
-            <!--     class="white--text" -->
-            <!--   ></v-progress-linear> -->
-            <!--   <v-img -->
-            <!--     height="600" -->
-            <!--     :class="project.filter" -->
-            <!--     lazy-src="https://agmbenefitsolutions.com/wp-content/uploads/2015/02/Grey-Gradient-Background.jpg" -->
-            <!--     :src="project.p" -->
-            <!--   ></v-img> -->
-            <!-- </v-card> -->
           </v-dialog>
         </v-tab>
       </v-tabs>
 
-      <!-- <popup @projectAdded="snackbar=true"></popup> -->
       <v-divider class="mt-2 d-block d-sm-none"></v-divider>
       <!-- <v-menu offset-y>
      <template v-slot:activator="{ on }"> 
@@ -368,14 +339,8 @@
             ></v-img>
             <v-card-actions class="my-4">
               <v-icon class="grey--text mx-2">mdi-heart-outline</v-icon>
-
               <v-icon class="grey--text mx-3">mdi-message-outline</v-icon>
-
               <v-icon class="grey--text mx-4">mdi-send</v-icon>
-
-              <!-- <v-btn icon @click.prevent="deleteProjects(project.id)">
-        <v-icon>mdi-trash-can</v-icon>
-              </v-btn>-->
             </v-card-actions>
             <p class="mx-3 mt-2">
               <span class="font-weight-bold black--text text-lowercase">
@@ -414,19 +379,12 @@
 
         <!-- <v-card-text class="subtitle-1 mx-4">
         <read-more  more-str="Read more" :text="project.content" link="#" less-str="Read less" :max-chars="300"></read-more>
-    
         </v-card-text>-->
 
         <v-card-actions class="my-4">
           <v-icon class="primary--text mx-2">mdi-heart-outline</v-icon>
-
           <v-icon class="primary--text mx-2">mdi-message-outline</v-icon>
-
           <v-icon class="primary--text ml-2">mdi-send</v-icon>
-
-          <!-- <v-btn icon @click.prevent="deleteProjects(project.id)">
-        <v-icon>mdi-trash-can</v-icon>
-          </v-btn>-->
         </v-card-actions>
         <p class="mx-4 mt-2">
           <span class="font-weight-bold black--text text-lowercase">
@@ -470,6 +428,7 @@ import { db } from "../db";
 // import ParticleEffectButton from "vue-particle-effect-buttons"
 // import Popup from './Popup'
 // import ReadMore from 'vue-read-more';
+import moment from "moment";
 
 // Vue.use(ReadMore);
 
@@ -537,7 +496,6 @@ export default {
     // }
 
     //1 就是rearrange array
-
     //? true 的時候進去下個動作
     //: false 的時候進去下個動作 也等於else
     deleteProjects(id) {
@@ -577,17 +535,18 @@ export default {
         this.$insProgress.finish();
         this.dialog = false;
       });
-    });
 
-    this.projects.sort(function(a, b) {
-      const bDate = moment(new Date(b.realtimeDate));
-      const aDate = moment(new Date(a.realtimeDate));
-      return bDate.diff(aDate);
+      this.projects.sort((a, b) => {
+        const result = new Date(b.realtimeDate) - new Date(a.realtimeDate);
+        return result;
+      });
     });
 
     /**
     this.projects.sort(function(a, b) {
-      return new Date(b.realtimeDate) - new Date(a.realtimeDate);
+      const bDate = moment(new Date(b.realtimeDate));
+      const aDate = moment(new Date(a.realtimeDate));
+      return bDate.diff(aDate);
     });
     */
   }
