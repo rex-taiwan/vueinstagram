@@ -133,9 +133,9 @@
                     <v-list-item-subtitle class="white--text text-lowercase"
                       >by {{ proj.person }}</v-list-item-subtitle
                     >
-                    <span class="caption grey--text">
-                      {{ moment(new Date(proj.realtimeDate)).fromNow() }}
-                    </span>
+                    <span class="caption grey--text">{{
+                      moment(new Date(proj.realtimeDate)).fromNow()
+                    }}</span>
                   </v-list-item-content>
                   <v-spacer></v-spacer>
                   <v-icon color="white">mdi-dots-horizontal</v-icon>
@@ -314,9 +314,9 @@
                 <img :src="project.imgUrl" />
               </v-list-item-avatar>
               <v-list-item-content>
-                <v-list-item-title class="subtitle-2 text-lowercase">{{
-                  project.person
-                }}</v-list-item-title>
+                <v-list-item-title class="subtitle-2 text-lowercase">
+                  {{ project.person }}
+                </v-list-item-title>
               </v-list-item-content>
               <v-spacer></v-spacer>
               <v-menu offset-y>
@@ -350,9 +350,9 @@
               <v-icon class="grey--text mx-4">mdi-send</v-icon>
             </v-card-actions>
             <p class="mx-3 mt-2">
-              <span class="font-weight-bold black--text text-lowercase">{{
-                project.person
-              }}</span>
+              <span class="font-weight-bold black--text text-lowercase">
+                {{ project.person }}
+              </span>
               and
               <span class="font-weight-bold black--text"
                 >millions of others</span
@@ -375,9 +375,9 @@
               <strong class="d-block font-weight-regular" style="color:#003569"
                 >#{{ project.title }}</strong
               >
-              <span class="caption grey--text">{{
-                moment(new Date(project.realtimeDate)).fromNow()
-              }}</span>
+              <span class="caption grey--text">
+                {{ moment(new Date(project.realtimeDate)).fromNow() }}
+              </span>
             </p>
           </v-card>
         </v-dialog>
@@ -388,9 +388,9 @@
           <v-icon class="primary--text ml-2">mdi-send</v-icon>
         </v-card-actions>
         <p class="mx-4 mt-2">
-          <span class="font-weight-bold black--text text-lowercase">{{
-            project.person
-          }}</span>
+          <span class="font-weight-bold black--text text-lowercase">
+            {{ project.person }}
+          </span>
           and
           <span class="font-weight-bold black--text">millions of others</span>
           like this post
@@ -412,9 +412,9 @@
           >
           <br />
 
-          <span class="caption grey--text">{{
-            moment(new Date(project.realtimeDate)).fromNow()
-          }}</span>
+          <span class="caption grey--text">
+            {{ moment(new Date(project.realtimeDate)).fromNow() }}
+          </span>
         </p>
       </v-card>
     </div>
@@ -523,6 +523,10 @@ export default {
       this.projects.sort(function(a, b) {
         return new Date(b.realtimeDate) - new Date(a.realtimeDate);
       });
+
+      this.loading = false;
+      this.dialog = false;
+      this.$insProgress.finish();
     });
   },
 };
