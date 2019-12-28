@@ -92,7 +92,7 @@
             overlay-color="#212121"
             overlay-opacity="1"
             width="400px"
-          style="height:900px;"
+            style="height:900px;"
           >
             <template v-slot:activator="{ on }">
               <v-avatar
@@ -115,13 +115,16 @@
               progress
               show-arrows-on-hover
               touch
-              continuous  
+              continuous
               interval="4000"
-             
               :value="index"
-               height="800"
+              height="800"
             >
-              <v-carousel-item v-for="proj in projects" :key="proj.id"  height="800">
+              <v-carousel-item
+                v-for="proj in projects"
+                :key="proj.id"
+                height="800"
+              >
                 <v-list-item style="background:#212121">
                   <v-list-item-avatar color="grey">
                     <img :src="proj.imgUrl" />
@@ -130,15 +133,15 @@
                     <v-list-item-subtitle class="white--text text-lowercase"
                       >by {{ proj.person }}</v-list-item-subtitle
                     >
-                    <span class="caption grey--text">{{
-                      moment(new Date(proj.realtimeDate)).fromNow()
-                    }}</span>
+                    <span class="caption grey--text">
+                      {{ moment(new Date(proj.realtimeDate)).fromNow() }}
+                    </span>
                   </v-list-item-content>
                   <v-spacer></v-spacer>
                   <v-icon color="white">mdi-dots-horizontal</v-icon>
                 </v-list-item>
                 <v-img
-                 height="800"
+                  height="800"
                   :class="proj.filter"
                   :src="proj.p"
                   lazy-src="https://agmbenefitsolutions.com/wp-content/uploads/2015/02/Grey-Gradient-Background.jpg"
@@ -146,7 +149,7 @@
               </v-carousel-item>
             </v-carousel>
 
-  <!-- <v-card> -->
+            <!-- <v-card> -->
             <!--   <v-list-item style="background:#212121"> -->
             <!--     <v-list-item-avatar color="grey"> -->
             <!--       <img :src="project.imgUrl" /> -->
@@ -172,14 +175,14 @@
             <!--     lazy-src="https://agmbenefitsolutions.com/wp-content/uploads/2015/02/Grey-Gradient-Background.jpg" -->
             <!--     :src="project.p" -->
             <!--   ></v-img> -->
-<!-- </v-card> -->
+            <!-- </v-card> -->
           </v-dialog>
         </v-tab>
       </v-tabs>
 
       <!-- <popup @projectAdded="snackbar=true"></popup> -->
       <v-divider class="mt-2 d-block d-sm-none"></v-divider>
-<!-- <v-menu offset-y>
+      <!-- <v-menu offset-y>
      <template v-slot:activator="{ on }"> 
        <v-btn text class="mt-5" v-on="on"> 
          Filters 
@@ -197,7 +200,7 @@
        </v-list-item> 
        <v-list-item></v-list-item> 
      </v-list> 
-</v-menu> -->
+      </v-menu>-->
 
       <!-- <v-btn small text color="gray" @click="sortBy('person')"> -->
       <!--   <span class="caption text--lowercase">By person</span> -->
@@ -332,9 +335,9 @@
                 <img :src="project.imgUrl" />
               </v-list-item-avatar>
               <v-list-item-content>
-                <v-list-item-title class="subtitle-2 text-lowercase">
-                  {{ project.person }}
-                </v-list-item-title>
+                <v-list-item-title class="subtitle-2 text-lowercase">{{
+                  project.person
+                }}</v-list-item-title>
                 <!-- <v-list-item-subtitle> by {{project.person}} <span class="mx-2 caption grey--text">{{project.due}}</span></v-list-item-subtitle> -->
               </v-list-item-content>
               <v-spacer></v-spacer>
@@ -375,9 +378,9 @@
               </v-btn>-->
             </v-card-actions>
             <p class="mx-3 mt-2">
-              <span class="font-weight-bold black--text text-lowercase">
-                {{ project.person }}
-              </span>
+              <span class="font-weight-bold black--text text-lowercase">{{
+                project.person
+              }}</span>
               and
               <span class="font-weight-bold black--text"
                 >millions of others</span
@@ -402,9 +405,9 @@
               >
 
               <!-- <span class="caption grey--text">{{project.due}}</span> -->
-              <span class="caption grey--text">
-                {{ moment(new Date(project.realtimeDate)).fromNow() }}
-              </span>
+              <span class="caption grey--text">{{
+                moment(new Date(project.realtimeDate)).fromNow()
+              }}</span>
             </p>
           </v-card>
         </v-dialog>
@@ -426,9 +429,9 @@
           </v-btn>-->
         </v-card-actions>
         <p class="mx-4 mt-2">
-          <span class="font-weight-bold black--text text-lowercase">
-            {{ project.person }}
-          </span>
+          <span class="font-weight-bold black--text text-lowercase">{{
+            project.person
+          }}</span>
           and
           <span class="font-weight-bold black--text">millions of others</span>
           like this post
@@ -453,9 +456,9 @@
           <br />
 
           <!-- <span class="caption grey--text">{{project.due}}</span> -->
-          <span class="caption grey--text">
-            {{ moment(new Date(project.realtimeDate)).fromNow() }}
-          </span>
+          <span class="caption grey--text">{{
+            moment(new Date(project.realtimeDate)).fromNow()
+          }}</span>
         </p>
       </v-card>
     </div>
@@ -532,7 +535,7 @@ export default {
     //         }
     //     })
     // }
- 
+
     //1 就是rearrange array
 
     //? true 的時候進去下個動作
@@ -551,16 +554,16 @@ export default {
     }
   },
   created() {
-       // req就是request(请求)
-       // res就是response(响应)
-       // 有请求就有响应，只是两个相对应的对象而已。
+    // req就是request(请求)
+    // res就是response(响应)
+    // 有请求就有响应，只是两个相对应的对象而已。
 
-      //  https://stackoverflow.com/questions/54773410/how-do-i-get-realtime-document-updates-from-firebase-firestore-with-change-type
+    //  https://stackoverflow.com/questions/54773410/how-do-i-get-realtime-document-updates-from-firebase-firestore-with-change-type
     this.$insProgress.start();
     db.collection("projects").onSnapshot(res => {
       this.loading = true;
       this.dialog = true;
-    
+
       const changes = res.docChanges();
       changes.forEach(change => {
         if (change.type == "added") {
@@ -570,17 +573,14 @@ export default {
           });
         }
 
-        this.projects.sort(function(a,b){
-        return new Date(b.realtimeDate) - new Date(a.realtimeDate);
-        });
-        
-        
-        console.log("this.projects: ", this.projects);
         this.loading = false;
         this.$insProgress.finish();
-       
         this.dialog = false;
       });
+    });
+
+    this.projects.sort(function(a, b) {
+      return new Date(b.realtimeDate) - new Date(a.realtimeDate);
     });
   }
 };
