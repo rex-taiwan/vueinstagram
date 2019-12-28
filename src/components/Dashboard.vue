@@ -1,13 +1,13 @@
 <template>
   <div class="white">
-    <!-- <v-row justify="center"> -->
+<!-- <v-row justify="center"> -->
     <!--   <v-dialog v-model="dialog" fullscreen transition="slide-y-transition"> -->
     <!--     <v-card class="d-flex align-center justify-center"> -->
     <!--       <v-icon class="black--text">mdi-gesture</v-icon> -->
     <!--       <span class="black--text title">Exclusive , Just for you</span> -->
     <!--     </v-card> -->
     <!--   </v-dialog> -->
-    <!-- </v-row> -->
+<!-- </v-row> -->
 
     <!-- <h2>animating:{{btnOps.animating}}</h2> -->
     <!-- <h2>visible:{{btnOps.visible}}</h2> -->
@@ -85,7 +85,7 @@
           class="white--text mx-0"
           style="height:70px;"
           v-for="(project, index) in projects"
-          :key="project.person"
+          :key="project.id"
         >
           <v-dialog
             v-model="cirlcedialog"
@@ -213,9 +213,9 @@
       <v-card
         flat
         class="mt-2 white lighten-5"
-        v-for="(project, index) in projects"
-        :key="project.title"
-        :value="index"
+        v-for="project in projects"
+        :key="project.id"
+       
       >
         <v-list-item>
           <v-list-item-avatar color="white" class="mr-2">
@@ -568,12 +568,13 @@ export default {
             ...change.doc.data(),
             id: change.doc.id
           });
-        }
 
         this.projects.sort(function(a,b){
         return new Date(b.realtimeDate) - new Date(a.realtimeDate);
         });
         
+        }
+
         
         console.log("this.projects: ", this.projects);
         this.loading = false;
