@@ -536,19 +536,19 @@ export default {
         this.dialog = false;
       });
 
+      /**
       this.projects.sort((a, b) => {
         const result = new Date(b.realtimeDate) - new Date(a.realtimeDate);
         return result;
       });
-    });
+      */
 
-    /**
-    this.projects.sort(function(a, b) {
-      const bDate = moment(new Date(b.realtimeDate));
-      const aDate = moment(new Date(a.realtimeDate));
-      return bDate.diff(aDate);
+      this.projects.sort(function(a, b) {
+        const bDate = moment(new Date(b.realtimeDate));
+        const aDate = moment(new Date(a.realtimeDate));
+        return bDate.diff(aDate);
+      });
     });
-    */
   }
 };
 </script>
