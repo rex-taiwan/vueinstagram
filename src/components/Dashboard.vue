@@ -133,9 +133,9 @@
                     <v-list-item-subtitle class="white--text text-lowercase"
                       >by {{ proj.person }}</v-list-item-subtitle
                     >
-                    <span class="caption grey--text">{{
-                      moment(new Date(proj.realtimeDate)).fromNow()
-                    }}</span>
+                    <span class="caption grey--text">
+                      {{ moment(new Date(proj.realtimeDate)).fromNow() }}
+                    </span>
                   </v-list-item-content>
                   <v-spacer></v-spacer>
                   <v-icon color="white">mdi-dots-horizontal</v-icon>
@@ -153,29 +153,6 @@
       </v-tabs>
 
       <v-divider class="mt-2 d-block d-sm-none"></v-divider>
-      <!-- <v-menu offset-y>
-     <template v-slot:activator="{ on }"> 
-       <v-btn text class="mt-5" v-on="on"> 
-         Filters 
-         <v-icon small class="mx-2">mdi-sort</v-icon> 
-       </v-btn> 
-     </template> 
-     <v-list> 
-       <v-list-item @click.prevent="deleteProjects(project.id)"> 
-         <v-list-item-title> 
-           <v-btn small text color="gray" @click="sortBy('person')" v-on="on"> 
-             <v-icon left small>mdi-filter-variant</v-icon> 
-             <span class="caption text--lowercase">Project name</span> 
-           </v-btn> 
-         </v-list-item-title> 
-       </v-list-item> 
-       <v-list-item></v-list-item> 
-     </v-list> 
-      </v-menu>-->
-
-      <!-- <v-btn small text color="gray" @click="sortBy('person')"> -->
-      <!--   <span class="caption text--lowercase">By person</span> -->
-      <!-- </v-btn> -->
 
       <div class="d-flex justify-center" v-if="loading">
         <v-progress-circular
@@ -184,13 +161,14 @@
         ></v-progress-circular>
       </div>
 
+      <!-- Post -->
       <v-card
         flat
         class="mt-2 white lighten-5"
-        v-for="(project, index) in projects"
-        :key="project.title"
-        :value="index"
+        v-for="project in projects"
+        :key="project.id"
       >
+        <!-- Post Header -->
         <v-list-item>
           <v-list-item-avatar color="white" class="mr-2">
             <img :src="project.imgUrl" />
@@ -200,7 +178,6 @@
               class="subtitle-1 font-weight-bold text-lowercase"
               >{{ project.person }}</v-list-item-title
             >
-            <!-- <v-list-item-subtitle><span class="mx-2 caption grey--text">{{moment(project.realtimeDate).fromNow()}}</span></v-list-item-subtitle> -->
           </v-list-item-content>
           <v-spacer></v-spacer>
           <v-menu offset-y>
@@ -222,20 +199,22 @@
           </v-menu>
         </v-list-item>
 
+        <!-- Post dialog -->
         <v-dialog
           transition="slide-x-transition"
           v-model="insidesddialog"
           width="400px"
         >
+          <!-- Post Image -->
           <template v-slot:activator="{ on }">
             <v-img
               :class="project.filter"
               height="600"
-              lazy-src="https://agmbenefitsolutions.com/wp-content/uploads/2015/02/Grey-Gradient-Background.jpg"
               class="d-md-block d-none"
-              :src="project.p"
-              v-on="on"
               style="cursor:pointer;"
+              v-on="on"
+              :src="project.p"
+              lazy-src="https://agmbenefitsolutions.com/wp-content/uploads/2015/02/Grey-Gradient-Background.jpg"
             >
               <template v-slot:placeholder>
                 <v-row class="fill-height ma-0" align="center" justify="center">
@@ -279,37 +258,18 @@
                 </v-row>
               </template>
             </v-img>
-
-            <!-- <v-btn color="primary" dark v-on="on">Open Dialog</v-btn> -->
           </template>
-          <v-card>
-            <!--
-            <v-toolbar>
-              <v-icon @click="insidedsdialog = false">mdi-close</v-icon>
-              <v-spacer></v-spacer>
-              <template>
-                <v-btn icon>
-                  <v-icon>mdi-export-variant</v-icon>
-                </v-btn>
-                <v-btn icon>
-                  <v-icon>mdi-delete-circle</v-icon>
-                </v-btn>
-                <v-btn icon>
-                  <v-icon>mdi-plus-circle</v-icon>
-                </v-btn>
-              </template>
-            </v-toolbar>
-            -->
 
+          <!-- Post dialog card -->
+          <v-card>
             <v-list-item>
               <v-list-item-avatar color="white">
                 <img :src="project.imgUrl" />
               </v-list-item-avatar>
               <v-list-item-content>
-                <v-list-item-title class="subtitle-2 text-lowercase">
-                  {{ project.person }}
-                </v-list-item-title>
-                <!-- <v-list-item-subtitle> by {{project.person}} <span class="mx-2 caption grey--text">{{project.due}}</span></v-list-item-subtitle> -->
+                <v-list-item-title class="subtitle-2 text-lowercase">{{
+                  project.person
+                }}</v-list-item-title>
               </v-list-item-content>
               <v-spacer></v-spacer>
               <v-menu offset-y>
@@ -343,9 +303,9 @@
               <v-icon class="grey--text mx-4">mdi-send</v-icon>
             </v-card-actions>
             <p class="mx-3 mt-2">
-              <span class="font-weight-bold black--text text-lowercase">
-                {{ project.person }}
-              </span>
+              <span class="font-weight-bold black--text text-lowercase">{{
+                project.person
+              }}</span>
               and
               <span class="font-weight-bold black--text"
                 >millions of others</span
@@ -370,16 +330,12 @@
               >
 
               <!-- <span class="caption grey--text">{{project.due}}</span> -->
-              <span class="caption grey--text">
-                {{ moment(new Date(project.realtimeDate)).fromNow() }}
-              </span>
+              <span class="caption grey--text">{{
+                moment(new Date(project.realtimeDate)).fromNow()
+              }}</span>
             </p>
           </v-card>
         </v-dialog>
-
-        <!-- <v-card-text class="subtitle-1 mx-4">
-        <read-more  more-str="Read more" :text="project.content" link="#" less-str="Read less" :max-chars="300"></read-more>
-        </v-card-text>-->
 
         <v-card-actions class="my-4">
           <v-icon class="primary--text mx-2">mdi-heart-outline</v-icon>
@@ -387,9 +343,9 @@
           <v-icon class="primary--text ml-2">mdi-send</v-icon>
         </v-card-actions>
         <p class="mx-4 mt-2">
-          <span class="font-weight-bold black--text text-lowercase">
-            {{ project.person }}
-          </span>
+          <span class="font-weight-bold black--text text-lowercase">{{
+            project.person
+          }}</span>
           and
           <span class="font-weight-bold black--text">millions of others</span>
           like this post
@@ -403,20 +359,17 @@
           <span
             class="font-weight-regular subtitle-1"
             style="line-height:1mm;important!"
+            >{{ project.content }}</span
           >
-            {{ project.content }}
-            <!-- <read-more  more-str="Read more" :text="project.content" link="#" less-str="Read less" :max-chars="120"></read-more> -->
-          </span>
 
           <strong class="d-block font-weight-regular mt-4" style="color:#003569"
             >#{{ project.title }}</strong
           >
           <br />
 
-          <!-- <span class="caption grey--text">{{project.due}}</span> -->
-          <span class="caption grey--text">
-            {{ moment(new Date(project.realtimeDate)).fromNow() }}
-          </span>
+          <span class="caption grey--text">{{
+            moment(new Date(project.realtimeDate)).fromNow()
+          }}</span>
         </p>
       </v-card>
     </div>
@@ -424,20 +377,15 @@
 </template>
 
 <script>
-import { db } from "../db";
+import { db } from '../db';
+import moment from 'moment';
 // import ParticleEffectButton from "vue-particle-effect-buttons"
 // import Popup from './Popup'
 // import ReadMore from 'vue-read-more';
-import moment from "moment";
 
 // Vue.use(ReadMore);
 
 export default {
-  //   components:{
-  // Popup,
-
-  // },
-
   data() {
     return {
       e1: 0,
@@ -450,17 +398,17 @@ export default {
       power: null,
       insidedialog: false,
       circledialog: false,
-      commentvalue: "",
+      commentvalue: '',
       insvalue: 0,
       interval: {},
-      insloadicon: "./loading-icon.svg",
-      modalUrl: "./successpost.svg",
-      deleteUrl: "./delete.svg",
+      insloadicon: './loading-icon.svg',
+      modalUrl: './successpost.svg',
+      deleteUrl: './delete.svg',
       vertical: true,
-      emptyIcon: "mdi-heart-outline",
+      emptyIcon: 'mdi-heart-outline',
       dialog: true,
-      fullIcon: "mdi-heart",
-      halfIcon: "mdi-heart-half-full",
+      fullIcon: 'mdi-heart',
+      halfIcon: 'mdi-heart-half-full',
       halfIncrements: false,
       hover: true,
       length: 5,
@@ -468,7 +416,7 @@ export default {
       readonly: false,
       size: 64,
       dense: false,
-      bgColor: "grey lighten-1"
+      bgColor: 'grey lighten-1',
     };
   },
 
@@ -499,7 +447,7 @@ export default {
     //? true 的時候進去下個動作
     //: false 的時候進去下個動作 也等於else
     deleteProjects(id) {
-      db.collection("projects")
+      db.collection('projects')
         .doc(id)
         .delete()
         .then(() => {
@@ -509,47 +457,46 @@ export default {
           this.loading = false;
           this.delsnackbar = true;
         });
-    }
+    },
   },
   created() {
     // req就是request(请求)
     // res就是response(响应)
     // 有请求就有响应，只是两个相对应的对象而已。
-
     //  https://stackoverflow.com/questions/54773410/how-do-i-get-realtime-document-updates-from-firebase-firestore-with-change-type
     this.$insProgress.start();
-    db.collection("projects").onSnapshot(res => {
+    db.collection('projects').onSnapshot(res => {
       this.loading = true;
       this.dialog = true;
 
       const changes = res.docChanges();
-      changes.forEach(change => {
-        if (change.type == "added") {
-          this.projects.unshift({
+      this.projects = changes
+        .map(change => {
+          if (change.type !== 'added') return null;
+          return {
             ...change.doc.data(),
-            id: change.doc.id
-          });
-        }
+            id: change.doc.id,
+          };
+        })
+        .filter(x => x)
+        .sort(function(a, b) {
+          const bDate = moment(new Date(b.realtimeDate));
+          const aDate = moment(new Date(a.realtimeDate));
+          return bDate.diff(aDate);
+        });
 
-        this.loading = false;
-        this.$insProgress.finish();
-        this.dialog = false;
-      });
-
-      /**
-      this.projects.sort((a, b) => {
-        const result = new Date(b.realtimeDate) - new Date(a.realtimeDate);
-        return result;
-      });
-      */
-
-      this.projects.sort(function(a, b) {
-        const bDate = moment(new Date(b.realtimeDate));
-        const aDate = moment(new Date(a.realtimeDate));
-        return bDate.diff(aDate);
-      });
+      this.$insProgress.finish();
+      this.loading = false;
+      this.dialog = false;
     });
-  }
+
+    /**
+    this.projects.sort((a, b) => {
+      const result = new Date(b.realtimeDate) - new Date(a.realtimeDate);
+      return result;
+    });
+    */
+  },
 };
 </script>
 
