@@ -35,8 +35,7 @@
                   class="font-weight-bold success--text"
                   style="cursor:pointer"
                   @click="e1 = 2"
-                  >Next</span
-                >
+                  >Next</span>
               </v-app-bar>
               <v-divider></v-divider>
 
@@ -75,16 +74,7 @@
               ></v-text-field>
 
         <vue-ins-progress-bar></vue-ins-progress-bar>
-              <!-- <v-progress-linear
-                :size="200"
-                height="30"
-                color="black"
-                :value="picturevalue"
-                class="white--text"
-                v-show="showprogress"
-              >
-                {{ picturevalue }}%
-              </v-progress-linear> -->
+              
 
               <v-hover>
                 <template v-if="!filter" v-slot:default="{ hover }">
@@ -472,27 +462,7 @@ export default {
         this.picturevalue += 10;
       }, 230);
       this.picturevalue = 0;
-      
-
       this.imageData = event.target.files[0];
-      // this.postVisible = true;
-
-      // this.picture = null;
-      
-
-      // const bgfiles = event.target.files;
-      // const replaceimageData = event.target.files;
-      // let filename = replaceimageData[0].name;
-      // const picturefileReader = new FileReader();
-      // picturefileReader.addEventListener("load", () => {
-      //   this.replacepicture = picturefileReader.result;
-      // });
-      // picturefileReader.readAsDataURL(replaceimageData[0]);
-      // this.replacepictureimage = replaceimageData[0];
-
-      // bgfileReader.readAsDataURL(bgfiles[0]);
-      // this.postimage = bgfiles[0];
-
       const storageRef = firebase
         .storage()
         .ref(`${this.imageData.name}`)
@@ -508,39 +478,14 @@ export default {
         },
         () => {
           this.uploadValue = 100;
-
           // this.bigsizeUpload = false;
-
           storageRef.snapshot.ref.getDownloadURL().then(url => {
             this.picture = url;
           });
         }
       );
     },
-    //backup file
-    // onUpload() {
-    //   const storageRef = firebase
-    //     .storage()
-    //     .ref(`${this.imageData.name}`)
-    //     .put(this.imageData);
-    //   storageRef.on(
-    //     `state_changed`,
-    //     snapshot => {
-    //       this.uploadValue =
-    //         (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-    //     },
-    //     error => {
-    //       alert(error.message);
-    //     },
-    //     () => {
-    //       this.uploadValue = 100;
-    //       storageRef.snapshot.ref.getDownloadURL().then(url => {
-
-    //         this.picture = url;
-    //       });
-    //     }
-    //   );
-    // },
+    
     PostFile() {
       this.$refs.postInput.click();
     },
@@ -604,11 +549,11 @@ export default {
     },
     submit() {
       if (this.$refs.form.validate()) {
-        
         this.realtimeDate = moment(new Date()).format("YYYY-MM-DD, h:mm:ss a");
         // this.realtimeDate= new Date();
         this.$insProgress.start()
         this.loading = true;
+        
         const project = {
           title: this.title,
           content: this.content,
@@ -627,7 +572,7 @@ export default {
             this.loading = false;
             this.dialog = false;
             this.$emit("projectAdded");
-            this.$insProgress.start()
+            
             this.interval = setInterval(() => {
             if (this.dialog == false) {
               this.$insProgress.finish()
@@ -651,10 +596,52 @@ export default {
     }
   }
 };
+
+
+//backup file
+    // onUpload() {
+    //   const storageRef = firebase
+    //     .storage()
+    //     .ref(`${this.imageData.name}`)
+    //     .put(this.imageData);
+    //   storageRef.on(
+    //     `state_changed`,
+    //     snapshot => {
+    //       this.uploadValue =
+    //         (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+    //     },
+    //     error => {
+    //       alert(error.message);
+    //     },
+    //     () => {
+    //       this.uploadValue = 100;
+    //       storageRef.snapshot.ref.getDownloadURL().then(url => {
+
+    //         this.picture = url;
+    //       });
+    //     }
+    //   );
+    // },
+
+    
 </script>
 
 <style>
 .fileactive {
   opacity: 0.2;
 }
+
 </style>
+
+
+
+<!-- <v-progress-linear
+                :size="200"
+                height="30"
+                color="black"
+                :value="picturevalue"
+                class="white--text"
+                v-show="showprogress"
+              >
+                {{ picturevalue }}%
+              </v-progress-linear> -->

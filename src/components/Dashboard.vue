@@ -16,340 +16,38 @@
       <p class="subtitle-2 mt-4">You Just delete a new project!</p>
       <v-btn text color="white" @click="delsnackbar = false">Close</v-btn>
     </v-snackbar>
-    <v-progress-linear
-      :active="loading"
-      :indeterminate="loading"
-      height="0"
-      color="grey"
-    ></v-progress-linear>
-
-    <!-- Circular loading icon -->
-    <div class="d-flex justify-center loadingeffect" v-if="loading">
-      <img
-        :src="insloadicon"
-        class="insloadicon"
-        style="width:30px;height:30px; color:white;"
-        alt
-      />
-    </div>
+    
+   
 
     <!-- Stories skeleton loader -->
     <div style="max-width:550px;" class="drageffect2 mx-auto">
-      <v-skeleton-loader
-        v-for="number in 4"
-        :key="number"
-        :loading="loading"
-        v-show="loading"
-        class="mx-4 d-inline-block mt-5"
-        type="avatar"
-      >
-        <v-card></v-card>
-      </v-skeleton-loader>
 
-      <!-- Post skeleton loader -->
-      <v-skeleton-loader
-        class="mt-10"
-        v-for="number in numbers"
-        :key="number"
-        :loading="loading"
-        v-show="loading"
-        type="list-item-avatar-two-line,image,image,actions"
-      >
-        <v-card></v-card>
-      </v-skeleton-loader>
+      <skeleton :loading="loading" :numbers="numbers"></skeleton>
 
       <!-- Stories -->
-      <v-tabs
-        height="99"
-        v-if="!loading"
-        background-color="white lighten-5"
-        show-arrows
-      >
-        <v-tabs-slider
-          style="display:none"
-          color="white lighten-3"
-        ></v-tabs-slider>
-        <v-tab
-          class="white--text mx-0"
-          style="height:70px;"
-          v-for="(project, index) in projects"
-          :key="project.id"
-        >
-          <v-dialog
-            v-model="cirlcedialog"
-            overlay-color="#212121"
-            overlay-opacity="1"
-            width="400px"
-            style="height:900px;"
-          >
-            <template v-slot:activator="{ on }">
-              <v-avatar
-                size="70"
-                color="white"
-                v-on="on"
-                style="cursor:pointer"
-              >
-                <img :src="project.imgUrl" class="avatarborder" alt="alt" />
-                <span
-                  class="black--text text-capitalize mx-auto"
-                  style="position:absolute;bottom:-22px;font-size:10px;"
-                  >{{ project.person }}</span
-                >
-              </v-avatar>
-            </template>
+      <story :getTimeAgo="getTimeAgo"
+ :projects="projects" :loading="loading"></story>
+ <!-- Stories -->
 
-            <v-carousel
-              hide-delimiters
-              progress
-              show-arrows-on-hover
-              touch
-              continuous
-              interval="4000"
-              :value="index"
-              height="800"
-            >
-              <v-carousel-item
-                v-for="proj in projects"
-                :key="proj.id"
-                height="800"
-              >
-                <v-list-item style="background:#212121">
-                  <v-list-item-avatar color="grey">
-                    <img :src="proj.imgUrl" />
-                  </v-list-item-avatar>
-                  <v-list-item-content>
-                    <v-list-item-subtitle class="white--text text-lowercase"
-                      >by {{ proj.person }}</v-list-item-subtitle
-                    >
-                    <span class="caption grey--text">{{
-                      getTimeAgo(proj.realtimeDate)
-                    }}</span>
-                  </v-list-item-content>
-                  <v-spacer></v-spacer>
-                  <v-icon color="white">mdi-dots-horizontal</v-icon>
-                </v-list-item>
-                <v-img
-                  height="800"
-                  :class="proj.filter"
-                  :src="proj.p"
-                  lazy-src="https://agmbenefitsolutions.com/wp-content/uploads/2015/02/Grey-Gradient-Background.jpg"
-                ></v-img>
-              </v-carousel-item>
-            </v-carousel>
-          </v-dialog>
-        </v-tab>
-      </v-tabs>
 
       <v-divider class="mt-2 d-block d-sm-none"></v-divider>
 
-      <div class="d-flex justify-center" v-if="loading">
+
+      <!-- <div class="d-flex justify-center" v-if="loading">
         <v-progress-circular
           indeterminate
           color="primary"
         ></v-progress-circular>
-      </div>
+      </div> -->
 
-      <v-card
-        flat
-        class="mt-2 white lighten-5"
-        v-for="project in projects"
-        :key="project.id"
-      >
-        <v-list-item>
-          <v-list-item-avatar color="white" class="mr-2">
-            <img :src="project.imgUrl" />
-          </v-list-item-avatar>
-          <v-list-item-content>
-            <v-list-item-title
-              class="subtitle-1 font-weight-bold text-lowercase"
-              >{{ project.person }}</v-list-item-title
-            >
-          </v-list-item-content>
-          <v-spacer></v-spacer>
-          <v-menu offset-y>
-            <template v-slot:activator="{ on }">
-              <v-icon v-on="on">mdi-dots-horizontal</v-icon>
-            </template>
-            <v-list>
-              <v-list-item @click.prevent="deleteProjects(project.id)">
-                <v-list-item-title>
-                  <v-icon>mdi-delete</v-icon>Delete
-                </v-list-item-title>
-              </v-list-item>
-              <v-list-item>
-                <v-list-item-title>
-                  <v-icon>mdi-share</v-icon>Report
-                </v-list-item-title>
-              </v-list-item>
-            </v-list>
-          </v-menu>
-        </v-list-item>
 
-        <v-dialog
-          transition="slide-x-transition"
-          v-model="insidesddialog"
-          width="400px"
-        >
-          <template v-slot:activator="{ on }">
-            <v-img
-              :class="project.filter"
-              height="600"
-              lazy-src="https://agmbenefitsolutions.com/wp-content/uploads/2015/02/Grey-Gradient-Background.jpg"
-              class="d-md-block d-none"
-              :src="project.p"
-              v-on="on"
-              style="cursor:pointer;"
-            >
-              <template v-slot:placeholder>
-                <v-row class="fill-height ma-0" align="center" justify="center">
-                  <v-toolbar-title
-                    class="text-uppercase black--text subtitle-2"
-                  >
-                    <v-icon color="black" class="mx-2">mdi-gesture</v-icon
-                    >Vueinstagram
-                  </v-toolbar-title>
-                  <v-progress-circular
-                    class="ml-5"
-                    indeterminate
-                    color="black lighten-2"
-                  ></v-progress-circular>
-                </v-row>
-              </template>
-            </v-img>
+    <!-- Feed -->
+       <feed :getTimeAgo="getTimeAgo"
+ :projects="projects" :loading="loading"></feed>
+ <!-- Feed -->
 
-            <v-img
-              lazy-src="https://agmbenefitsolutions.com/wp-content/uploads/2015/02/Grey-Gradient-Background.jpg"
-              height="400"
-              class="d-md-none d-block"
-              :src="project.p"
-              v-on="on"
-              :class="project.filter"
-              style="cursor:pointer;"
-            >
-              <template v-slot:placeholder>
-                <v-row class="fill-height ma-0" align="center" justify="center">
-                  <v-toolbar-title
-                    class="text-uppercase black--text subtitle-2"
-                  >
-                    <v-icon color="black" class="mx-2">mdi-gesture</v-icon
-                    >Vueinstagram
-                  </v-toolbar-title>
-                  <v-progress-circular
-                    class="ml-5"
-                    indeterminate
-                    color="black lighten-2"
-                  ></v-progress-circular>
-                </v-row>
-              </template>
-            </v-img>
-          </template>
-          <v-card>
-            <v-list-item>
-              <v-list-item-avatar color="white">
-                <img :src="project.imgUrl" />
-              </v-list-item-avatar>
-              <v-list-item-content>
-                <v-list-item-title class="subtitle-2 text-lowercase">{{
-                  project.person
-                }}</v-list-item-title>
-              </v-list-item-content>
-              <v-spacer></v-spacer>
-              <v-menu offset-y>
-                <template v-slot:activator="{ on }">
-                  <v-icon v-on="on">mdi-dots-horizontal</v-icon>
-                </template>
-                <v-list>
-                  <v-list-item @click.prevent="deleteProjects(project.id)">
-                    <v-list-item-title>
-                      <v-icon>mdi-delete</v-icon>Delete
-                    </v-list-item-title>
-                  </v-list-item>
-                  <v-list-item>
-                    <v-list-item-title>
-                      <v-icon>mdi-share</v-icon>Report
-                    </v-list-item-title>
-                  </v-list-item>
-                </v-list>
-              </v-menu>
-            </v-list-item>
 
-            <v-img
-              height="450"
-              :class="project.filter"
-              lazy-src="https://agmbenefitsolutions.com/wp-content/uploads/2015/02/Grey-Gradient-Background.jpg"
-              :src="project.p"
-            ></v-img>
-            <v-card-actions class="my-4">
-              <v-icon class="grey--text mx-2">mdi-heart-outline</v-icon>
-              <v-icon class="grey--text mx-3">mdi-message-outline</v-icon>
-              <v-icon class="grey--text mx-4">mdi-send</v-icon>
-            </v-card-actions>
-            <p class="mx-3 mt-2">
-              <span class="font-weight-bold black--text text-lowercase">{{
-                project.person
-              }}</span>
-              and
-              <span class="font-weight-bold black--text"
-                >millions of others</span
-              >
-              like this post
-            </p>
-            <p
-              class="subtitle-1 font-weight-bold black--text mx-3 text-lowercase"
-            >
-              {{ project.person }}
-              <span class="font-weight-regular">
-                <read-more
-                  more-str="Read more"
-                  :text="project.content"
-                  link="#"
-                  less-str="Read less"
-                  :max-chars="120"
-                ></read-more>
-              </span>
-              <strong class="d-block font-weight-regular" style="color:#003569"
-                >#{{ project.title }}</strong
-              >
-              <span class="caption grey--text">{{
-                getTimeAgo(project.realtimeDate)
-              }}</span>
-            </p>
-          </v-card>
-        </v-dialog>
 
-        <v-card-actions class="my-4">
-          <v-icon class="primary--text mx-2">mdi-heart-outline</v-icon>
-          <v-icon class="primary--text mx-2">mdi-message-outline</v-icon>
-          <v-icon class="primary--text ml-2">mdi-send</v-icon>
-        </v-card-actions>
-        <p class="mx-4 mt-2">
-          <span class="font-weight-bold black--text text-lowercase">{{
-            project.person
-          }}</span>
-          and
-          <span class="font-weight-bold black--text">millions of others</span>
-          like this post
-        </p>
-
-        <p class="subtitle-1 font-weight-bold black--text mx-4">
-          <v-avatar size="20" class="mr-2">
-            <img :src="project.imgUrl" />
-          </v-avatar>
-          <span class="text-lowercase">{{ project.person }}</span>
-          <span
-            class="font-weight-regular subtitle-1"
-            style="line-height:1mm;important!"
-            >{{ project.content }}</span
-          >
-          <strong class="d-block font-weight-regular mt-4" style="color:#003569"
-            >#{{ project.title }}</strong
-          >
-          <br />
-          <span class="caption grey--text">{{
-            getTimeAgo(project.realtimeDate)
-          }}</span>
-        </p>
-      </v-card>
     </div>
   </div>
 </template>
@@ -358,7 +56,16 @@
 import { db } from '../db';
 import moment from 'moment';
 
+import Skeleton from "./Skeleton";
+import Story from "./Story";
+import Feed from "./Feed";
+
 export default {
+  components: {
+   Skeleton,
+   Story,
+   Feed
+  },
   data() {
     return {
       e1: 0,
@@ -469,8 +176,8 @@ export default {
 
 <style>
 .loadingeffect {
-  margin-top: 40px;
-  margin-bottom: 60px;
+  margin-top: 20px;
+  margin-bottom: 50px;
 }
 
 .drageffect2 {
