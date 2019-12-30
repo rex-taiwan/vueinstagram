@@ -166,7 +166,7 @@
 
               <edit :picture="picture" v-show="hideFilter"></edit>
 
-              <v-card height="100">
+              <v-card flat tile height="180">
                 <v-row>
                   <v-col cols="6" class="text-center">
                     <v-btn text @click="hideFilter = false">Filter</v-btn>
@@ -216,9 +216,13 @@
                       <img v-show="!elementVisible" :src="imgUrl" />
                       <div v-if="!picture">
                         <v-fade-transition>
-                          <v-overlay hover="true" absolute color="black">
-                            <v-btn :loading="loading">
-                              Upload Image
+                          <v-overlay hover="true" absolute color="white">
+                            <v-btn
+                              small
+                              class="grey darken-3"
+                              :loading="loading"
+                            >
+                              Upload Avatar
                               <v-icon>mdi-camera</v-icon>
                             </v-btn>
                           </v-overlay>
@@ -256,7 +260,7 @@
                 v-model="person"
                 prepend-icon="mdi-account"
                 :rules="inputRules"
-                class="mx-auto"
+                class="ml-8 mt-2"
               ></v-text-field>
               <v-card height="500"></v-card>
             </v-stepper-content>
@@ -306,16 +310,6 @@
                         class="white--text"
                         >{{ postvalue }} %</v-progress-linear
                       >
-                    </div>
-                    <div v-if="!picture">
-                      <v-fade-transition>
-                        <v-overlay absolute color="black">
-                          <v-btn>
-                            Upload Image
-                            <v-icon>mdi-camera</v-icon>
-                          </v-btn>
-                        </v-overlay>
-                      </v-fade-transition>
                     </div>
                   </v-img>
                 </v-col>
@@ -441,7 +435,8 @@ export default {
       this.imgUrl = './avatar-6.png';
       // due: format(parseISO(this.due), "MMM d yyyy"),
       this.person = '';
-      this.picture = null;
+      this.picture = '';
+
       this.dialog = false;
     },
     openreset() {
@@ -471,7 +466,7 @@ export default {
           this.$insProgress.finish();
         }
         this.picturevalue += 10;
-      }, 230);
+      }, 600);
       this.picturevalue = 0;
       this.imageData = event.target.files[0];
       const storageRef = firebase
@@ -534,9 +529,11 @@ export default {
       this.postimage = bgfiles[0];
     },
     onFilePicked(event) {
+      this.$insProgress.start();
       this.interval = setInterval(() => {
         if (this.value === 100) {
           this.elementVisible = false;
+          this.$insProgress.finish();
         }
         this.value += 10;
       }, 80);
