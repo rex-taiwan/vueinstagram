@@ -2,7 +2,6 @@
   <div class="filter-type">
     <v-tabs
       class="ma-0 pa-0"
-      v-tabs
       height="189"
       grow
       align-with-title
@@ -47,7 +46,7 @@
           <v-img :src="picture"></v-img>
         </figure>
       </v-col>
-    </v-row> -->
+    </v-row>-->
   </div>
 </template>
 
@@ -59,7 +58,7 @@ export default {
   props: {
     filterSelected: Function,
     previewImage: Function,
-    picture: Object,
+    picture: String,
   },
   data() {
     return {

@@ -83,14 +83,16 @@
                     :src="picture"
                     alt
                   >
-                    <v-fade-transition>
-                      <v-overlay hover="true" absolute color="grey">
-                        <v-btn>
-                          Upload Image
-                          <v-icon>mdi-camera</v-icon>
-                        </v-btn>
-                      </v-overlay>
-                    </v-fade-transition>
+                    <div v-if="!picture">
+                      <v-fade-transition>
+                        <v-overlay hover="true" absolute color="grey">
+                          <v-btn>
+                            Upload Image
+                            <v-icon>mdi-camera</v-icon>
+                          </v-btn>
+                        </v-overlay>
+                      </v-fade-transition>
+                    </div>
                   </v-img>
                 </template>
               </v-hover>
@@ -186,7 +188,6 @@
                 class="ma-0 px-0 d-sm-none d-block"
               >
                 <v-icon color="black" @click="e1 = 1">mdi-chevron-left</v-icon>
-
                 <v-spacer></v-spacer>
                 <span class="font-weight-bold">Profile Setting</span>
                 <v-spacer></v-spacer>
@@ -199,7 +200,6 @@
               </v-app-bar>
 
               <v-divider></v-divider>
-
               <div class="d-flex justify-center my-10">
                 <v-hover>
                   <template v-slot:default="{ hover }">
@@ -213,17 +213,17 @@
                         class="white--text"
                         >{{ value }} %</v-progress-linear
                       >
-
                       <img v-show="!elementVisible" :src="imgUrl" />
-
-                      <v-fade-transition>
-                        <v-overlay hover="true" absolute color="black">
-                          <v-btn :loading="loading">
-                            Upload Image
-                            <v-icon>mdi-camera</v-icon>
-                          </v-btn>
-                        </v-overlay>
-                      </v-fade-transition>
+                      <div v-if="!picture">
+                        <v-fade-transition>
+                          <v-overlay hover="true" absolute color="black">
+                            <v-btn :loading="loading">
+                              Upload Image
+                              <v-icon>mdi-camera</v-icon>
+                            </v-btn>
+                          </v-overlay>
+                        </v-fade-transition>
+                      </div>
                     </v-avatar>
                   </template>
                 </v-hover>
@@ -290,7 +290,7 @@
                 <v-col cols="4" md="1">
                   <v-img
                     width="150"
-                    @click="PostFile"
+                    @click="postFile"
                     height="140"
                     :class="filter"
                     class="ml-3"
@@ -307,15 +307,16 @@
                         >{{ postvalue }} %</v-progress-linear
                       >
                     </div>
-
-                    <v-fade-transition>
-                      <v-overlay absolute color="black">
-                        <v-btn>
-                          Upload Image
-                          <v-icon>mdi-camera</v-icon>
-                        </v-btn>
-                      </v-overlay>
-                    </v-fade-transition>
+                    <div v-if="!picture">
+                      <v-fade-transition>
+                        <v-overlay absolute color="black">
+                          <v-btn>
+                            Upload Image
+                            <v-icon>mdi-camera</v-icon>
+                          </v-btn>
+                        </v-overlay>
+                      </v-fade-transition>
+                    </div>
                   </v-img>
                 </v-col>
                 <v-col cols="8" md="6">
@@ -344,9 +345,9 @@
                 <v-avatar size="30" class="my-2 ml-4">
                   <img :src="imgUrl" alt />
                 </v-avatar>
-                <span class="font-weight-bold subtitle-2 ml-3">
-                  {{ person }}
-                </span>
+                <span class="font-weight-bold subtitle-2 ml-3">{{
+                  person
+                }}</span>
               </div>
 
               <v-card height="500"></v-card>
@@ -496,7 +497,7 @@ export default {
       );
     },
 
-    PostFile() {
+    postFile() {
       this.$refs.postInput.click();
     },
     pictureClick() {
