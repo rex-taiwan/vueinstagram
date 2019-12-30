@@ -121,6 +121,7 @@ export default {
         .doc(id)
         .delete()
         .then(this.getProjects);
+      this.delsnackbar = true;
     },
     getProjects() {
       // req就是request(请求)
