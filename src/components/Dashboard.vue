@@ -117,54 +117,55 @@ export default {
       //: false 的時候進去下個動作 也等於else
     },
     deleteProjects(id) {
+      /**
+      this.projects = this.projects.filter(project => {
+        return project.id != id;
+      });
+      */
+
       db.collection('projects')
         .doc(id)
         .delete()
-        .then(() => {
-          this.projects = this.projects.filter(project => {
-            return project.id != id;
-          });
-          this.loading = false;
-          this.delsnackbar = true;
+        .then(this.getProjects);
+    },
+    getProjects() {
+      // req就是request(请求)
+      // res就是response(响应)
+      // 有请求就有响应，只是两个相对应的对象而已。
+      // https://stackoverflow.com/questions/54773410/how-do-i-get-realtime-document-updates-from-firebase-firestore-with-change-type
+      this.$insProgress.start();
+      db.collection('projects').onSnapshot(res => {
+        this.loading = true;
+        this.dialog = true;
+
+        const changes = res.docChanges();
+        const projects = changes
+          .map(change => {
+            if (change.type !== 'added') return null;
+            return {
+              ...change.doc.data(),
+              id: change.doc.id,
+            };
+          })
+          .filter(x => x);
+
+        projects.sort((a, b) => {
+          const aDate = moment(a.realtimeDate, 'YYYY-MM-DD HH:mm');
+          const bDate = moment(b.realtimeDate, 'YYYY-MM-DD HH:mm');
+          return bDate.diff(aDate);
         });
+
+        console.log('projects: ', projects);
+
+        this.projects = projects;
+        this.loading = false;
+        this.dialog = false;
+        this.$insProgress.finish();
+      });
     },
   },
   created() {
-    // req就是request(请求)
-    // res就是response(响应)
-    // 有请求就有响应，只是两个相对应的对象而已。
-    // https://stackoverflow.com/questions/54773410/how-do-i-get-realtime-document-updates-from-firebase-firestore-with-change-type
-    this.$insProgress.start();
-    db.collection('projects').onSnapshot(res => {
-      this.loading = true;
-      this.dialog = true;
-
-      const changes = res.docChanges();
-      const projects = changes
-        .map(change => {
-          if (change.type !== 'added') return null;
-          return {
-            ...change.doc.data(),
-            id: change.doc.id,
-          };
-        })
-        .filter(x => x);
-
-      projects.sort((a, b) => {
-        const aDate = moment(a.realtimeDate, 'YYYY-MM-DD HH:mm');
-        const bDate = moment(b.realtimeDate, 'YYYY-MM-DD HH:mm');
-        return bDate.diff(aDate);
-
-        //return new Date(b.realtimeDate) - new Date(a.realtimeDate);
-      });
-
-      console.log('projects: ', projects);
-
-      this.projects = projects;
-      this.loading = false;
-      this.dialog = false;
-      this.$insProgress.finish();
-    });
+    this.getProjects();
   },
 };
 </script>
