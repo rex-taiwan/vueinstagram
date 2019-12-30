@@ -124,7 +124,7 @@
                             color="black lighten-2"
                           ></v-progress-circular>
                         </v-row>
-                      </template> -->
+                      </template>-->
                     </v-img>
                   </figure>
                 </template>
@@ -152,7 +152,7 @@
                     >mdi-close-circle</v-icon
                   >Image size should be less than 1 MB!
                 </p>
-              </div> -->
+              </div>-->
 
               <v-spacer></v-spacer>
 
@@ -258,7 +258,7 @@
                 :rules="inputRules"
                 class="mx-auto"
               ></v-text-field>
-              <v-card height="500"> </v-card>
+              <v-card height="500"></v-card>
             </v-stepper-content>
 
             <!--  step 3 -->
@@ -309,7 +309,7 @@
                     </div>
 
                     <v-fade-transition>
-                      <v-overlay v-if="hover" absolute color="black">
+                      <v-overlay absolute color="black">
                         <v-btn>
                           Upload Image
                           <v-icon>mdi-camera</v-icon>
@@ -344,9 +344,9 @@
                 <v-avatar size="30" class="my-2 ml-4">
                   <img :src="imgUrl" alt />
                 </v-avatar>
-                <span class="font-weight-bold subtitle-2 ml-3">{{
-                  person
-                }}</span>
+                <span class="font-weight-bold subtitle-2 ml-3">
+                  {{ person }}
+                </span>
               </div>
 
               <v-card height="500"></v-card>

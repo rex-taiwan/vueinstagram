@@ -64,7 +64,7 @@
 export default {
   name: 'Edit',
   props: {
-    picture: Object,
+    picture: String,
     previewImage: Function,
   },
   data() {

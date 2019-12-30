@@ -37,11 +37,7 @@
         </v-menu>
       </v-list-item>
 
-      <v-dialog
-        transition="slide-y-reverse-transition"
-        v-model="insidesddialog"
-        width="400px"
-      >
+      <v-dialog transition="slide-y-reverse-transition" width="400px">
         <template v-slot:activator="{ on }">
           <v-img
             :class="project.filter"
@@ -98,9 +94,9 @@
               <img :src="project.imgUrl" />
             </v-list-item-avatar>
             <v-list-item-content>
-              <v-list-item-title class="subtitle-2 text-lowercase">{{
-                project.person
-              }}</v-list-item-title>
+              <v-list-item-title class="subtitle-2 text-lowercase">
+                {{ project.person }}
+              </v-list-item-title>
             </v-list-item-content>
             <v-spacer></v-spacer>
             <v-menu offset-y>
@@ -134,9 +130,9 @@
             <v-icon class="grey--text mx-4">mdi-send</v-icon>
           </v-card-actions>
           <p class="mx-3 mt-2">
-            <span class="font-weight-bold black--text text-lowercase">{{
-              project.person
-            }}</span>
+            <span class="font-weight-bold black--text text-lowercase">
+              {{ project.person }}
+            </span>
             and
             <span class="font-weight-bold black--text">millions of others</span>
             like this post
@@ -157,9 +153,9 @@
             <strong class="d-block font-weight-regular" style="color:#003569"
               >#{{ project.title }}</strong
             >
-            <span class="caption grey--text">{{
-              getTimeAgo(project.realtimeDate)
-            }}</span>
+            <span class="caption grey--text">
+              {{ getTimeAgo(project.realtimeDate) }}
+            </span>
           </p>
         </v-card>
       </v-dialog>
@@ -170,9 +166,9 @@
         <v-icon class="primary--text ml-2">mdi-send</v-icon>
       </v-card-actions>
       <p class="mx-4 mt-2">
-        <span class="font-weight-bold black--text text-lowercase">{{
-          project.person
-        }}</span>
+        <span class="font-weight-bold black--text text-lowercase">
+          {{ project.person }}
+        </span>
         and
         <span class="font-weight-bold black--text">millions of others</span>
         like this post
@@ -192,9 +188,9 @@
           >#{{ project.title }}</strong
         >
         <br />
-        <span class="caption grey--text">{{
-          getTimeAgo(project.realtimeDate)
-        }}</span>
+        <span class="caption grey--text">
+          {{ getTimeAgo(project.realtimeDate) }}
+        </span>
       </p>
     </v-card>
   </div>
@@ -218,51 +214,6 @@ export default {
     deleteProjects: {
       type: Function,
     },
-  },
-  //   methods: {
-  //   remove(id){
-  //     this.$emit('deleteProjects',
-  //     {
-  //       projects: id
-  //     })
-  //   }
-  // },
-  created() {
-    // req就是request(请求)
-    // res就是response(响应)
-    // 有请求就有响应，只是两个相对应的对象而已。
-    // https://stackoverflow.com/questions/54773410/how-do-i-get-realtime-document-updates-from-firebase-firestore-with-change-type
-    this.$insProgress.start();
-    db.collection('projects').onSnapshot(res => {
-      this.loading = true;
-      this.dialog = true;
-
-      const changes = res.docChanges();
-      const projects = changes
-        .map(change => {
-          if (change.type !== 'added') return null;
-          return {
-            ...change.doc.data(),
-            id: change.doc.id,
-          };
-        })
-        .filter(x => x);
-
-      projects.sort((a, b) => {
-        const aDate = moment(a.realtimeDate, 'YYYY-MM-DD HH:mm');
-        const bDate = moment(b.realtimeDate, 'YYYY-MM-DD HH:mm');
-        return bDate.diff(aDate);
-
-        //return new Date(b.realtimeDate) - new Date(a.realtimeDate);
-      });
-
-      console.log('projects: ', projects);
-
-      this.projects = projects;
-      this.loading = false;
-      this.dialog = false;
-      this.$insProgress.finish();
-    });
   },
 };
 </script>
