@@ -22,20 +22,19 @@
                 dark
                 class="d-sm-none d-block"
               >
-                <span
-                  class="font-weight-bold black--text"
-                  @click="reset"
+                <span class="font-weight-bold black--text" @click="reset"
                   >Cancel</span
                 >
 
                 <v-spacer></v-spacer>
-                <span class="font-weight-bold">Recent</span>
+                <v-icon color="black">mdi-image-filter-black-white</v-icon>
                 <v-spacer></v-spacer>
                 <span
                   class="font-weight-bold success--text"
                   style="cursor:pointer"
                   @click="e1 = 2"
-                  >Next</span>
+                  >Next</span
+                >
               </v-app-bar>
               <v-divider></v-divider>
 
@@ -73,14 +72,13 @@
                 v-model="imgUrl"
               ></v-text-field>
 
-        <vue-ins-progress-bar></vue-ins-progress-bar>
-              
+              <vue-ins-progress-bar></vue-ins-progress-bar>
 
               <v-hover>
                 <template v-if="!filter" v-slot:default="{ hover }">
                   <v-img
                     @click="pictureClick"
-                    height="450"
+                    height="400"
                     :selectedFilter="selectedFilter"
                     :src="picture"
                     alt
@@ -101,13 +99,13 @@
                 <template v-if="filter" v-slot:default="{ hover }">
                   <figure :class="filter">
                     <v-img
-                      height="450"
+                      height="400"
                       @click="pictureClick"
                       lazy-src="https://agmbenefitsolutions.com/wp-content/uploads/2015/02/Grey-Gradient-Background.jpg"
                       :src="picture"
                       alt
                     >
-                      <template v-slot:placeholder>
+                      <!-- <template v-slot:placeholder>
                         <v-row
                           class="fill-height ma-0"
                           align="center"
@@ -126,7 +124,7 @@
                             color="black lighten-2"
                           ></v-progress-circular>
                         </v-row>
-                      </template>
+                      </template> -->
                     </v-img>
                   </figure>
                 </template>
@@ -158,14 +156,24 @@
 
               <v-spacer></v-spacer>
 
-
               <filter-type
+                v-show="!hideFilter"
                 :picture="picture"
                 @filterSelected="filterSelected"
               ></filter-type>
 
+              <edit :picture="picture" v-show="hideFilter"></edit>
 
-              <!-- <v-card height="100"></v-card> -->
+              <v-card height="100">
+                <v-row>
+                  <v-col cols="6" class="text-center">
+                    <v-btn text @click="hideFilter = false">Filter</v-btn>
+                  </v-col>
+                  <v-col cols="6" class="text-center">
+                    <v-btn text @click="hideFilter = true">Edit</v-btn>
+                  </v-col>
+                </v-row>
+              </v-card>
             </v-stepper-content>
 
             <!-- step2 -->
@@ -250,15 +258,13 @@
                 :rules="inputRules"
                 class="mx-auto"
               ></v-text-field>
-              <v-card height="500">
-               
-              </v-card>
+              <v-card height="500"> </v-card>
             </v-stepper-content>
 
             <!--  step 3 -->
 
             <v-stepper-content class="ma-0 pa-0" step="3">
-            <vue-ins-progress-bar></vue-ins-progress-bar>
+              <vue-ins-progress-bar></vue-ins-progress-bar>
               <v-app-bar
                 color="white black--text"
                 flat
@@ -355,36 +361,41 @@
 </template>
 
 <script>
-import moment from "moment";
-import format from "date-fns/format";
-import parseISO from "date-fns/parseISO";
-import { db } from "../db";
-import firebase from "firebase";
-import FilterType from "./FilterType";
-import EventBus from "../event-bus";
+import moment from 'moment';
+import format from 'date-fns/format';
+import parseISO from 'date-fns/parseISO';
+import { db } from '../db';
+import firebase from 'firebase';
+import FilterType from './FilterType';
+import Edit from './Edit';
+import EventBus from '../event-bus';
+// import { VueCropper }  from 'vue-cropper'
 
 // import firebase from "firebase";
 
 export default {
   props: {
     selectedFilter: Function,
-    filterArray: Array
+    filterArray: Array,
+
+    filterFunctions: Object,
   },
   components: {
-    FilterType
+    FilterType,
+    Edit,
   },
   data() {
     return {
       e1: 0,
-      person: "",
-      title: "",
-      content: "",
+      person: '',
+      title: '',
+      content: '',
       due: null,
-      imgUrl: "./avatar-6.png",
-      modalUrl: "./modalbg.png",
-      postUrl: "",
-      inputRules: [v => v.length >= 3 || "Min length is 4 character"],
-      dateRules: [v => v.length >= 3 || "Please choose a date"],
+      imgUrl: './avatar-6.png',
+      modalUrl: './modalbg.png',
+      postUrl: '',
+      inputRules: [v => v.length >= 3 || 'Min length is 4 character'],
+      dateRules: [v => v.length >= 3 || 'Please choose a date'],
       validVisible: false,
       avatarvalid: false,
       //     rules: [
@@ -402,47 +413,46 @@ export default {
       snackbar: false,
       postvalue: 0,
       myDate: new Date(),
-      realtimeDate: "",
+      realtimeDate: '',
       filerules: [
-        v => v.length <= 1048487 || "Avatar size should be less than 2 MB!"
+        v => v.length <= 1048487 || 'Avatar size should be less than 2 MB!',
       ],
       imageData: null,
-      picture: "",
+      picture: '',
       uploadValue: 0,
       bigsizeUpload: false,
       indeterminate: false,
       filter: null,
       showprogress: false,
       picturevalue: 0,
-      replacepicture:"",
-      replacepictureimage:null,
-     
-     
+      replacepicture: '',
+      replacepictureimage: null,
+      hideFilter: false,
     };
   },
   beforeDestroy() {
     clearInterval(this.interval);
   },
   methods: {
-    reset () {
-          this.title='';
-          this.content='';
-          this.imgUrl='./avatar-6.png';
-          // due: format(parseISO(this.due), "MMM d yyyy"),
-          this.person='';
-          this.picture=null;
-          this.dialog=false;
-      },
-      openreset () {
-          this.title='';
-          this.content='';
-          this.imgUrl='./avatar-6.png';
-          // due: format(parseISO(this.due), "MMM d yyyy"),
-          this.person='';
-          this.picture="";
-          this.dialog=true;
-          this.e1 = 1;
-      },
+    reset() {
+      this.title = '';
+      this.content = '';
+      this.imgUrl = './avatar-6.png';
+      // due: format(parseISO(this.due), "MMM d yyyy"),
+      this.person = '';
+      this.picture = null;
+      this.dialog = false;
+    },
+    openreset() {
+      this.title = '';
+      this.content = '';
+      this.imgUrl = './avatar-6.png';
+      // due: format(parseISO(this.due), "MMM d yyyy"),
+      this.person = '';
+      this.picture = '';
+      this.dialog = true;
+      this.e1 = 1;
+    },
     filterSelected(filtertype) {
       this.filter = filtertype.filter;
     },
@@ -450,14 +460,14 @@ export default {
       return moment(date);
     },
     previewImage(event) {
-      this.$insProgress.start()
+      this.$insProgress.start();
       this.showprogress = true;
       this.interval = setInterval(() => {
         if (this.picturevalue === 100) {
           // this.postVisible = false;
           // this.validVisible=true;
           this.showprogress = false;
-          this.$insProgress.finish()
+          this.$insProgress.finish();
         }
         this.picturevalue += 10;
       }, 230);
@@ -482,10 +492,10 @@ export default {
           storageRef.snapshot.ref.getDownloadURL().then(url => {
             this.picture = url;
           });
-        }
+        },
       );
     },
-    
+
     PostFile() {
       this.$refs.postInput.click();
     },
@@ -509,14 +519,14 @@ export default {
       this.validVisible = true;
       const bgfiles = event.target.files;
       let filename = bgfiles[0].name;
-      if (filename.lastIndexOf(".") <= 0) {
-        return alert("Please add a vaild file!");
+      if (filename.lastIndexOf('.') <= 0) {
+        return alert('Please add a vaild file!');
       }
       const bgfileReader = new FileReader();
       // FileReader.onload
-      //  A handler for the load event. This event is triggered 
+      //  A handler for the load event. This event is triggered
       //  each time the reading operation is successfully completed.
-      bgfileReader.addEventListener("load", () => {
+      bgfileReader.addEventListener('load', () => {
         this.postUrl = bgfileReader.result;
       });
       bgfileReader.readAsDataURL(bgfiles[0]);
@@ -534,14 +544,14 @@ export default {
       this.avatarvalid = true;
       const files = event.target.files;
       let filename = files[0].name;
-      if (filename.lastIndexOf(".") <= 0) {
-        return alert("Please add a vaild file!");
+      if (filename.lastIndexOf('.') <= 0) {
+        return alert('Please add a vaild file!');
       }
       const fileReader = new FileReader();
       // FileReader.onload
-      //  A handler for the load event. This event is triggered 
+      //  A handler for the load event. This event is triggered
       //  each time the reading operation is successfully completed.
-      fileReader.addEventListener("load", () => {
+      fileReader.addEventListener('load', () => {
         this.imgUrl = fileReader.result;
       });
       fileReader.readAsDataURL(files[0]);
@@ -549,11 +559,11 @@ export default {
     },
     submit() {
       if (this.$refs.form.validate()) {
-        this.realtimeDate = moment(new Date()).format("YYYY-MM-DD, h:mm:ss a");
+        this.realtimeDate = moment(new Date()).format('YYYY-MM-DD, h:mm:ss a');
         // this.realtimeDate= new Date();
-        this.$insProgress.start()
+        this.$insProgress.start();
         this.loading = true;
-        
+
         const project = {
           title: this.title,
           content: this.content,
@@ -563,77 +573,69 @@ export default {
           // due: format(parseISO(this.due), "MMM d yyyy"),
           person: this.person,
           p: this.picture,
-          filter:this.filter,
-          status: "ongoing"
+          filter: this.filter,
+          status: 'ongoing',
         };
-        db.collection("projects")
+        db.collection('projects')
           .add(project)
           .then(() => {
             this.loading = false;
             this.dialog = false;
-            this.$emit("projectAdded");
-            
+            this.$emit('projectAdded');
+
             this.interval = setInterval(() => {
-            if (this.dialog == false) {
-              this.$insProgress.finish()
-            }
+              if (this.dialog == false) {
+                this.$insProgress.finish();
+              }
             }, 190);
-            
           });
-        
       }
-    }
+    },
   },
 
   computed: {
     formattedDate() {
-      return this.due ? format(parseISO(this.due), "MMM d yyyy") : "";
-    }
+      return this.due ? format(parseISO(this.due), 'MMM d yyyy') : '';
+    },
   },
   filters: {
     fromNow(realtimeDate) {
       return moment(realtimeDate).fromNow();
-    }
-  }
+    },
+  },
 };
 
-
 //backup file
-    // onUpload() {
-    //   const storageRef = firebase
-    //     .storage()
-    //     .ref(`${this.imageData.name}`)
-    //     .put(this.imageData);
-    //   storageRef.on(
-    //     `state_changed`,
-    //     snapshot => {
-    //       this.uploadValue =
-    //         (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-    //     },
-    //     error => {
-    //       alert(error.message);
-    //     },
-    //     () => {
-    //       this.uploadValue = 100;
-    //       storageRef.snapshot.ref.getDownloadURL().then(url => {
+// onUpload() {
+//   const storageRef = firebase
+//     .storage()
+//     .ref(`${this.imageData.name}`)
+//     .put(this.imageData);
+//   storageRef.on(
+//     `state_changed`,
+//     snapshot => {
+//       this.uploadValue =
+//         (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+//     },
+//     error => {
+//       alert(error.message);
+//     },
+//     () => {
+//       this.uploadValue = 100;
+//       storageRef.snapshot.ref.getDownloadURL().then(url => {
 
-    //         this.picture = url;
-    //       });
-    //     }
-    //   );
-    // },
-
-    
+//         this.picture = url;
+//       });
+//     }
+//   );
+// },
 </script>
 
 <style>
 .fileactive {
   opacity: 0.2;
 }
-
 </style>
-
-
 
 <!-- <v-progress-linear
                 :size="200"

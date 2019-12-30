@@ -16,38 +16,30 @@
       <p class="subtitle-2 mt-4">You Just delete a new project!</p>
       <v-btn text color="white" @click="delsnackbar = false">Close</v-btn>
     </v-snackbar>
-    
-   
 
-    <!-- Stories skeleton loader -->
     <div style="max-width:550px;" class="drageffect2 mx-auto">
-
+      <!-- Stories skeleton loader -->
       <skeleton :loading="loading" :numbers="numbers"></skeleton>
+      <!-- Stories skeleton loader -->
 
       <!-- Stories -->
-      <story :getTimeAgo="getTimeAgo"
- :projects="projects" :loading="loading"></story>
- <!-- Stories -->
-
+      <story
+        :getTimeAgo="getTimeAgo"
+        :projects="projects"
+        :loading="loading"
+      ></story>
+      <!-- Stories -->
 
       <v-divider class="mt-2 d-block d-sm-none"></v-divider>
 
-
-      <!-- <div class="d-flex justify-center" v-if="loading">
-        <v-progress-circular
-          indeterminate
-          color="primary"
-        ></v-progress-circular>
-      </div> -->
-
-
-    <!-- Feed -->
-       <feed :getTimeAgo="getTimeAgo"
- :projects="projects" :loading="loading"></feed>
- <!-- Feed -->
-
-
-
+      <!-- Feed -->
+      <feed
+        :getTimeAgo="getTimeAgo"
+        :deleteProjects="deleteProjects"
+        :projects="projects"
+        :loading="loading"
+      ></feed>
+      <!-- Feed -->
     </div>
   </div>
 </template>
@@ -56,15 +48,18 @@
 import { db } from '../db';
 import moment from 'moment';
 
-import Skeleton from "./Skeleton";
-import Story from "./Story";
-import Feed from "./Feed";
+import Skeleton from './Skeleton';
+import Story from './Story';
+import Feed from './Feed';
 
 export default {
+  props: {
+    remove: Function,
+  },
   components: {
-   Skeleton,
-   Story,
-   Feed
+    Skeleton,
+    Story,
+    Feed,
   },
   data() {
     return {
