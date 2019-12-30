@@ -117,12 +117,6 @@ export default {
       //: false 的時候進去下個動作 也等於else
     },
     deleteProjects(id) {
-      /**
-      this.projects = this.projects.filter(project => {
-        return project.id != id;
-      });
-      */
-
       db.collection('projects')
         .doc(id)
         .delete()
@@ -155,9 +149,7 @@ export default {
           return bDate.diff(aDate);
         });
 
-        console.log('projects: ', projects);
-
-        this.projects = projects;
+        this.projects = [...projects, ...this.projects];
         this.loading = false;
         this.dialog = false;
         this.$insProgress.finish();

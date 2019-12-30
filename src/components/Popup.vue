@@ -593,7 +593,6 @@ export default {
       }
     },
   },
-
   computed: {
     formattedDate() {
       return this.due ? format(parseISO(this.due), 'MMM d yyyy') : '';
@@ -637,14 +636,3 @@ export default {
   opacity: 0.2;
 }
 </style>
-
-<!-- <v-progress-linear
-                :size="200"
-                height="30"
-                color="black"
-                :value="picturevalue"
-                class="white--text"
-                v-show="showprogress"
-              >
-                {{ picturevalue }}%
-              </v-progress-linear> -->
