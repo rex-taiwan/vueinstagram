@@ -12,114 +12,83 @@
         style="display:none"
         color="white lighten-3"
       ></v-tabs-slider>
-
       <v-tab
         class="white--text mx-0"
         style="height:70px;"
-        v-for="project in projects"
+        v-for="(project, index) in projects"
         :key="project.id"
       >
-        <v-dialog overlay-color="#212121" overlay-opacity="1" width="400px">
-          <template v-slot:activator="{ on }">
-            <v-avatar
-              size="70"
-              color="white"
-              class="mx-0"
-              v-on="on"
-              style="cursor:pointer"
-            >
-              <img :src="project.imgUrl" class="avatarborder" alt="alt" />
-              <span
-                class="black--text text-capitalize mx-auto"
-                style="position:absolute;bottom:-22px;font-size:10px;"
-                >{{ project.person }}</span
-              >
-            </v-avatar>
-          </template>
-
-          <vueper-slides
-            ref="myVueperSlides"
-            3d
-            fixed-height="700px"
-            :bullets="false"
-            :arrows="true"
+        <v-avatar
+          size="70"
+          color="white"
+          class="mx-0"
+          style="cursor:pointer"
+          @click="onAvatarClicked(index)"
+        >
+          <img :src="project.imgUrl" class="avatarborder" alt="alt" />
+          <span
+            class="black--text text-capitalize mx-auto"
+            style="position:absolute;bottom:-22px;font-size:10px;"
+            >{{ project.person }}</span
           >
-            <template v-slot:arrow-left>
-              <v-icon class="white--text">mdi-chevron-left-circle</v-icon>
-            </template>
-
-            <template v-slot:arrow-right>
-              <v-icon class="white--text">mdi-chevron-right-circle</v-icon>
-            </template>
-            <vueper-slide
-              v-for="project in projects"
-              :key="project.title"
-              :image="project.p"
-            >
-              <template v-slot:content>
-                <v-progress-linear
-                  v-model="value"
-                  :buffer-value="bufferValue"
-                  rounded
-                  class="my-2 mx-2"
-                  color="white"
-                  height="3"
-                ></v-progress-linear>
-                <v-list-item>
-                  <v-list-item-avatar color="grey">
-                    <img :src="project.imgUrl" />
-                  </v-list-item-avatar>
-                  <v-list-item-content>
-                    <v-list-item-subtitle class="white--text text-lowercase"
-                      >by {{ project.person }}
-                      <span class="ml-2 caption white--text">
-                        {{ getTimeAgo(project.realtimeDate) }}
-                      </span></v-list-item-subtitle
-                    >
-                  </v-list-item-content>
-                  <v-spacer></v-spacer>
-                  <v-icon color="white">mdi-dots-horizontal</v-icon>
-                </v-list-item>
-              </template>
-            </vueper-slide>
-          </vueper-slides>
-          <!-- <v-carousel
-            hide-delimiters
-            progress
-            show-arrows-on-hover
-            touch
-            continuous
-            interval="4000"
-            :value="index"
-            height="800"
-            v-model="model"
-          >
-                  <div class="scene">
-  <div class="cube">
-   
-      <v-carousel-item 
-             
-              class="switcheffect"
-              v-for="proj in projects"
-              :key="proj.id"
-              height="800"
-              style="background-size: cover; background-position: center;position: absolute;width:100%;"
-              :style="{backgroundImage:`url(${proj.p})`}"
-            >
-             
-              
-            
-            </v-carousel-item>
-   
-    
-  
-  </div>
-</div>
-            
-          </v-carousel> -->
-        </v-dialog>
+        </v-avatar>
       </v-tab>
     </v-tabs>
+
+    <!-- body -->
+    <v-dialog
+      overlay-color="#212121"
+      overlay-opacity="1"
+      width="400px"
+      v-model="openDialog"
+    >
+      <vueper-slides
+        3d
+        ref="myVueperSlides"
+        fixed-height="700px"
+        :bullets="false"
+        :arrows="true"
+        @ready="onSlideClicked"
+      >
+        <template v-slot:arrow-left>
+          <v-icon class="white--text">mdi-chevron-left-circle</v-icon>
+        </template>
+        <template v-slot:arrow-right>
+          <v-icon class="white--text">mdi-chevron-right-circle</v-icon>
+        </template>
+        <vueper-slide
+          v-for="project in projects"
+          :key="project.id"
+          :image="project.p"
+        >
+          <template v-slot:content>
+            <v-progress-linear
+              v-model="value"
+              :buffer-value="bufferValue"
+              rounded
+              class="my-2 mx-2"
+              color="white"
+              height="3"
+            ></v-progress-linear>
+            <v-list-item>
+              <v-list-item-avatar color="grey">
+                <img :src="project.imgUrl" />
+              </v-list-item-avatar>
+              <v-list-item-content>
+                <v-list-item-subtitle class="white--text text-lowercase">
+                  by {{ project.person }}
+                  <span class="ml-2 caption white--text">{{
+                    getTimeAgo(project.realtimeDate)
+                  }}</span>
+                </v-list-item-subtitle>
+              </v-list-item-content>
+              <v-spacer></v-spacer>
+              <v-icon color="white">mdi-dots-horizontal</v-icon>
+            </v-list-item>
+          </template>
+        </vueper-slide>
+      </vueper-slides>
+    </v-dialog>
   </div>
 </template>
 
@@ -145,6 +114,8 @@ export default {
       bufferValue: 100,
       interval: 0,
       model: 0,
+      openDialog: false,
+      avatarIndex: 0,
     };
   },
   watch: {
@@ -153,28 +124,37 @@ export default {
       this.value = 0;
       this.bufferValue = 0;
       this.startBuffer();
+      this.$refs.myVueperSlides.next();
     },
   },
 
-  mounted() {
-    this.startBuffer();
-  },
+  mounted() {},
 
   beforeDestroy() {
     clearInterval(this.interval);
   },
 
   methods: {
+    onAvatarClicked(index) {
+      this.openDialog = !this.openDialog;
+      this.avatarIndex = index;
+      this.onSlideClicked();
+    },
+    onSlideClicked() {
+      const { myVueperSlides } = this.$refs;
+      if (myVueperSlides) {
+        myVueperSlides.goToSlide(this.avatarIndex);
+        this.startBuffer();
+      }
+    },
     startBuffer() {
       clearInterval(this.interval);
 
       this.interval = setInterval(() => {
         this.value += 1;
-        this.bufferValue += Math.random() * 100;
-      }, 200);
+        this.bufferValue += 200;
+      }, 100);
       // this.model++;
-
-      this.$refs.myVueperSlides.next();
     },
   },
 };
@@ -217,3 +197,30 @@ export default {
   }
 }
 </style>
+
+<!--
+          <v-carousel
+            hide-delimiters
+            progress
+            show-arrows-on-hover
+            touch
+            continuous
+            interval="4000"
+            :value="index"
+            height="800"
+            v-model="model"
+          >
+            <div class="scene">
+              <div class="cube">
+                <v-carousel-item
+                  class="switcheffect"
+                  v-for="proj in projects"
+                  :key="proj.id"
+                  height="800"
+                  style="background-size: cover; background-position: center;position: absolute;width:100%;"
+                  :style="{backgroundImage:`url(${proj.p})`}"
+                ></v-carousel-item>
+              </div>
+            </div>
+          </v-carousel>
+          -->
