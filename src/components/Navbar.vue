@@ -4,7 +4,7 @@
       <img width="120" :src="modalUrl" alt />
       <p class="subtitle-2 mt-4">Awesome! You just added a new post.</p>
 
-      <v-btn text color="white" @click="snackbar=false">Close</v-btn>
+      <v-btn text color="white" @click="snackbar = false">Close</v-btn>
     </v-snackbar>
 
     <v-snackbar color="black" v-model="cookiesnackbar" :timeout="1000">
@@ -27,7 +27,11 @@
               <router-link to="/">
                 <v-btn text>
                   <v-icon size="30" color="black">mdi-home</v-icon>
-                  <v-avatar size="5" class="mt-6 red" style="bottom:-5px;left:-18px;"></v-avatar>
+                  <v-avatar
+                    size="5"
+                    class="mt-6 red"
+                    style="bottom:-5px;left:-18px;"
+                  ></v-avatar>
                 </v-btn>
               </router-link>
             </a>
@@ -48,7 +52,7 @@
 
         <v-col cols="4" class="mb-4">
           <v-btn text class="ml-1" color="white">
-            <popup @projectAdded="snackbar=true" />
+            <popup @projectAdded="snackbar = true" />
           </v-btn>
         </v-col>
 
@@ -58,7 +62,11 @@
               <router-link to="/Like">
                 <v-btn text>
                   <v-icon size="30" color="black">mdi-heart-outline</v-icon>
-                  <v-avatar size="5" class="mt-6 red" style="bottom:-5px;left:-18px;"></v-avatar>
+                  <v-avatar
+                    size="5"
+                    class="mt-6 red"
+                    style="bottom:-5px;left:-18px;"
+                  ></v-avatar>
                 </v-btn>
               </router-link>
             </a>
@@ -75,7 +83,11 @@
                       src="https://images.unsplash.com/photo-1485921040253-3601b55d50aa?ixlib=rb-1.2.1&auto=format&fit=crop&w=882&q=80"
                       alt
                     />
-                    <v-avatar size="5" class="mt-6 red" style="bottom:-8px;left:-17px;"></v-avatar>
+                    <v-avatar
+                      size="5"
+                      class="mt-6 red"
+                      style="bottom:-8px;left:-17px;"
+                    ></v-avatar>
                   </v-avatar>
                 </v-btn>
               </router-link>
@@ -99,18 +111,26 @@
 
       <v-icon class="black--text d-sm-none d-block">mdi-camera-outline</v-icon>
       <v-spacer></v-spacer>
-       <li>
+      <li>
         <a>
           <router-link to="/">
-      <img :src="toplogo" class="mb-2 mx-auto ml-12 d-sm-block d-none" style="width:150px;height:50px;">
-       </router-link>
+            <img
+              :src="toplogo"
+              class="mb-2 mx-auto ml-12 d-sm-block d-none"
+              style="width:120px;height:50px;"
+            />
+          </router-link>
         </a>
       </li>
 
       <li>
         <a>
           <router-link to="/">
-           <img :src="toplogo" class="mb-2 mx-auto ml-6 d-sm-none d-block" style="width:120px;height:45px;">
+            <img
+              :src="toplogo"
+              class="mb-2 mx-auto ml-6 d-sm-none d-block"
+              style="width:100px;height:40px;"
+            />
           </router-link>
         </a>
       </li>
@@ -137,15 +157,17 @@
     </v-list>
 
       </v-menu>-->
-      <v-icon size="29" class="d-sm-none d-block mb-1" color="black darken-1">mdi-television-classic</v-icon>
+      <v-icon size="25" class="d-sm-none d-block mb-1" color="black darken-1"
+        >mdi-television-classic</v-icon
+      >
 
       <li>
         <a>
           <router-link to="/team">
             <v-btn text class="d-sm-none d-block">
               <v-badge overlap color="red">
-                <template v-slot:badge>9</template>
-                <v-icon size="32" color="black">mdi-telegram</v-icon>
+                <template v-slot:badge>2</template>
+                <v-icon size="25" color="black">mdi-telegram</v-icon>
               </v-badge>
             </v-btn>
           </router-link>
@@ -164,11 +186,20 @@
 
       <li>
         <a>
-          <v-menu v-model="menu" :close-on-content-click="false" :nudge-width="200" offset-y>
+          <v-menu
+            v-model="menu"
+            :close-on-content-click="false"
+            :nudge-width="200"
+            offset-y
+          >
             <template v-slot:activator="{ on }">
               <v-btn color="black" text v-on="on" class="d-none d-sm-block">
                 <v-icon>mdi-heart-outline</v-icon>
-                <v-avatar size="5" class="mt-6 red" style="bottom:-5px;left:-15px;"></v-avatar>
+                <v-avatar
+                  size="5"
+                  class="mt-6 red"
+                  style="bottom:-5px;left:-15px;"
+                ></v-avatar>
               </v-btn>
             </template>
 
@@ -176,11 +207,16 @@
               <v-list>
                 <v-list-item>
                   <v-list-item-avatar>
-                    <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John" />
+                    <img
+                      src="https://cdn.vuetifyjs.com/images/john.jpg"
+                      alt="John"
+                    />
                   </v-list-item-avatar>
 
                   <v-list-item-content>
-                    <v-list-item-title class="caption font-weight-bold">Luia</v-list-item-title>
+                    <v-list-item-title class="caption font-weight-bold"
+                      >Luia</v-list-item-title
+                    >
                     <v-list-item-subtitle>
                       Start to follow you
                       <span class="caption grey--text">1 days ago</span>
@@ -201,7 +237,9 @@
                   </v-list-item-avatar>
 
                   <v-list-item-content>
-                    <v-list-item-title class="caption font-weight-bold">John Leider</v-list-item-title>
+                    <v-list-item-title class="caption font-weight-bold"
+                      >John Leider</v-list-item-title
+                    >
                     <v-list-item-subtitle>
                       Start to follow you
                       <span class="caption grey--text">1 days ago</span>
@@ -222,7 +260,9 @@
                   </v-list-item-avatar>
 
                   <v-list-item-content>
-                    <v-list-item-title class="caption font-weight-bold">KAl Viusal</v-list-item-title>
+                    <v-list-item-title class="caption font-weight-bold"
+                      >KAl Viusal</v-list-item-title
+                    >
                     <v-list-item-subtitle>
                       Start to follow you
                       <span class="caption grey--text">1 days ago</span>
@@ -243,7 +283,9 @@
                   </v-list-item-avatar>
 
                   <v-list-item-content>
-                    <v-list-item-title class="caption font-weight-bold">Jakob Owens</v-list-item-title>
+                    <v-list-item-title class="caption font-weight-bold"
+                      >Jakob Owens</v-list-item-title
+                    >
                     <v-list-item-subtitle>
                       Start to follow you
                       <span class="caption grey--text">1 days ago</span>
@@ -314,31 +356,31 @@
 </template>
 
 <script>
-import Popup from "./Popup";
+import Popup from './Popup';
 
 export default {
   components: {
-    Popup
+    Popup,
   },
   data() {
     return {
       drawer: false,
       links: [
         // { icon: 'mdi-home', text: 'Posts', route: '/' },
-        { icon: "mdi-compass-outline", text: "Sign Out", route: "/" },
-        { icon: "mdi-heart-outline", text: "Team", route: "/team" },
-        { icon: "mdi-account-outline", text: "My activity", route: "/project" }
+        { icon: 'mdi-compass-outline', text: 'Sign Out', route: '/' },
+        { icon: 'mdi-heart-outline', text: 'Team', route: '/team' },
+        { icon: 'mdi-account-outline', text: 'My activity', route: '/project' },
       ],
       snackbar: false,
       cookiesnackbar: true,
       fav: true,
-      modalUrl: "./successpost.svg",
-      toplogo:"./toplogo.png",
+      modalUrl: './successpost.svg',
+      toplogo: './toplogo.png',
       menu: false,
       message: false,
-      hints: true
+      hints: true,
     };
-  }
+  },
 };
 
 //advanced navbar setting
@@ -378,7 +420,6 @@ export default {
 //   </v-card> -->
 </script>
 
-
 <style>
 li a {
   text-decoration: none !important;
@@ -388,6 +429,3 @@ li {
   list-style: none;
 }
 </style>
-
-
-
