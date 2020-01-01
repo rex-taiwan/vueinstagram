@@ -39,13 +39,14 @@
     <v-dialog
       overlay-color="#212121"
       overlay-opacity="1"
-      width="400px"
+      fullscreen
       v-model="openDialog"
     >
       <vueper-slides
         3d
         ref="myVueperSlides"
-        fixed-height="700px"
+        fixed-height="750px"
+        transition-speed="450"
         :bullets="false"
         :arrows="true"
         @ready="onSlideClicked"
@@ -56,6 +57,7 @@
         <template v-slot:arrow-right>
           <v-icon class="white--text">mdi-chevron-right-circle</v-icon>
         </template>
+
         <vueper-slide
           v-for="project in projects"
           :key="project.id"
@@ -76,14 +78,17 @@
               </v-list-item-avatar>
               <v-list-item-content>
                 <v-list-item-subtitle class="white--text text-lowercase">
-                  by {{ project.person }}
+                  {{ project.person }}
                   <span class="ml-2 caption white--text">{{
                     getTimeAgo(project.realtimeDate)
                   }}</span>
                 </v-list-item-subtitle>
               </v-list-item-content>
               <v-spacer></v-spacer>
-              <v-icon color="white">mdi-dots-horizontal</v-icon>
+
+              <v-icon class="mr-2" color="white" @click="openDialog = false"
+                >mdi-close</v-icon
+              >
             </v-list-item>
           </template>
         </vueper-slide>
@@ -153,7 +158,7 @@ export default {
       this.interval = setInterval(() => {
         this.value += 1;
         this.bufferValue += 200;
-      }, 100);
+      }, 200);
       // this.model++;
     },
   },
