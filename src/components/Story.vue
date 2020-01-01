@@ -46,16 +46,18 @@
         3d
         ref="myVueperSlides"
         fixed-height="750px"
-        transition-speed="450"
+        transition-speed="350"
         :bullets="false"
         :arrows="true"
+        :touchable="true"
+        :preventYScroll="true"
         @ready="onSlideClicked"
       >
         <template v-slot:arrow-left>
-          <v-icon class="white--text">mdi-chevron-left-circle</v-icon>
+          <v-icon size="40" class="white--text mb-7">mdi-chevron-left</v-icon>
         </template>
         <template v-slot:arrow-right>
-          <v-icon class="white--text">mdi-chevron-right-circle</v-icon>
+          <v-icon size="40" class="white--text mb-7">mdi-chevron-right</v-icon>
         </template>
 
         <vueper-slide
@@ -90,6 +92,15 @@
                 >mdi-close</v-icon
               >
             </v-list-item>
+
+            <v-text-field
+              class="custom-placeholer-color d-sm-none d-block"
+              placeholder="Send messge"
+              flat
+              background-color="rgba(227, 227, 227, 0.4)"
+              style="position:fixed;bottom:7%;left:20%;width:250px;border-radius:6px;color:white;"
+              solo
+            ></v-text-field>
           </template>
         </vueper-slide>
       </vueper-slides>
@@ -133,8 +144,6 @@ export default {
     },
   },
 
-  mounted() {},
-
   beforeDestroy() {
     clearInterval(this.interval);
   },
@@ -177,6 +186,11 @@ export default {
   100% {
     transform: translateZ(-500px) rotateY(-90deg);
   }
+}
+
+.custom-placeholer-color input::placeholder {
+  color: rgb(255, 255, 255) !important;
+  opacity: 1;
 }
 
 .scene {
