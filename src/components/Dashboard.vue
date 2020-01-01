@@ -24,10 +24,18 @@
 
       <!-- Stories -->
       <story
+        class="d-sm-none d-block"
         :getTimeAgo="getTimeAgo"
         :projects="projects"
         :loading="loading"
       ></story>
+      <!-- Stories -->
+      <desktop-story
+        class="d-sm-block d-none"
+        :getTimeAgo="getTimeAgo"
+        :projects="projects"
+        :loading="loading"
+      ></desktop-story>
       <!-- Stories -->
 
       <v-divider class="mt-2 d-block d-sm-none"></v-divider>
@@ -50,6 +58,7 @@ import moment from 'moment';
 
 import Skeleton from './Skeleton';
 import Story from './Story';
+import desktopStory from './desktopStory';
 import Feed from './Feed';
 
 export default {
@@ -60,6 +69,7 @@ export default {
     Skeleton,
     Story,
     Feed,
+    desktopStory,
   },
   data() {
     return {
