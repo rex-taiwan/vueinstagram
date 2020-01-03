@@ -1,8 +1,6 @@
 # Vueinstagram Beta 1.0 (Vuejs,Vuetify,VueFire,Firebase)
 [![license](https://img.shields.io/npm/l/vue-ins-progress-bar?color=%2351bff4)](https://revolunet.mit-license.org/)
 
-<a><img src="https://miro.medium.com/max/308/1*lNX4JPcG9ZBzWcG9qLVPBQ.png"   alt="Vueinstagram"></a>
-<a><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzmZWTP0VAqfYlGx_u3HZv8jUm7IbpVD34_kxal0_aBe1AcC24&s"   alt="Vueinstagram"></a>
 
 
 ## App contain
@@ -20,7 +18,8 @@
 
 ## vueinstagram Mobile version Screenshot
 
-<img src="https://user-images.githubusercontent.com/56249189/71417923-faa69500-26a2-11ea-958d-3f39eaf9c019.png">
+<img src="https://user-images.githubusercontent.com/56249189/71716298-3386fc80-2e4f-11ea-803a-308eb676a59f.png">
+<img src="https://user-images.githubusercontent.com/56249189/71716357-67fab880-2e4f-11ea-8d2f-5376cd6ef351.jpeg">
 
 ## Project setup 
 ```
