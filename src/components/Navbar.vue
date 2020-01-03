@@ -97,14 +97,14 @@
       </v-row>
     </v-app-bar>
 
-    <v-app-bar flat app color="grey lighten-5">
+    <v-app-bar height="54" flat app color="grey lighten-5">
       <!-- <v-app-bar-nav-icon class="black--text" @click="drawer = !drawer"></v-app-bar-nav-icon> -->
       <li>
         <a>
           <router-link to="/">
             <!-- <v-toolbar-title class="text-uppercase black--text d-sm-block d-none subtitle-2">
               <v-icon color="black" class="mx-2">mdi-gesture</v-icon>Exclusive
-            </v-toolbar-title> -->
+            </v-toolbar-title>-->
           </router-link>
         </a>
       </li>

@@ -17,7 +17,7 @@
       <v-btn text color="white" @click="delsnackbar = false">Close</v-btn>
     </v-snackbar>
 
-    <div style="max-width:550px;" class="drageffect2 mx-auto">
+    <div style="max-width:580px;" class="drageffect2 mx-auto">
       <!-- Stories skeleton loader -->
       <skeleton :loading="loading" :numbers="numbers"></skeleton>
       <!-- Stories skeleton loader -->
@@ -42,17 +42,56 @@
 
       <!-- Feed -->
       <feed
+        class="d-sm-none d-block"
         :getTimeAgo="getTimeAgo"
         :deleteProjects="deleteProjects"
         :projects="projects"
         :loading="loading"
       ></feed>
       <!-- Feed -->
+
+      <!-- Feed -->
+      <desktopfeed
+        class="d-sm-block d-none"
+        :getTimeAgo="getTimeAgo"
+        :deleteProjects="deleteProjects"
+        :projects="projects"
+        :loading="loading"
+      ></desktopfeed>
+      <!-- Feed -->
     </div>
   </div>
 </template>
 
 <script>
+// 如果我們的 Promise 成功完成的話，就可以呼叫 resolve() 來回傳 Promise，接著我們就可以用 then 來接續這個非同步執行完後要做的動作。
+
+// 如果我們的 Promise 失敗的話，就可以呼叫 reject() 來回傳 失敗原因，接著我們就可以用 catch 來接住錯誤。
+
+// var defer = new Promise(function(resolve, reject) {
+//         if success, resolve()
+//         if fail, reject()
+// 	})
+// 	.then(laterOn)
+//   .catch(printError);
+
+// var a = new Promise(function(resolve, reject) {
+// 			setTimeout(function(){
+// 				resolve('hello world');
+//       }, 1000);
+
+// 		});
+
+var a = new Promise(function(resolve, reject) {
+  setTimeout(function() {
+    reject('OOps');
+  }, 2000);
+});
+
+a.catch(function() {
+  console.log(a);
+});
+
 import { db } from '../db';
 import moment from 'moment';
 
@@ -60,6 +99,7 @@ import Skeleton from './Skeleton';
 import Story from './Story';
 import desktopStory from './desktopStory';
 import Feed from './Feed';
+import desktopfeed from './desktopfeed';
 
 export default {
   props: {
@@ -70,6 +110,7 @@ export default {
     Story,
     Feed,
     desktopStory,
+    desktopfeed,
   },
   data() {
     return {
@@ -175,8 +216,8 @@ export default {
 
 <style>
 .loadingeffect {
-  margin-top: 20px;
-  margin-bottom: 50px;
+  margin-top: 10px;
+  margin-bottom: 15px;
 }
 
 .drageffect2 {
@@ -219,7 +260,7 @@ export default {
 }
 
 .avatarborder {
-  border: 3px solid #bbbbbb !important;
+  border: 4px solid #d8d8d8 !important;
   transition: 0.4s;
   cursor: pointer;
 }

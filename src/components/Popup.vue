@@ -469,6 +469,7 @@ export default {
       }, 600);
       this.picturevalue = 0;
       this.imageData = event.target.files[0];
+
       const storageRef = firebase
         .storage()
         .ref(`${this.imageData.name}`)

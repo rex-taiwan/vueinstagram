@@ -13,7 +13,7 @@
         color="white lighten-3"
       ></v-tabs-slider>
       <v-tab
-        class="white--text mx-0"
+        class="white--text mx-0 px-0"
         style="height:70px;"
         v-for="(project, index) in projects"
         :key="project.id"
@@ -26,12 +26,12 @@
           @click="onAvatarClicked(index)"
         >
           <img :src="project.imgUrl" class="avatarborder" alt="alt" />
-          <span
-            class="black--text text-capitalize mx-auto"
-            style="position:absolute;bottom:-22px;font-size:10px;"
-            >{{ project.person }}</span
-          >
         </v-avatar>
+        <span
+          class="black--text font-weight-normal d-inline-block text-capitalize mx-auto text-truncate"
+          style="position:absolute;bottom:-22px;font-size:12px;"
+          >{{ project.person }}</span
+        >
       </v-tab>
     </v-tabs>
 
@@ -54,10 +54,14 @@
         @ready="onSlideClicked"
       >
         <template v-slot:arrow-left>
-          <v-icon size="40" class="white--text mb-7">mdi-chevron-left</v-icon>
+          <v-icon size="40" @click="restart" class="white--text mb-7"
+            >mdi-chevron-left</v-icon
+          >
         </template>
         <template v-slot:arrow-right>
-          <v-icon size="40" class="white--text mb-7">mdi-chevron-right</v-icon>
+          <v-icon size="40" @click="restart" class="white--text mb-7"
+            >mdi-chevron-right</v-icon
+          >
         </template>
 
         <vueper-slide
@@ -149,9 +153,14 @@ export default {
   },
 
   methods: {
+    restart() {
+      this.value = 0;
+    },
+
     onAvatarClicked(index) {
       this.openDialog = !this.openDialog;
       this.avatarIndex = index;
+      this.value = 0;
       this.onSlideClicked();
     },
     onSlideClicked() {
