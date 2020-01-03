@@ -97,7 +97,7 @@
       </v-row>
     </v-app-bar>
 
-    <v-app-bar height="54" flat app color="grey lighten-5">
+    <v-app-bar height="45" flat app color="grey lighten-5">
       <!-- <v-app-bar-nav-icon class="black--text" @click="drawer = !drawer"></v-app-bar-nav-icon> -->
       <li>
         <a>
