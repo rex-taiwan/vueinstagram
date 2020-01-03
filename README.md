@@ -20,7 +20,7 @@
 
 ## vueinstagram Mobile version Screenshot
 
-<img src="https://user-images.githubusercontent.com/56249189/71417923-faa69500-26a2-11ea-958d-3f39eaf9c019.png">
+
 
 ## Project setup 
 ```
