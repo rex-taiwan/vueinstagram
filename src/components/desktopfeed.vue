@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-card
-      class="mt-2 white lighten-5"
+      class="mt-2 white lighten-5 d-none d-sm-block"
       v-for="(project, index) in projects"
       :key="project.id"
       :value="index"
@@ -10,6 +10,12 @@
         <v-list-item-avatar color="white" class="mr-2">
           <img :src="project.imgUrl" />
         </v-list-item-avatar>
+        <v-list-item-content>
+          <v-list-item-title
+            class="subtitle-1 font-weight-bold text-lowercase"
+            >{{ project.person }}</v-list-item-title
+          >
+        </v-list-item-content>
         <v-spacer></v-spacer>
         <v-icon @click="onFeedClicked(project.id)">mdi-dots-horizontal</v-icon>
       </v-list-item>
@@ -97,7 +103,7 @@
     <!-- Bottom sheet -->
     <div class="text-center">
       <v-bottom-sheet inset v-model="openBottomSheet">
-        <v-sheet class="text-center mx-auto" width="350px" height="380px">
+        <v-sheet class="text-center mx-auto" height="380px">
           <v-list-item @click="deleteProjects(feedId)">
             <v-list-item-title class="red--text">Delete</v-list-item-title>
           </v-list-item>

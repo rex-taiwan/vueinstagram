@@ -109,7 +109,8 @@
     <!-- Bottom sheet -->
     <div class="text-center">
       <v-bottom-sheet inset v-model="openBottomSheet">
-        <v-sheet class="text-center mx-auto" width="350px" height="380px">
+        <v-sheet class="text-center mx-auto" height="380px">
+          <!-- width="350px" -->
           <v-list-item @click="deleteProjects(feedId)">
             <v-list-item-title class="red--text">Delete</v-list-item-title>
           </v-list-item>

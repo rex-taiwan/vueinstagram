@@ -53,7 +53,7 @@
       <!-- Feed -->
 
       <!-- Feed -->
-      <desktopfeed
+      <desktop-feed
         class="d-sm-block d-none"
         :getTimeAgo="getTimeAgo"
         :deleteProjects="deleteProjects"
@@ -61,7 +61,7 @@
         :openBottomSheet="openBottomSheet"
         :projects="projects"
         :loading="loading"
-      ></desktopfeed>
+      ></desktop-feed>
       <!-- Feed -->
     </div>
   </div>
@@ -99,9 +99,9 @@ import moment from 'moment';
 
 import Skeleton from './Skeleton';
 import Story from './Story';
-import desktopStory from './DesktopStory';
+import DesktopStory from './DesktopStory';
 import Feed from './Feed';
-import desktopfeed from './DesktopFeed';
+import DesktopFeed from './DesktopFeed';
 
 export default {
   props: {
@@ -111,8 +111,8 @@ export default {
     Skeleton,
     Story,
     Feed,
-    desktopStory,
-    desktopfeed,
+    DesktopStory,
+    DesktopFeed,
   },
   data() {
     return {
@@ -174,7 +174,7 @@ export default {
       this.openBottomSheet = !this.openBottomSheet;
     },
     deleteProjects(id) {
-      this.toggleBottomSheet();
+      // this.toggleBottomSheet();
       db.collection('projects')
         .doc(id)
         .delete()
