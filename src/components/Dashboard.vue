@@ -45,6 +45,8 @@
         class="d-sm-none d-block"
         :getTimeAgo="getTimeAgo"
         :deleteProjects="deleteProjects"
+        :toggleBottomSheet="toggleBottomSheet"
+        :openBottomSheet="openBottomSheet"
         :projects="projects"
         :loading="loading"
       ></feed>
@@ -55,6 +57,8 @@
         class="d-sm-block d-none"
         :getTimeAgo="getTimeAgo"
         :deleteProjects="deleteProjects"
+        :toggleBottomSheet="toggleBottomSheet"
+        :openBottomSheet="openBottomSheet"
         :projects="projects"
         :loading="loading"
       ></desktopfeed>
@@ -86,9 +90,7 @@ var a = new Promise(function(resolve, reject) {
   setTimeout(function() {
     reject('OOps');
   }, 2000);
-});
-
-a.catch(function() {
+}).catch(function() {
   console.log(a);
 });
 
@@ -97,9 +99,9 @@ import moment from 'moment';
 
 import Skeleton from './Skeleton';
 import Story from './Story';
-import desktopStory from './desktopStory';
+import desktopStory from './DesktopStory';
 import Feed from './Feed';
-import desktopfeed from './desktopfeed';
+import desktopfeed from './DesktopFeed';
 
 export default {
   props: {
@@ -143,6 +145,7 @@ export default {
       size: 64,
       dense: false,
       bgColor: 'grey lighten-1',
+      openBottomSheet: false,
     };
   },
   methods: {
@@ -167,12 +170,18 @@ export default {
       //? true 的時候進去下個動作
       //: false 的時候進去下個動作 也等於else
     },
+    toggleBottomSheet() {
+      this.openBottomSheet = !this.openBottomSheet;
+    },
     deleteProjects(id) {
+      this.toggleBottomSheet();
       db.collection('projects')
         .doc(id)
         .delete()
-        .then(this.getProjects);
-      this.delsnackbar = true;
+        .then(() => {
+          this.delsnackbar = true;
+          this.getProjects();
+        });
     },
     getProjects() {
       // req就是request(请求)
