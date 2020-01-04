@@ -1,15 +1,23 @@
 <template>
   <div class="text-center">
-    <v-dialog fullscreen transition="dialog-bottom-transition" v-model="dialog">
-      <!-- Trigger part -->
-      <template v-slot:activator="{ on }">
-        <v-btn text color="white" @click="openreset">
-          <v-icon size="30" class="mx-1" color="black"
-            >mdi-plus-box-outline</v-icon
-          >
-        </v-btn>
-      </template>
+    <!-- Trigger part -->
+    <div>
+      <v-btn text color="white" @click="pictureClick">
+        <!-- <v-btn text color="white" @click="openreset"> -->
+        <v-icon size="30" class="mx-1" color="black"
+          >mdi-plus-box-outline</v-icon
+        >
+      </v-btn>
+      <input
+        type="file"
+        v-show="false"
+        ref="pictureInput"
+        @change="previewImage"
+        accept="image/*"
+      />
+    </div>
 
+    <v-dialog fullscreen transition="dialog-bottom-transition" v-model="dialog">
       <!-- Content part -->
       <v-stepper v-model="e1">
         <v-stepper-items>
@@ -53,13 +61,13 @@
                 @change="postPicked"
               />
 
-              <input
-                type="file"
-                v-show="false"
-                ref="pictureInput"
-                @change="previewImage"
-                accept="image/*"
-              />
+              <!-- <input -->
+              <!--   type="file" -->
+              <!--   v-show="false" -->
+              <!--   ref="pictureInput" -->
+              <!--   @change="previewImage" -->
+              <!--   accept="image/*" -->
+              <!-- /> -->
 
               <v-text-field
                 class="mt-5"
@@ -100,9 +108,15 @@
               <v-hover>
                 <template v-if="filter" v-slot:default="{ hover }">
                   <figure :class="filter">
+                    <!-- <v-img -->
+                    <!--   height="400" -->
+                    <!--   @click="pictureClick" -->
+                    <!--   lazy-src="https://agmbenefitsolutions.com/wp-content/uploads/2015/02/Grey-Gradient-Background.jpg" -->
+                    <!--   :src="picture" -->
+                    <!--   alt -->
+                    <!-- > -->
                     <v-img
                       height="400"
-                      @click="pictureClick"
                       lazy-src="https://agmbenefitsolutions.com/wp-content/uploads/2015/02/Grey-Gradient-Background.jpg"
                       :src="picture"
                       alt
@@ -339,9 +353,9 @@
                 <v-avatar size="30" class="my-2 ml-4">
                   <img :src="imgUrl" alt />
                 </v-avatar>
-                <span class="font-weight-bold subtitle-2 ml-3">{{
-                  person
-                }}</span>
+                <span class="font-weight-bold subtitle-2 ml-3">
+                  {{ person }}
+                </span>
               </div>
 
               <v-card height="500"></v-card>
@@ -433,64 +447,65 @@ export default {
       this.title = '';
       this.content = '';
       this.imgUrl = './avatar-6.png';
-      // due: format(parseISO(this.due), "MMM d yyyy"),
       this.person = '';
       this.picture = '';
 
       this.dialog = false;
     },
-    openreset() {
+    openReset() {
+      /**
       this.title = '';
       this.content = '';
       this.imgUrl = './avatar-6.png';
-      // due: format(parseISO(this.due), "MMM d yyyy"),
       this.person = '';
       this.picture = '';
+      */
+
       this.dialog = true;
       this.e1 = 1;
     },
     filterSelected(filtertype) {
       this.filter = filtertype.filter;
     },
-    moment: function(date) {
-      return moment(date);
-    },
     previewImage(event) {
       this.$insProgress.start();
       this.showprogress = true;
+
       this.interval = setInterval(() => {
         if (this.picturevalue === 100) {
-          // this.postVisible = false;
-          // this.validVisible=true;
           this.showprogress = false;
           this.$insProgress.finish();
         }
         this.picturevalue += 10;
       }, 600);
+
       this.picturevalue = 0;
       this.imageData = event.target.files[0];
 
       const storageRef = firebase
         .storage()
-        .ref(`${this.imageData.name}`)
+        .ref(this.imageData.name)
         .put(this.imageData);
-      storageRef.on(
-        `state_changed`,
-        snapshot => {
-          this.uploadValue =
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        },
-        error => {
-          alert(error.message);
-        },
-        () => {
-          this.uploadValue = 100;
-          // this.bigsizeUpload = false;
-          storageRef.snapshot.ref.getDownloadURL().then(url => {
-            this.picture = url;
-          });
-        },
-      );
+
+      const onSnapshot = snapshot => {
+        this.uploadValue =
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+      };
+
+      const onError = error => {
+        alert(error.message);
+      };
+
+      const onSuccess = () => {
+        this.openReset();
+        // this.bigsizeUpload = false;
+        this.uploadValue = 100;
+        storageRef.snapshot.ref.getDownloadURL().then(url => {
+          this.picture = url;
+        });
+      };
+
+      storageRef.on(`state_changed`, onSnapshot, onError, onSuccess);
     },
 
     postFile() {
