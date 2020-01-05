@@ -86,7 +86,7 @@
         </v-avatar>
         <span class="text-lowercase">{{ project.person }}</span>
         <span
-          class="font-weight-regular subtitle-1"
+          class="font-weight-regular subtitle-1 ml-2"
           style="line-height:1mm;important!"
           >{{ project.content }}</span
         >

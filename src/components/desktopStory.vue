@@ -29,7 +29,7 @@
         </v-avatar>
         <span
           class="black--text font-weight-normal d-inline-block text-capitalize mx-auto text-truncate"
-          style="position:absolute;bottom:-22px;font-size:12px;"
+          style="max-width:70px;position:absolute;bottom:-22px;font-size:12px;"
           >{{ project.person }}</span
         >
       </v-tab>

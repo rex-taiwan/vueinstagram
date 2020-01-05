@@ -1,5 +1,5 @@
 <template>
-  <div class="grey lighten-4">
+  <div class="grey lighten-5">
     <!-- Instagram rainbow progress bar -->
     <vue-ins-progress-bar></vue-ins-progress-bar>
 

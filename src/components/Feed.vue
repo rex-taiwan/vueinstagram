@@ -2,7 +2,7 @@
   <div>
     <v-card
       flat
-      class="mt-2 grey lighten-4"
+      class="mt-2 grey lighten-5"
       v-for="(project, index) in projects"
       :key="project.id"
       :value="index"
