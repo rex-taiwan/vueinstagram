@@ -455,9 +455,12 @@ export default {
     openReset() {
       this.title = '';
       this.content = '';
-      this.imgUrl = './avatar-6.png';
       this.person = '';
       this.picture = '';
+      /**
+      this.imgUrl = './avatar-6.png';
+      */
+
       this.dialog = true;
       this.e1 = 1;
     },
