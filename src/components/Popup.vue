@@ -228,7 +228,7 @@
                         >{{ value }} %</v-progress-linear
                       >
                       <img v-show="!elementVisible" :src="imgUrl" />
-                      <div v-if="!picture">
+                      <div>
                         <v-fade-transition>
                           <v-overlay hover="true" absolute color="white">
                             <v-btn
@@ -353,9 +353,9 @@
                 <v-avatar size="30" class="my-2 ml-4">
                   <img :src="imgUrl" alt />
                 </v-avatar>
-                <span class="font-weight-bold subtitle-2 ml-3">{{
-                  person
-                }}</span>
+                <span class="font-weight-bold subtitle-2 ml-3">
+                  {{ person }}
+                </span>
               </div>
 
               <v-card height="500"></v-card>

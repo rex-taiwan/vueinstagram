@@ -2,7 +2,7 @@
   <div>
     <v-card
       flat
-      class="mt-2 white lighten-5"
+      class="mt-2 grey lighten-4"
       v-for="(project, index) in projects"
       :key="project.id"
       :value="index"
@@ -108,7 +108,7 @@
 
     <!-- Bottom sheet -->
     <div class="text-center">
-      <v-bottom-sheet inset v-model="openBottomSheet">
+      <v-bottom-sheet inset persistent v-model="openBottomSheet">
         <v-sheet class="text-center mx-auto" height="380px">
           <!-- width="350px" -->
           <v-list-item @click="deleteProjects(feedId)">
