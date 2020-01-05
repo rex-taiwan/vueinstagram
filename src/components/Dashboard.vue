@@ -269,7 +269,7 @@ export default {
 }
 
 .avatarborder {
-  border: 4px solid #d8d8d8 !important;
+  border: 3px solid #d8d8d8 !important;
   transition: 0.4s;
   cursor: pointer;
 }

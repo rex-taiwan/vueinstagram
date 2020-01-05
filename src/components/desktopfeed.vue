@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-card
-      class="mt-2 white lighten-5 d-none d-sm-block"
+      class="mt-2 grey lighten-5 d-none d-sm-block"
       v-for="(project, index) in projects"
       :key="project.id"
       :value="index"
