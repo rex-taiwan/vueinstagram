@@ -353,9 +353,9 @@
                 <v-avatar size="30" class="my-2 ml-4">
                   <img :src="imgUrl" alt />
                 </v-avatar>
-                <span class="font-weight-bold subtitle-2 ml-3">
-                  {{ person }}
-                </span>
+                <span class="font-weight-bold subtitle-2 ml-3">{{
+                  person
+                }}</span>
               </div>
 
               <v-card height="500"></v-card>
@@ -453,12 +453,12 @@ export default {
       this.dialog = false;
     },
     openReset() {
-      /**
       this.title = '';
       this.content = '';
-      this.imgUrl = './avatar-6.png';
       this.person = '';
       this.picture = '';
+      /**
+      this.imgUrl = './avatar-6.png';
       */
 
       this.dialog = true;
