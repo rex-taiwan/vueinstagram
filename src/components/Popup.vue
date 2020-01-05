@@ -228,7 +228,7 @@
                         >{{ value }} %</v-progress-linear
                       >
                       <img v-show="!elementVisible" :src="imgUrl" />
-                      <div v-if="!picture">
+                      <div>
                         <v-fade-transition>
                           <v-overlay hover="true" absolute color="white">
                             <v-btn
@@ -453,14 +453,11 @@ export default {
       this.dialog = false;
     },
     openReset() {
-      /**
       this.title = '';
       this.content = '';
       this.imgUrl = './avatar-6.png';
       this.person = '';
       this.picture = '';
-      */
-
       this.dialog = true;
       this.e1 = 1;
     },

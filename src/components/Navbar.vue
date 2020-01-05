@@ -97,7 +97,7 @@
       </v-row>
     </v-app-bar>
 
-    <v-app-bar height="45" flat app color="grey lighten-5">
+    <v-app-bar height="55" flat app color="white">
       <!-- <v-app-bar-nav-icon class="black--text" @click="drawer = !drawer"></v-app-bar-nav-icon> -->
       <li>
         <a>
@@ -116,7 +116,7 @@
           <router-link to="/">
             <img
               :src="toplogo"
-              class="mb-2 mx-auto ml-12 d-sm-block d-none"
+              class="mb-1 mx-auto ml-12 d-sm-block d-none"
               style="width:120px;height:50px;"
             />
           </router-link>
@@ -128,7 +128,7 @@
           <router-link to="/">
             <img
               :src="toplogo"
-              class="mb-2 mx-auto ml-6 d-sm-none d-block"
+              class="mb-1 mx-auto ml-6 d-sm-none d-block"
               style="width:100px;height:40px;"
             />
           </router-link>

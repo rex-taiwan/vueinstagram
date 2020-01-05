@@ -1,5 +1,5 @@
 <template>
-  <div class="white">
+  <div class="grey lighten-4">
     <!-- Instagram rainbow progress bar -->
     <vue-ins-progress-bar></vue-ins-progress-bar>
 
@@ -225,8 +225,8 @@ export default {
 
 <style>
 .loadingeffect {
-  margin-top: 10px;
-  margin-bottom: 15px;
+  margin-top: 15px;
+  margin-bottom: 20px;
 }
 
 .drageffect2 {
@@ -250,10 +250,10 @@ export default {
     transform: rotate(360deg);
   }
   50% {
-    transform: rotate(0deg);
+    transform: rotate(180deg);
   }
   100% {
-    transform: rotate(190deg);
+    transform: rotate(0deg);
   }
 }
 
