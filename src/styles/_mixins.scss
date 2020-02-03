@@ -1,0 +1,27 @@
+//Responsive Breakpoints
+$breakpoints: (
+  xxs: 420px,
+  xs: 600px,
+  sm: 960px,
+  md: 1264px,
+  lg: 1904px,
+  xl: 2000px,
+  xxl: 2400px,
+);
+@mixin respond-below($breakpoint) {
+  // If the breakpoint exists in the map.
+  @if map-has-key($breakpoints, $breakpoint) {
+    // Get the breakpoint value.
+    $breakpoint-value: map-get(
+      $breakpoints,
+      $breakpoint
+    ); // Write the media query.
+    @media (max-width: ($breakpoint-value - 1)) {
+      @content;
+    }
+    // If the breakpoint doesn't exist in the map.
+  } @else {
+    // Log a warning.
+    @warn "Invalid breakpoint: #{$breakpoint}.";
+  }
+}

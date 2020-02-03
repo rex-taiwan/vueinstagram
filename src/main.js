@@ -23,7 +23,7 @@ const options = {
 Vue.use(VueInsProgressBar, options);
 Vue.use(VueProgressiveImage, {
   cache: false,
-  delay: 700,
+  delay: 500,
 });
 
 import VueCropper from 'vue-cropper';

@@ -1,0 +1,54 @@
+.slide-in {
+  &-move {
+    transition: opacity 0.3s linear, transform 0.5s ease-in-out;
+    -webkit-transition: opacity 0.3s linear, transform 0.5s ease-in-out;
+    -moz-transition: opacity 0.3s linear, transform 0.5s ease-in-out;
+    -ms-transition: opacity 0.3s linear, transform 0.5s ease-in-out;
+    -o-transition: opacity 0.3s linear, transform 0.5s ease-in-out;
+  }
+  &-leave-active {
+    transition: opacity 0.3s linear,
+      transform 0.1s cubic-bezier(0.5, 0, 0.7, 0.4);
+    //cubic-bezier(.7,0,.7,1):;
+    transition-delay: calc(0.1s * (var(--total) - var(--i)));
+    -webkit-transition: opacity 0.3s linear,
+      transform 0.1s cubic-bezier(0.5, 0, 0.7, 0.4);
+    -moz-transition: opacity 0.3s linear,
+      transform 0.1s cubic-bezier(0.5, 0, 0.7, 0.4);
+    -ms-transition: opacity 0.3s linear,
+      transform 0.1s cubic-bezier(0.5, 0, 0.7, 0.4);
+    -o-transition: opacity 0.3s linear,
+      transform 0.1s cubic-bezier(0.5, 0, 0.7, 0.4);
+  }
+  &-enter-active {
+    transition: opacity 0.3s linear,
+      transform 0.8s cubic-bezier(0.2, 0.5, 0.1, 1);
+    transition-delay: calc(0.1s * var(--i));
+    -webkit-transition: opacity 0.3s linear,
+      transform 0.8s cubic-bezier(0.2, 0.5, 0.1, 1);
+    -moz-transition: opacity 0.3s linear,
+      transform 0.8s cubic-bezier(0.2, 0.5, 0.1, 1);
+    -ms-transition: opacity 0.3s linear,
+      transform 0.8s cubic-bezier(0.2, 0.5, 0.1, 1);
+    -o-transition: opacity 0.3s linear,
+      transform 0.8s cubic-bezier(0.2, 0.5, 0.1, 1);
+  }
+  &-enter,
+  &-leave-to {
+    opacity: 0;
+  }
+  &-enter {
+    transform: translateY(-10em);
+    -webkit-transform: translateY(-10em);
+    -moz-transform: translateY(-10em);
+    -ms-transform: translateY(-10em);
+    -o-transform: translateY(-10em);
+  }
+  &-leave-to {
+    transform: translateY(10em);
+    -webkit-transform: translateY(10em);
+    -moz-transform: translateY(10em);
+    -ms-transform: translateY(10em);
+    -o-transform: translateY(10em);
+  }
+}

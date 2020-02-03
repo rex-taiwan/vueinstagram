@@ -13,7 +13,7 @@
         color="white lighten-3"
       ></v-tabs-slider>
       <v-tab
-        class="white--text mx-0 px-0"
+        class="white--text mx-0 px-0 slide_effect"
         style="height:70px;"
         v-for="(project, index) in projects"
         :key="project.id"
@@ -184,6 +184,24 @@ export default {
 </script>
 
 <style>
+.slide_effect {
+  animation: slideout 1s;
+  transform: translateX(0px);
+}
+
+@keyframes slideout {
+  0% {
+    transform: translateX(0px);
+  }
+  50% {
+    transform: translateX(-25px);
+  }
+
+  100% {
+    transform: translateX(0px);
+  }
+}
+
 .switcheffect {
   animation: switchbaby 0.1s;
 }

@@ -1,27 +1,30 @@
 <template>
   <div>
-    <v-card
-      flat
-      class="mt-2 grey lighten-5"
-      v-for="(project, index) in projects"
-      :key="project.id"
-      :value="index"
-    >
-      <v-list-item>
-        <v-list-item-avatar color="white" class="mr-2">
-          <img :src="project.imgUrl" />
-        </v-list-item-avatar>
-        <v-list-item-content>
-          <v-list-item-title
-            class="subtitle-1 font-weight-bold text-lowercase"
-            >{{ project.person }}</v-list-item-title
+    <transition-group name="slide-in">
+      <v-card
+        flat
+        class="mt-2 grey lighten-5"
+        v-for="(project, index) in projects"
+        :key="project.id"
+        :value="index"
+      >
+        <v-list-item>
+          <v-list-item-avatar color="white" class="mr-2">
+            <img :src="project.imgUrl" />
+          </v-list-item-avatar>
+          <v-list-item-content>
+            <v-list-item-title
+              class="subtitle-1 font-weight-bold text-lowercase"
+              >{{ project.person }}</v-list-item-title
+            >
+          </v-list-item-content>
+          <v-spacer></v-spacer>
+          <v-icon @click="onFeedClicked(project.id)"
+            >mdi-dots-horizontal</v-icon
           >
-        </v-list-item-content>
-        <v-spacer></v-spacer>
-        <v-icon @click="onFeedClicked(project.id)">mdi-dots-horizontal</v-icon>
-      </v-list-item>
+        </v-list-item>
 
-      <!-- <v-img
+        <!-- <v-img
         :class="project.filter"
         height="600"
         lazy-src="https://agmbenefitsolutions.com/wp-content/uploads/2015/02/Grey-Gradient-Background.jpg"
@@ -44,16 +47,16 @@
           </v-row>
         </template>
       </v-img> -->
-      <progressive-img
-        :class="project.filter"
-        class="d-md-none d-block"
-        :src="project.p"
-        style="cursor:pointer;max-height:600px;max-width:100%;"
-        :v-else-if="project.p"
-        :blur="70"
-        :placeholder="project.p"
-      />
-      <!-- <v-img
+        <progressive-img
+          :class="project.filter"
+          class="d-md-none d-block"
+          :src="project.p"
+          style="cursor:pointer;max-height:600px;max-width:100%;"
+          :v-else-if="project.p"
+          :blur="70"
+          :placeholder="project.p"
+        />
+        <!-- <v-img
         lazy-src="https://agmbenefitsolutions.com/wp-content/uploads/2015/02/Grey-Gradient-Background.jpg"
         height="400"
         class="d-md-none d-block"
@@ -77,42 +80,43 @@
         </template>
       </v-img> -->
 
-      <v-card-actions class="my-4">
-        <v-icon class="primary--text mx-2">mdi-heart-outline</v-icon>
-        <v-icon class="primary--text mx-2">mdi-message-outline</v-icon>
-        <v-icon class="primary--text ml-2">mdi-send</v-icon>
-      </v-card-actions>
-      <p class="mx-4 mt-2">
-        <span class="font-weight-bold black--text text-lowercase">{{
-          project.person
-        }}</span>
-        and
-        <span class="font-weight-bold black--text">millions of others</span>
-        like this post
-      </p>
+        <v-card-actions class="my-4">
+          <v-icon class="primary--text mx-2">mdi-heart-outline</v-icon>
+          <v-icon class="primary--text mx-2">mdi-message-outline</v-icon>
+          <v-icon class="primary--text ml-2">mdi-send</v-icon>
+        </v-card-actions>
+        <p class="mx-4 mt-2">
+          <span class="font-weight-bold black--text text-lowercase">{{
+            project.person
+          }}</span>
+          and
+          <span class="font-weight-bold black--text">millions of others</span>
+          like this post
+        </p>
 
-      <p class="subtitle-1 font-weight-bold black--text mx-4">
-        <v-avatar size="20" class="mr-2">
-          <img :src="project.imgUrl" />
-        </v-avatar>
-        <span class="text-lowercase">{{ project.person }}</span>
-        <span
-          class="font-weight-regular subtitle-1 ml-2"
-          style="line-height:1mm;important!"
-          >{{ project.content }}</span
-        >
-        <span class="d-block font-weight-regular mt-4" style="color:#003569"
-          >#{{ project.title }}</span
-        >
-        <br />
-        <span class="caption grey--text">{{
-          getTimeAgo(project.realtimeDate)
-        }}</span>
-        <span class="ml-2 caption font-weight-bold text-capitalize"
-          >See Translation</span
-        >
-      </p>
-    </v-card>
+        <p class="subtitle-1 font-weight-bold black--text mx-4">
+          <v-avatar size="20" class="mr-2">
+            <img :src="project.imgUrl" />
+          </v-avatar>
+          <span class="text-lowercase">{{ project.person }}</span>
+          <span
+            class="font-weight-regular subtitle-1 ml-2"
+            style="line-height:1mm;important!"
+            >{{ project.content }}</span
+          >
+          <span class="d-block font-weight-regular mt-4" style="color:#003569"
+            >#{{ project.title }}</span
+          >
+          <br />
+          <span class="caption grey--text">{{
+            getTimeAgo(project.realtimeDate)
+          }}</span>
+          <span class="ml-2 caption font-weight-bold text-capitalize"
+            >See Translation</span
+          >
+        </p>
+      </v-card>
+    </transition-group>
 
     <!-- Bottom sheet -->
     <div class="text-center">
@@ -197,3 +201,7 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+@import 'src/styles/_layout.scss';
+</style>

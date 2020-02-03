@@ -14,6 +14,7 @@
     "date-fns": "^2.8.1",
     "firebase": "^7.6.0",
     "moment": "^2.24.0",
+    "node-sass": "^4.13.1",
     "vue": "^2.6.10",
     "vue-cropper": "^0.4.9",
     "vue-dragscroll": "^1.10.2",

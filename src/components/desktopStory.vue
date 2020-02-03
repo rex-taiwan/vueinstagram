@@ -208,7 +208,7 @@ html {
     transform: translateX(0px);
   }
   50% {
-    transform: translateX(-25px);
+    transform: translateX(-20px);
   }
 
   100% {

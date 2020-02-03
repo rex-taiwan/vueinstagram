@@ -1,7 +1,27 @@
-module.exports = {
-    publicPath: process.env.NODE_ENV === 'production' ? '/vueinstagram/' : '/'
+const path = require('path');
 
-    // "transpileDependencies": [
-    //     "vuetify"
-    // ]
-}
+module.exports = {
+  transpileDependencies: ['vuetify'],
+  css: {
+    loaderOptions: {
+      sass: {
+        sassOptions: {
+          includePaths: [path.resolve(__dirname, 'src/styles/')],
+          indentedSyntax: false,
+        },
+      },
+      scss: {
+        prependData: `
+          @import "src/styles/_variables.scss";
+          @import "src/styles/_global.scss";
+          @import "src/styles/_mixins.scss";
+          `,
+      },
+    },
+  },
+  publicPath: process.env.NODE_ENV === 'production' ? '/vueinstagram/' : '/',
+
+  // "transpileDependencies": [
+  //     "vuetify"
+  // ]
+};
