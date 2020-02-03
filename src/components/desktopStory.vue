@@ -5,7 +5,7 @@
       v-if="!loading"
       background-color="rgba(0,0,0,0.0)"
       style="margin-left:-30px;"
-      class="mt-4"
+      class="mt-6"
       show-arrows
     >
       <v-tabs-slider

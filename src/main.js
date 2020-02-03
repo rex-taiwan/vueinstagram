@@ -12,6 +12,7 @@ import ReadMore from 'vue-read-more';
 Vue.use(ReadMore);
 
 import VueInsProgressBar from 'vue-ins-progress-bar';
+import VueProgressiveImage from 'vue-progressive-image';
 
 const options = {
   position: 'fixed',
@@ -20,6 +21,7 @@ const options = {
 };
 
 Vue.use(VueInsProgressBar, options);
+Vue.use(VueProgressiveImage);
 
 import VueCropper from 'vue-cropper';
 

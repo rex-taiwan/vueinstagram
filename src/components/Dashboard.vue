@@ -166,6 +166,7 @@ export default {
       //          return 1
       //         }
       //     })
+
       //1 就是rearrange array
       //? true 的時候進去下個動作
       //: false 的時候進去下個動作 也等於else
@@ -192,13 +193,15 @@ export default {
       db.collection('projects').onSnapshot(res => {
         this.loading = true;
         this.dialog = true;
-
+        // Returns an array of the documents changes since the last snapshot. If this is the first snapshot
+        // , all documents will be in the list as added changes.
         const changes = res.docChanges();
         const projects = changes
           .map(change => {
             if (change.type !== 'added') return null;
             return {
               ...change.doc.data(),
+              //return 成 物件
               id: change.doc.id,
             };
           })
@@ -207,6 +210,14 @@ export default {
         projects.sort((a, b) => {
           const aDate = moment(a.realtimeDate, 'YYYY-MM-DD HH:mm');
           const bDate = moment(b.realtimeDate, 'YYYY-MM-DD HH:mm');
+          console.log(
+            'bDate: ' +
+              bDate +
+              '\naDate: ' +
+              aDate +
+              '\ndiff: ' +
+              bDate.diff(aDate),
+          );
           return bDate.diff(aDate);
         });
 

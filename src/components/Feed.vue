@@ -21,7 +21,7 @@
         <v-icon @click="onFeedClicked(project.id)">mdi-dots-horizontal</v-icon>
       </v-list-item>
 
-      <v-img
+      <!-- <v-img
         :class="project.filter"
         height="600"
         lazy-src="https://agmbenefitsolutions.com/wp-content/uploads/2015/02/Grey-Gradient-Background.jpg"
@@ -43,9 +43,17 @@
             ></v-progress-circular>
           </v-row>
         </template>
-      </v-img>
-
-      <v-img
+      </v-img> -->
+      <progressive-img
+        :class="project.filter"
+        class="d-md-none d-block"
+        :src="project.p"
+        v-on="on"
+        style="cursor:pointer;max-height:600px;max-width:100%;"
+        :v-else-if="project.p"
+        :blur="100"
+      />
+      <!-- <v-img
         lazy-src="https://agmbenefitsolutions.com/wp-content/uploads/2015/02/Grey-Gradient-Background.jpg"
         height="400"
         class="d-md-none d-block"
@@ -67,7 +75,7 @@
             ></v-progress-circular>
           </v-row>
         </template>
-      </v-img>
+      </v-img> -->
 
       <v-card-actions class="my-4">
         <v-icon class="primary--text mx-2">mdi-heart-outline</v-icon>
