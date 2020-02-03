@@ -47,10 +47,10 @@
         :class="project.filter"
         class="d-md-block d-none"
         :src="project.p"
-        v-on="on"
         style="cursor:pointer;height:auto;max-width:100%;"
         :v-else-if="project.p"
-        :blur="100"
+        :placeholder="project.p"
+        :blur="70"
       />
 
       <!-- <progressive-img

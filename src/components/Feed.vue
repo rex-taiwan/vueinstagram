@@ -48,10 +48,10 @@
         :class="project.filter"
         class="d-md-none d-block"
         :src="project.p"
-        v-on="on"
         style="cursor:pointer;max-height:600px;max-width:100%;"
         :v-else-if="project.p"
-        :blur="100"
+        :blur="70"
+        :placeholder="project.p"
       />
       <!-- <v-img
         lazy-src="https://agmbenefitsolutions.com/wp-content/uploads/2015/02/Grey-Gradient-Background.jpg"
