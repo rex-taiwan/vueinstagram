@@ -11,7 +11,7 @@
     </div>
 
     <v-skeleton-loader
-      v-for="number in 4"
+      v-for="number in 5"
       :key="number"
       :loading="loading"
       v-show="loading"

@@ -24,14 +24,14 @@
 
       <!-- Stories -->
       <story
-        class="d-sm-none d-block"
+        class="d-md-none d-block"
         :getTimeAgo="getTimeAgo"
         :projects="projects"
         :loading="loading"
       ></story>
       <!-- Stories -->
       <desktop-story
-        class="d-sm-block d-none"
+        class="d-md-block d-none"
         :getTimeAgo="getTimeAgo"
         :projects="projects"
         :loading="loading"
@@ -42,7 +42,7 @@
 
       <!-- Feed -->
       <feed
-        class="d-sm-none d-block"
+        class="d-md-none d-block"
         :getTimeAgo="getTimeAgo"
         :deleteProjects="deleteProjects"
         :toggleBottomSheet="toggleBottomSheet"
@@ -54,7 +54,7 @@
 
       <!-- Feed -->
       <desktop-feed
-        class="d-sm-block d-none"
+        class="d-md-block d-none"
         :getTimeAgo="getTimeAgo"
         :deleteProjects="deleteProjects"
         :toggleBottomSheet="toggleBottomSheet"

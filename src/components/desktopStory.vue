@@ -13,7 +13,7 @@
         color="white lighten-3"
       ></v-tabs-slider>
       <v-tab
-        class="white--text mx-0 px-0"
+        class="white--text mx-0 px-0 slide_effect"
         style="height:70px;"
         v-for="(project, index) in projects"
         :key="project.id"
@@ -29,7 +29,7 @@
         </v-avatar>
         <span
           class="black--text font-weight-normal d-inline-block text-capitalize mx-auto text-truncate"
-          style="max-width:70px;position:absolute;bottom:-22px;font-size:12px;"
+          style="max-width:70px;position:absolute;bottom:-22px;font-size:14px;font-weight:600;"
           >{{ project.person }}</span
         >
       </v-tab>
@@ -184,6 +184,38 @@ export default {
 </script>
 
 <style>
+body,
+html {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  line-height: 1.05;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  overflow-x: hidden !important;
+  font-family: 'SF Pro Display', 'Helvetica Neue', 'Helvetica', 'Arial',
+    sans-serif !important;
+}
+
+.slide_effect {
+  animation: slideout 1s;
+  transform: translateX(0px);
+}
+
+@keyframes slideout {
+  0% {
+    transform: translateX(0px);
+  }
+  50% {
+    transform: translateX(-25px);
+  }
+
+  100% {
+    transform: translateX(0px);
+  }
+}
+
 .switcheffect {
   animation: switchbaby 0.1s;
 }
