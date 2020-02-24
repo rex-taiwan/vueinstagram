@@ -2,7 +2,7 @@
   <div>
     <transition-group name="slide-in">
       <v-card
-        class="mt-2 grey lighten-5 d-none d-sm-block"
+        class="mt-2 grey lighten-5"
         v-for="(project, index) in projects"
         :key="project.id"
         :value="index"

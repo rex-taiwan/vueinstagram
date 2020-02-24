@@ -13,6 +13,20 @@ Vue.use(ReadMore);
 
 import VueInsProgressBar from 'vue-ins-progress-bar';
 import VueProgressiveImage from 'vue-progressive-image';
+import firebase from 'firebase';
+import '@/db.js';
+
+let app;
+firebase.auth().onAuthStateChanged(user => {
+  if (!app) {
+    app = new Vue({
+      router,
+      store,
+      vuetify,
+      render: h => h(App),
+    }).$mount('#app');
+  }
+});
 
 const options = {
   position: 'fixed',
@@ -31,10 +45,3 @@ import VueCropper from 'vue-cropper';
 Vue.use(VueCropper);
 
 Vue.config.productionTip = false;
-
-new Vue({
-  router,
-  store,
-  vuetify,
-  render: h => h(App),
-}).$mount('#app');

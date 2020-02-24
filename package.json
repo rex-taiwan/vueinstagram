@@ -12,7 +12,7 @@
     "animejs": "^3.1.0",
     "core-js": "^3.4.3",
     "date-fns": "^2.8.1",
-    "firebase": "^7.6.0",
+    "firebase": "^7.9.1",
     "moment": "^2.24.0",
     "node-sass": "^4.13.1",
     "vue": "^2.6.10",

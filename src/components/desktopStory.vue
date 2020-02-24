@@ -184,20 +184,6 @@ export default {
 </script>
 
 <style>
-body,
-html {
-  height: 100%;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  line-height: 1.05;
-  font-weight: 400;
-  letter-spacing: -0.015em;
-  overflow-x: hidden !important;
-  font-family: 'SF Pro Display', 'Helvetica Neue', 'Helvetica', 'Arial',
-    sans-serif !important;
-}
-
 .slide_effect {
   animation: slideout 1s;
   transform: translateX(0px);

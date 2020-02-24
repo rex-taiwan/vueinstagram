@@ -1,6 +1,6 @@
 <template>
   <v-app class="grey lighten-4">
-    <Navbar></Navbar>
+    <introbar></introbar>
     <v-content class="mb-4">
       <router-view></router-view>
     </v-content>
@@ -8,19 +8,20 @@
 </template>
 
 <script>
-import Navbar from "@/components/Navbar";
+// import Navbar from '@/components/Navbar';
+import introbar from '@/components/introbar';
 
 export default {
-  name: "App",
+  name: 'App',
   props: {
-    picture: Object
+    picture: Object,
   },
   components: {
-    Navbar
+    introbar,
   },
   data: () => ({
     //
   }),
-  created() {}
+  created() {},
 };
 </script>

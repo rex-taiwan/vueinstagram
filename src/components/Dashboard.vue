@@ -42,7 +42,7 @@
 
       <!-- Feed -->
       <feed
-        class="d-md-none d-block"
+        class="d-sm-none d-block"
         :getTimeAgo="getTimeAgo"
         :deleteProjects="deleteProjects"
         :toggleBottomSheet="toggleBottomSheet"
@@ -54,7 +54,7 @@
 
       <!-- Feed -->
       <desktop-feed
-        class="d-md-block d-none"
+        class="d-sm-block d-none"
         :getTimeAgo="getTimeAgo"
         :deleteProjects="deleteProjects"
         :toggleBottomSheet="toggleBottomSheet"
