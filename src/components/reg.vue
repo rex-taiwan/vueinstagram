@@ -65,7 +65,7 @@ export default {
         .then(
           data => {
             console.log(data.user.email);
-            this.$router.go({ path: this.$router.path });
+            this.$router.go({ path: '/' });
           },
           error => {
             alert(error.message);
