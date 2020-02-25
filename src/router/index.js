@@ -17,7 +17,7 @@ let router = new VueRouter({
   routes: [
     {
       path: '*',
-      redirect: '/',
+      redirect: '/home',
     },
     {
       path: '/login',
@@ -37,7 +37,7 @@ let router = new VueRouter({
     },
 
     {
-      path: '/',
+      path: '/home',
       name: 'dashboard',
       component: Dashboard,
       meta: {

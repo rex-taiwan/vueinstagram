@@ -9,7 +9,7 @@
       <v-spacer></v-spacer>
       <li v-if="isLoggedIn">
         <a>
-          <router-link to="/">
+          <router-link to="/home">
             <span class="font-weight-bold white--text ml-12"> STAYGETHER</span>
           </router-link>
         </a>
