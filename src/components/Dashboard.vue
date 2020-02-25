@@ -1,5 +1,5 @@
 <template>
-  <div class="grey lighten-5">
+  <div style="background:#222222">
     <!-- Instagram rainbow progress bar -->
     <vue-ins-progress-bar></vue-ins-progress-bar>
 
@@ -280,18 +280,18 @@ export default {
 }
 
 .avatarborder {
-  border: 3px solid #d8d8d8 !important;
+  border: 0px solid #d8d8d8 !important;
   transition: 0.4s;
   cursor: pointer;
 }
 
 .avatarborder:hover {
-  border: 4px solid #d8d8d8 !important;
-  transform: scale(1.1);
+  border: 0px solid #d8d8d8 !important;
+  transform: scale(1);
 }
 
 .avatarborder:active {
-  border: 4px solid #d8d8d8 !important;
+  border: 1px solid #d8d8d8 !important;
   transform: scale(0.9);
 }
 .complete {

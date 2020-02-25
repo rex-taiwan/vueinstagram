@@ -28,7 +28,7 @@
           <img :src="project.imgUrl" class="avatarborder" alt="alt" />
         </v-avatar>
         <span
-          class="black--text font-weight-normal d-inline-block text-capitalize mx-auto text-truncate"
+          class="white--text font-weight-normal d-inline-block text-capitalize mx-auto text-truncate"
           style="max-width:70px;position:absolute;bottom:-22px;font-size:12px;font-weight:600;"
           >{{ project.person }}</span
         >

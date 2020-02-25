@@ -1,56 +1,29 @@
 <template>
   <nav>
-    <v-app-bar height="55" flat app color="white">
-      <!-- <v-app-bar-nav-icon class="black--text" @click="drawer = !drawer"></v-app-bar-nav-icon> -->
-      <li>
-        <a>
-          <router-link to="/">
-            <!-- <v-toolbar-title class="text-uppercase black--text d-sm-block d-none subtitle-2">
-              <v-icon color="black" class="mx-2">mdi-gesture</v-icon>Exclusive
-            </v-toolbar-title>-->
-          </router-link>
-        </a>
-      </li>
+    <v-app-bar height="55" flat app color="#222222" dark>
+      <!-- <v-app-bar-nav-icon class="white--text" @click="drawer = !drawer"></v-app-bar-nav-icon> -->
 
-      <v-icon class="black--text d-sm-none d-block">mdi-camera-outline</v-icon>
-      <v-spacer></v-spacer>
-      <li>
-        <a>
-          <router-link to="/">
-            <img
-              :src="toplogo"
-              class="mb-1 mx-auto ml-12 d-sm-block d-none"
-              style="width:120px;height:50px;"
-            />
-          </router-link>
-        </a>
-      </li>
-
-      <li>
-        <a>
-          <router-link to="/">
-            <img
-              :src="toplogo"
-              class="mb-1 mx-auto ml-6 d-sm-none d-block"
-              style="width:100px;height:40px;"
-            />
-          </router-link>
-        </a>
-      </li>
-      <!-- <img src="https://images.unsplash.com/photo-1489512827632-6e52aecf88bf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80" align-center justify-center height="35px"> -->
-      <v-spacer></v-spacer>
-
-      <v-icon size="25" class="d-sm-none d-block mb-1" color="black darken-1"
-        >mdi-television-classic</v-icon
+      <v-icon v-if="isLoggedIn" class="white--text d-block"
+        >mdi-camera-outline</v-icon
       >
+      <v-spacer></v-spacer>
+      <li v-if="isLoggedIn">
+        <a>
+          <router-link to="/">
+            <span class="font-weight-bold white--text ml-12"> STAYGETHER</span>
+          </router-link>
+        </a>
+      </li>
 
-      <li>
+      <v-spacer></v-spacer>
+
+      <li v-if="isLoggedIn">
         <a>
           <router-link to="/team">
             <v-btn text class="d-sm-none d-block">
               <v-badge overlap color="red">
                 <template v-slot:badge>2</template>
-                <v-icon size="25" color="black">mdi-telegram</v-icon>
+                <v-icon size="25" color="white">mdi-telegram</v-icon>
               </v-badge>
             </v-btn>
           </router-link>
@@ -67,7 +40,7 @@
             offset-y
           >
             <template v-slot:activator="{ on }">
-              <v-btn color="black" text v-on="on" class="d-none d-sm-block">
+              <v-btn color="white" text v-on="on" class="d-none d-sm-block">
                 <v-icon>mdi-home</v-icon>
                 <v-avatar
                   size="5"
@@ -119,7 +92,7 @@
         </a>
       </li>
 
-      <li v-if="!isLoggedIn">
+      <!-- <li v-if="!isLoggedIn">
         <a>
           <router-link to="/login">
             <v-btn text class="d-none d-sm-block"> Login </v-btn>
@@ -133,17 +106,7 @@
             <v-btn text class="d-none d-sm-block"> Register </v-btn>
           </router-link>
         </a>
-      </li>
-
-      <li v-if="isLoggedIn">
-        <a>
-          <router-link to="/team">
-            <v-btn text class="d-none d-sm-block">
-              <v-icon color="black" class="ml-2">mdi-compass-outline</v-icon>
-            </v-btn>
-          </router-link>
-        </a>
-      </li>
+      </li> -->
 
       <li v-if="isLoggedIn">
         <a>
@@ -154,7 +117,7 @@
             offset-y
           >
             <template v-slot:activator="{ on }">
-              <v-btn color="black" text v-on="on" class="d-none d-sm-block">
+              <v-btn color="white" text v-on="on" class="d-none d-sm-block">
                 <v-icon>mdi-heart-outline</v-icon>
                 <v-avatar
                   size="5"
@@ -217,7 +180,7 @@
         <a>
           <router-link to="/project">
             <v-btn text class="d-none d-sm-block">
-              <v-icon color="black" class="ml-1">mdi-account-outline</v-icon>
+              <v-icon color="white" class="ml-1">mdi-account-outline</v-icon>
             </v-btn>
           </router-link>
         </a>

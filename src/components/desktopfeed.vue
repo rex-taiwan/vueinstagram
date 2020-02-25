@@ -2,7 +2,9 @@
   <div>
     <transition-group name="slide-in">
       <v-card
-        class="mt-2 grey lighten-5"
+        flat
+        class="mt-2"
+        style="background:#222222"
         v-for="(project, index) in projects"
         :key="project.id"
         :value="index"
@@ -13,12 +15,12 @@
           </v-list-item-avatar>
           <v-list-item-content>
             <v-list-item-title
-              class="subtitle-1 font-weight-bold text-lowercase"
+              class="subtitle-1 font-weight-bold text-lowercase white--text"
               >{{ project.person }}</v-list-item-title
             >
           </v-list-item-content>
           <v-spacer></v-spacer>
-          <v-icon @click="onFeedClicked(project.id)"
+          <v-icon @click="onFeedClicked(project.id)" color="grey"
             >mdi-dots-horizontal</v-icon
           >
         </v-list-item>
@@ -91,20 +93,20 @@
       </v-img> -->
 
         <v-card-actions class="my-4">
-          <v-icon class="primary--text mx-2">mdi-heart-outline</v-icon>
-          <v-icon class="primary--text mx-2">mdi-message-outline</v-icon>
-          <v-icon class="primary--text ml-2">mdi-send</v-icon>
+          <v-icon class="mx-2 grey--text">mdi-heart-outline</v-icon>
+          <v-icon class=" mx-2 grey--text">mdi-message-outline</v-icon>
+          <v-icon class=" ml-2 grey--text">mdi-send</v-icon>
         </v-card-actions>
-        <p class="mx-4 mt-2">
-          <span class="font-weight-bold black--text text-lowercase">{{
+        <p class="mx-4 mt-2 grey--text">
+          <span class="font-weight-bold white--text text-lowercase">{{
             project.person
           }}</span>
           and
-          <span class="font-weight-bold black--text">millions of others</span>
+          <span class="font-weight-bold white--text">millions of others</span>
           like this post
         </p>
 
-        <p class="subtitle-1 font-weight-bold black--text mx-4">
+        <p class="subtitle-1 font-weight-bold white--text mx-4">
           <v-avatar size="20" class="mr-2">
             <img :src="project.imgUrl" />
           </v-avatar>
@@ -114,7 +116,7 @@
             style="line-height:1mm;important!"
             >{{ project.content }}</span
           >
-          <strong class="d-block font-weight-regular mt-4" style="color:#003569"
+          <strong class="d-block font-weight-regular mt-4" style="color:grey"
             >#{{ project.title }}</strong
           >
           <br />

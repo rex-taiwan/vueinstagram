@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Circular loading icon -->
-    <div class="d-flex justify-center loadingeffect" v-if="loading">
+    <div class="d-flex justify-center" v-if="loading">
       <img
         :src="insloadicon"
         class="insloadicon mt-12"
@@ -15,18 +15,22 @@
       :key="number"
       :loading="loading"
       v-show="loading"
-      class="mx-4 d-sm-inline-block d-none mt-5"
+      class="mx-4 d-inline-block  mt-5"
       type="avatar"
+      :boilerplate="true"
+      dark
     >
       <v-card></v-card>
     </v-skeleton-loader>
 
     <!-- Post skeleton loader -->
     <v-skeleton-loader
-      class="mt-10"
+      class="mt-10 "
+      dark
       v-for="number in numbers"
       :key="number"
       :loading="loading"
+      :boilerplate="true"
       v-show="loading"
       type="list-item-avatar-two-line,image,image,actions"
     >
